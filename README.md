@@ -1,0 +1,2 @@
+reddcoin-electrum-js
+====================
