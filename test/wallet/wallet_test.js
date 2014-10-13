@@ -164,6 +164,25 @@ module.exports = nodeunit.testCase({
         test.done();
     },
 
+    'Test Master Keys to Addresses' : function (test) {
+        var expectedMasterPrivateKey = testData.expectedMasterPrivateKey,
+            addresses = testData.addressSet,
+            account = new HierarchicalKey(expectedMasterPrivateKey).derive('m/0\'/0'),
+            getAddress = function(account, index){
+                var wKey = new WalletKey(),
+                    priv = account.deriveChild(index).eckey.private.toString("hex");
+
+                wKey.fromObj({ priv: priv});
+
+                return wKey.storeObj();
+            };
+
+        test.strictEqual(getAddress(account, 0).addr, addresses[0]);
+        test.strictEqual(getAddress(account, 1).addr, addresses[1]);
+        test.strictEqual(getAddress(account, 2).addr, addresses[2]);
+        test.done();
+    },
+
     /**
      * The python electrum client generates these addresses from the given seed. Once this test passes we'll be doing well.
      * @param test
