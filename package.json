@@ -1,41 +1,42 @@
 {
-    "name"           : "reddcoin-electrum-js",
-    "description"    : "Implementation of electrum in javascript",
-    "version"        : "1.1.4",
-    "homepage"       : "https://github.com/reddcoin-project/reddcoin-electrum-js",
-    "author"         : {
-        "name" : "Andrew Groff",
-        "email": "andrew.p.groff@gmail.com"
-    },
-    "repository"     : {
-        "type": "git",
-        "url" : "git://github.com/reddcoin-project/reddcoin-electrum-js.git"
-    },
-    "bugs"           : {
-        "url": "https://github.com/reddcoin-project/reddcoin-electrum-js/issues"
-    },
-    "licenses"       : [
-        {
-            "type": "Proprietary",
-            "url" : "https://github.com/reddcoin-project/reddcoin-electrum-js/blob/master/LICENSE-Proprietary"
-        }
-    ],
-    "main"           : "lib/reddcoin-electrum-js",
-    "engines"        : {
-        "node": ">= 0.8.0"
-    },
-    "scripts"        : {
-        "test": "grunt nodeunit"
-    },
-    "dependencies"   : {
-        "stampit" : "1.1.0",
-        "reddcore": "git://github.com/reddcoin-project/reddcore"
-    },
-    "devDependencies": {
-        "grunt-contrib-jshint"  : "~0.6.4",
-        "grunt-contrib-nodeunit": "~0.2.0",
-        "grunt-contrib-watch"   : "~0.5.3",
-        "grunt"                 : "~0.4.5"
-    },
-    "keywords"       : []
+  "name": "reddcoin-electrum-js",
+  "description": "Implementation of electrum in javascript",
+  "version": "1.1.4",
+  "homepage": "https://github.com/reddcoin-project/reddcoin-electrum-js",
+  "author": {
+    "name": "Andrew Groff",
+    "email": "andrew.p.groff@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/reddcoin-project/reddcoin-electrum-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reddcoin-project/reddcoin-electrum-js/issues"
+  },
+  "licenses": [
+    {
+      "type": "Proprietary",
+      "url": "https://github.com/reddcoin-project/reddcoin-electrum-js/blob/master/LICENSE-Proprietary"
+    }
+  ],
+  "main": "lib/reddcoin-electrum-js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "dependencies": {
+    "stampit": "1.1.0",
+    "reddcore": "git://github.com/reddcoin-project/reddcore"
+  },
+  "devDependencies": {
+    "browserify": "^6.1.0",
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "keywords": []
 }
