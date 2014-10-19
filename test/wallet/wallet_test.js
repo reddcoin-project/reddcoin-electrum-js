@@ -76,27 +76,27 @@ module.exports = nodeunit.testCase({
             secondWallet = WalletFactory.standardWallet(),
             currentAddresses;
 //                                                                                                                      @formatter:on
-        currentAddresses = this.wallet.getAddresses();
+        currentAddresses = this.wallet.getSimpleAddresses();
         test.deepEqual([], currentAddresses, 'should start empty');
 
         //override the public property if it exists
         this.wallet.addresses = [ addresses[0] ];
 
-        currentAddresses = this.wallet.getAddresses();
+        currentAddresses = this.wallet.getSimpleAddresses();
         test.deepEqual([], currentAddresses, 'addresses should not be public');
 
         //add all addresses
         addresses.forEach(function (address) {
-            that.wallet.addAddress(address);
+            that.wallet.addSimpleAddress(address);
         });
 
-        currentAddresses = this.wallet.getAddresses();
+        currentAddresses = this.wallet.getSimpleAddresses();
 
         test.deepEqual(addresses, currentAddresses);
 
         test.equals(true, this.wallet.isDeterministic(), "standard wallet should override this to true");
 
-        test.deepEqual([], secondWallet.getAddresses(), "make sure its instance safe and second wallet is still empty");
+        test.deepEqual([], secondWallet.getSimpleAddresses(), "make sure its instance safe and second wallet is still empty");
 
         test.done();
     },
@@ -190,72 +190,15 @@ module.exports = nodeunit.testCase({
     'Test Generates Addresses From Seed' : function (test) {
         var addresses = testData.addressSet,
             seedText  = testData.mnemonicSeed,
-            password  = testData.password,
-            newAddress;
+            generatedAddresses;
 
-        this.wallet.setMnemonicSeed(seedText);
-        newAddress = this.wallet.generateNewAddress();
+        this.wallet.buildFromMnemonic(seedText);
+        generatedAddresses = this.wallet.getAddresses();
 
-        //        test.notStrictEqual(addresses.indexOf(newAddress), -1);
-        test.strictEqual("not implemented", "not implemented");
-        test.done();
-    },
-
-    'Test Generate Address From Hex Seed' : function (test) {
-        //for now, skip this test. Its currently scratch pad/testing grounds.
-        test.done();
-        return;
-
-        var hexSeed = '26df33950a95b706b5bc1ebf33ad04d061402aab229824233992a17ac168d2db7e10d90bb7a7834df9fc1ecdb0e04e796f55decfa55ff624e7ee38d8c2fac98c',
-        //hexSeed = 'Ris7SBMe4q9w4d8OQab5L+rUgkAWSyGiVeyx+MAqGhjleiQFXuCmUSJP4Tng6xBDnG3zn5QyzT0803LihYuU9eCB6uLQEI7/vVbARbuJhTsmFGDifGi5cZTh1IvX5OIP/CdKH4Z9z87slFtxdCAkeH6qC+q4afYtrzNU7RRQWx4=',
-            masterpk = 'xpub661MyMwAqRbcGdQRHqXcDsXxFG9XUofyUJCiXPfEGY52avVFDjfLCaNw3WArgxXp2MnXbduLnmTwrUrSZVX7Mx5GNEcq6ojrETCQzwCVbNK',
-            accountXpub = 'xpub6DAKzmYxctXRVu9nv6VdQh6LpZ3whTEHmqPxNVQ5RH3EZz5z7frKsTLkR5srj2NLWZ7j9pCjumndsnXh3BskCXiMTaH3NAHqQQZ1YSYEZ1U',
-            chainXpub = 'xpub6EWL77eJowhiED3xySXFj7jh55Y22n27u1isBBBCYFnNpXHVKao8b54CxJk4pNkMrvE9qmJbU8QBjKwq5ZJfs41DfHoCPyHghW6Kp37D8d7',
-            addressPubKey = '02c6a08f2ee18b0b25687bf391fd7155bded08f6bc1aa17517c905954915a7debf',
-            address = 'Rcv2GrdBV5F7Js4qwggrDjwzes69qpCJCB',
-
-            expectedMasterPublicKey = 'xpub6B9ssRVytgm74y6MeAT3waCjHuQmqaRx1x1yuoNqX33JDQKy8nrS5drGfStBn4iEcgjCGnSUM9zFuhrwN9eHoQSKX78LL95MUbUPiK9JGAa',
-            expectedMasterPrivateKey = 'xprv9xAXTuy64KCorV1tY8v3aSFzjsaHS7i6ej6P7QyDxhWKLbzpbFYBXqXnpALn21ERK5j5XZnKXcLQ9XcXuTbKtXpfRPxhsDHXe98Zzu6R9Nx',
-
-            expectedRootXprv = 'xprv9s21ZrQH143K49KxBozbrjbDhEK35Lx875H7j1FciCY3i8A6gCM5en4TCGWt524A5QUh9gHQg3cg8NocmKYQ613fxpJDwRoGWbUoVtfvPX3',
-            expectedRootXpub = 'xpub661MyMwAqRbcGdQRHqXcDsXxFG9XUofyUJCiXPfEGY52avVFDjfLCaNw3WArgxXp2MnXbduLnmTwrUrSZVX7Mx5GNEcq6ojrETCQzwCVbNK',
-
-            root = new HierarchicalKey.seed(hexSeed),
-            rootXprv = root.extendedPrivateKeyString(),
-            rootXpub = root.extendedPublicKeyString(),
-            walletKey = new WalletKey(),
-            hkey;
-        console.log("test:");
-
-        test.strictEqualD = function (a, b) {
-            //return;
-            console.log(a);
-            console.log(b);
-            console.log("");
-        }
-
-        hkey = new HierarchicalKey.seed(hexSeed).derive("m/44'/0'");
-
-        test.strictEqualD(hkey.extendedPublicKeyString(), expectedMasterPublicKey);
-        test.strictEqualD(hkey.extendedPrivateKeyString(), expectedMasterPrivateKey);
-        //
-        //        //console.log(child);
-        ////        console.log(priv);
-        ////        walletKey.fromObj({ priv : priv});
-        ////        keyObject = walletKey.storeObj();
-        ////        console.log(keyObject);
-        //
-        //
-        //        console.log(hkey.derive("m/0").extendedPublicKeyString())
-        ////        console.log(hkey.derive("m/0/0"))
-        //        var child = hkey.deriveChild(0);
-        //
-        //        console.log(hkey.extendedPublicKeyString());
-        ////        console.log(child);
-        //        console.log(child.extendedPublicKeyString())
-
-        //        test.strictEqual(keyObject.addr, expectedHexSeed);
-        test.strictEqual("test", "test");
+        test.strictEqual(generatedAddresses[0].toString(), addresses[0]);
+        test.strictEqual(generatedAddresses[1].toString(), addresses[1]);
+        test.strictEqual(generatedAddresses[2].toString(), addresses[2]);
         test.done();
     }
+
 });
