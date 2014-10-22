@@ -1,16 +1,31 @@
-var wallet = {
-    create: function(seed){
-        var electrum = require('electrum'),
-            wallet = electrum.WalletFactory.standardWallet();
-        seed = $.trim(seed);
-
-        wallet.buildFromMnemonic(seed);
-
+var electrum = require('electrum'),
+    bitcore = require('bitcore'),
+    rdd = {
+    wallet : false,
+    render: function(){
+        var that = this;
         $("#addresses").empty();
 
-        $.each(wallet.getAddresses(), function(i, addr){
-            $("#addresses").append('<p>'+addr+'</p>');
+        $.each(this.wallet.getAddresses(), function(i, addr){
+            var val = bitcore.util.formatValue(addr.confirmed) + ' RDD';
+            $("#addresses").append('<p>' + addr + ' - ' + val + '</p>');
         });
+
+        setTimeout(function(){
+            that.render();
+        }, 1000);
+    },
+    create: function(seed){
+        var monitor = electrum.NetworkMonitor;
+
+        this.wallet = electrum.WalletFactory.standardWallet(),
+
+        seed = $.trim(seed);
+
+        this.wallet.buildFromMnemonic(seed);
+        monitor.start(this.wallet);
+
+        this.render();
     }
 }
 
@@ -18,6 +33,6 @@ var wallet = {
 
 $(function(){
     $('#importButton').click(function(){
-        wallet.create($('#walletSeed').val());
+        rdd.create($('#walletSeed').val());
     });
 });

@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         nodeunit : {
-            files : ['test/**/*_test.js']
+            all : ['test/**/*_test.js']
         },
         jshint   : {
             options   : {
@@ -46,6 +46,12 @@ module.exports = function (grunt) {
 
     grunt.registerTask("build", "Build ", function () {
         build();
+    });
+
+    //allows things like `grunt test:transaction`
+    grunt.registerTask('test', function(file) {
+        if (file) grunt.config('nodeunit.all', 'test/**/' + file + '_test.js');
+        grunt.task.run('nodeunit');
     });
 
     // Default task.

@@ -36,8 +36,8 @@ module.exports = {
 //        'lib/ScriptInterpreter',
 //        'lib/SecureRandom',
 //        'lib/sjcl',
-//        'lib/Transaction',
-//        'lib/TransactionBuilder',
+        'lib/Transaction',
+        'lib/TransactionBuilder',
 //        'lib/Wallet',
         'lib/WalletKey',
 //        'patches/Buffers.monkey',
@@ -46,7 +46,7 @@ module.exports = {
 //        'const',
 //        'networks',
 //        'util/log',
-//        'util/util',
+        'util/util'
 //        'util/EncodedData',
 //        'util/VersionedData',
 //        'util/BinaryParser'

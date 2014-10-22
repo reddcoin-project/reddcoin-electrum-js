@@ -195,6 +195,7 @@ module.exports = nodeunit.testCase({
         this.wallet.buildFromMnemonic(seedText);
         generatedAddresses = this.wallet.getAddresses();
 
+//        console.log(generatedAddresses[5].wkey);
         test.strictEqual(generatedAddresses[0].toString(), addresses[0]);
         test.strictEqual(generatedAddresses[1].toString(), addresses[1]);
         test.strictEqual(generatedAddresses[2].toString(), addresses[2]);
