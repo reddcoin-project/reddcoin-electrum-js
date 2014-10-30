@@ -1,3 +1,7 @@
+global.dbg = function(item){
+    console.log(item);
+};
+
 // Allows for debug versions of tests. For instance, if
 //    test.strictEqual();
 // is failing, you can add a "d" to the beginning to get better formatted debug output:

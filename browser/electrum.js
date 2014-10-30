@@ -54,12 +54,12 @@ module.exports = {
     ]
 }
 },{}],2:[function(require,module,exports){
-var hdAccount = require("./HdAccount");
-var instantiable = require("../attributes/Instantiable");
-var stampit = require('stampit');
+var hdAccount    = require("./HdAccount"),
+    instantiable = require("../attributes/Instantiable"),
+    stampit      = require('stampit');
 
 module.exports = {
-    account : function(index, masterPrivateKey){
+    account : function (index, masterPrivateKey) {
         var account = stampit.compose(instantiable, hdAccount).create();
         account.instantiate(index, masterPrivateKey);
         return account;
@@ -68,18 +68,19 @@ module.exports = {
 
 
 
-},{"../attributes/Instantiable":5,"./HdAccount":4,"stampit":62}],3:[function(require,module,exports){
-var stampit = require('stampit');
-var instantiable = require("../attributes/Instantiable");
-var bitcore = bitcore || require('bitcore');
-var WalletKey = bitcore.WalletKey;
+},{"../attributes/Instantiable":5,"./HdAccount":4,"stampit":64}],3:[function(require,module,exports){
+var stampit      = require('stampit'),
+    instantiable = require("../attributes/Instantiable"),
+    bitcore      = bitcore || require('bitcore'),
+    WalletKey    = bitcore.WalletKey;
 
 var Address = stampit().enclose(function () {
     var transactions = [],
         baseTransaction = {
-            hash : '',
+            hash   : '',
             height : 0
         },
+        transactionStatus = null,
         data = {
             priv : '',
             pub  : '',
@@ -97,24 +98,36 @@ var Address = stampit().enclose(function () {
         data.addr = wKey.addr;
     };
 
-    this.addTransactions = function(trs){
+    this.needsTransactionUpdate = function (txStatus) {
+        if(transactionStatus === txStatus){
+            return false;
+        }
 
-        trs.forEach(function(transaction){
+        transactionStatus = txStatus;
+        return true;
+    };
+
+    this.addTransactions = function (trs) {
+
+        trs.forEach(function (transaction) {
             var hash = transaction.tx_hash;
             transactions[hash] = transaction;
         });
-
+        throw new Error("Add transactions to address is deprecated.");
     };
 
     this.create = function (privateKey) {
         var wKey = new WalletKey();
 
-        wKey.fromObj({ priv : privateKey});
+        wKey.fromObj({priv : privateKey});
 
         this.createFromWalletKey(wKey.storeObj());
     };
 
-    this.toString = function(){
+    this.toString = function (attribute) {
+        if(attribute !== undefined){
+            return data[attribute];
+        }
         return data.addr;
     };
 
@@ -134,87 +147,184 @@ module.exports = {
         return address;
     }
 };
-},{"../attributes/Instantiable":5,"bitcore":undefined,"stampit":62}],4:[function(require,module,exports){
-(function (Buffer){
-var stampit = require('stampit');
-var Address = require('./Address');
-var bitcore = bitcore || require('bitcore');
-var HierarchicalKey = bitcore.HierarchicalKey;
-var Transaction = bitcore.Transaction;
+},{"../attributes/Instantiable":5,"bitcore":undefined,"stampit":64}],4:[function(require,module,exports){
+var stampit         = require('stampit'),
+    Address         = require('./Address'),
+    bitcore         = bitcore || require('bitcore'),
+    HierarchicalKey = bitcore.HierarchicalKey,
+    Transaction     = require('../wallet/Transaction');
 
-var HdAccount = stampit().enclose(function() {
+var HdAccount = stampit().enclose(function () {
     var index,
+        that = this,
         changeChain,
         publicChain,
         transactions = {},
+        transactionHeights = {},
+        spentOutputs = {},
         addresses = [],
+        //for fast lookup
+        addressList = {},
 
-        generateAddress = function(chain, index){
+        getMyOutputs = function(outputs, includeSpent, hash){
+            var outs = [];
+
+            outputs.forEach(function(output, c){
+                var isSpent = spentOutputs.hasOwnProperty(hash + ':' + c),
+                    include = includeSpent || !isSpent,
+                    isMine  = that.isMine(output.payTo);
+
+                if(isMine && include){
+                    outs.push(output);
+                }
+            });
+
+            return outs;
+        },
+
+        getOutputs = function(includeSpent){
+            var outs = [],
+                includeSpent = typeof includeSpent !== 'undefined' ? includeSpent : true;
+
+            for(var i in transactions){
+                var tx = transactions[i],
+                    outputs = tx.get("outputs"),
+                    mine    = getMyOutputs(outputs, includeSpent, tx.get("hash"));
+
+                outs = outs.concat(mine);
+
+            }
+
+            return outs;
+        },
+
+        getInputs = function(){
+
+        },
+
+        generateAddress = function (chain, index) {
             var privateKey = chain.deriveChild(index).eckey.private.toString("hex");
 
             return Address.create(privateKey);
         },
 
-        generateAddresses = function(chain, count){
-            var index;
+        generateAddresses = function (chain, count) {
+            var index, adr;
 
-            for(var i = 0; i < count; i++){
+            for (var i = 0; i < count; i++) {
                 index = addresses.length;
                 addresses[index] = generateAddress(chain, index);
+                adr = addresses[index].toString();
+                addressList[adr] = adr;
             }
         };
 
-
-    this.instantiate = function(i, masterPrivateKey){
+    this.instantiate = function (i, masterPrivateKey) {
         var baseDerivation = 'm/' + i + '\'/';
         this.instantiating();
         index = i;
         publicChain = new HierarchicalKey(masterPrivateKey).derive(baseDerivation + '0');
         changeChain = new HierarchicalKey(masterPrivateKey).derive(baseDerivation + '1');
 
-        this.generatePublicAddresses(7);
+        this.generatePublicAddresses(4);
     };
 
-    this.generatePublicAddresses = function(count){
+    this.generatePublicAddresses = function (count) {
         var cnt = count || 1;
         generateAddresses(publicChain, cnt);
     };
 
-    this.getAddresses = function(){
+    this.getAddresses = function () {
         return addresses;
     };
 
-    this.getAddress = function(address){
+    this.getAddress = function (address) {
         var foundAddress = false;
 
-        addresses.forEach(function(Addr){
-            if(Addr.toString() === address){
+        addresses.forEach(function (Addr) {
+            if (Addr.toString() === address) {
                 foundAddress = Addr;
             }
         });
 
-        if(foundAddress === false){
+        if (foundAddress === false) {
             throw new Error("Could not find address: " + address);
         }
 
         return foundAddress;
     };
 
-    this.addFullTransaction = function(hash, rawTx){
-        var raw = new Buffer(rawTx, 'hex');
-        var tx = new Transaction();
-        tx.parse(raw);
+    this.isMine = function(address){
+        return addressList.hasOwnProperty(address);
+    };
+
+    this.hasFullTransaction = function(txHash){
+        return transactions.hasOwnProperty(txHash);
+    };
+
+    this.updateSpentOutputs = function(){
+        var addSpent = function(input){
+            var outputId = input.output.hash + ':' + input.output.index;
+
+            if(that.isMine(input.payFrom)){
+                dbg("SPNT: " + outputId);
+                spentOutputs[outputId] = outputId;
+            }
+            else {
+                dbg("UTXO: " + outputId);
+            }
+        };
+
+        dbg("*******************************************************");
+        dbg("*-------------------------- TXs ----------------------*");
+        dbg("*******************************************************");
+        for(var i in transactions){
+            transactions[i].get("inputs").forEach(addSpent);
+        }
+        dbg(getOutputs(false));
+    };
+
+    this.getUtxos = function () {
+        var utxos = getOutputs(false);
+
+        dbg(utxos);
+        dbg(spentOutputs);
+        return utxos;
+    };
+
+    this.getTransactions = function () {
+        var txs = [];
+
+        for(var i in transactions){
+            txs.push(transactions[i].getSummary(addressList));
+        }
+
+        txs.sort(function(a, b){
+            return b.time - a.time;
+        });
+
+        return txs;
+    };
+
+    this.addFullTransaction = function (hash, rawTx) {
+        var tx = Transaction.createFromRaw(rawTx)
         transactions[hash] = tx;
-        console.log(rawTx);
-        console.log(tx.getStandardizedObject());
-        console.log(tx.prototype);
+
+        this.updateSpentOutputs();
     };
 
-    this.addTransactions = function(address, transactions){
-        this.getAddress(address).addTransactions(transactions);
+    this.addTransactions = function (address, txs) {
+        txs.forEach(function(tx){
+            var hash = tx.hash;
+            transactionHeights[hash] = {
+                hash   : hash,
+                height : tx.height,
+                address : address
+            };
+        });
     };
 
-    this.setAddressBalance = function(address, confrmed, unconfirmed){
+    this.setAddressBalance = function (address, confrmed, unconfirmed) {
         var Addr = this.getAddress(address);
         Addr.confirmed = confrmed;
         Addr.unconfirmed = unconfirmed;
@@ -223,8 +333,7 @@ var HdAccount = stampit().enclose(function() {
 });
 
 module.exports = HdAccount;
-}).call(this,require("buffer").Buffer)
-},{"./Address":3,"bitcore":undefined,"buffer":12,"stampit":62}],5:[function(require,module,exports){
+},{"../wallet/Transaction":11,"./Address":3,"bitcore":undefined,"stampit":64}],5:[function(require,module,exports){
 var stampit = require('stampit');
 
 /**
@@ -236,7 +345,7 @@ var stampit = require('stampit');
  *
  * @type {*|Object}
  */
-var Instantiable = stampit().enclose(function() {
+var Instantiable = stampit().enclose(function () {
     var operations = {};
 
     /**
@@ -244,10 +353,10 @@ var Instantiable = stampit().enclose(function() {
      *
      * @param operationName - The name of the operation that can only occur once.
      */
-    this.instantiating = function(operationName){
+    this.instantiating = function (operationName) {
         operationName = operationName || "instantiate";
 
-        if(operations.hasOwnProperty(operationName)){
+        if (operations.hasOwnProperty(operationName)) {
             throw new Error("Cannot repeat operation: " + operationName);
         }
 
@@ -256,36 +365,36 @@ var Instantiable = stampit().enclose(function() {
 });
 
 module.exports = Instantiable;
-},{"stampit":62}],6:[function(require,module,exports){
+},{"stampit":64}],6:[function(require,module,exports){
 var stampit = require('stampit');
 
 var CookieManager = stampit().enclose(function () {
 
-    var doClear = function(cookies){
+    var doClear = function (cookies) {
 
-        cookies.forEach(function(cookie){
+        cookies.forEach(function (cookie) {
             var details = {
-                url : 'http://' + cookie.domain + cookie.path,
-                name : cookie.name,
+                url     : 'http://' + cookie.domain + cookie.path,
+                name    : cookie.name,
                 storeId : cookie.storeId
             };
 
-            chrome.cookies.remove(details, function(removed){
-//                console.log("Removed: ");
-//                console.log(removed);
-//                console.log(chrome.runtime.lastError);
+            chrome.cookies.remove(details, function (removed) {
+                //                console.log("Removed: ");
+                //                console.log(removed);
+                //                console.log(chrome.runtime.lastError);
             });
         });
 
     }
 
-    this.clearCookies = function(){
-        try{
+    this.clearCookies = function () {
+        try {
             var search = {};
             chrome.cookies.getAll(search, doClear);
 
         }
-        catch(e){
+        catch (e) {
             //pass for node, etc
             console.log("Could not clear cookies");
         }
@@ -294,50 +403,51 @@ var CookieManager = stampit().enclose(function () {
 });
 
 module.exports = CookieManager;
-},{"stampit":62}],7:[function(require,module,exports){
-var stampit = require('stampit');
-var instantiable = require("../attributes/Instantiable");
-var ResponseParser = require("./ResponseParser");
-var CookieManager = require("./CookieManager");
-var http = require('http');
-var bitcore = bitcore || require('bitcore');
-var WalletKey = bitcore.WalletKey;
+},{"stampit":64}],7:[function(require,module,exports){
+var stampit        = require('stampit'),
+    instantiable   = require("../attributes/Instantiable"),
+    ResponseParser = require("./ResponseParser"),
+    CookieManager  = require("./CookieManager"),
+    http           = require('http'),
+    bitcore        = bitcore || require('bitcore'),
+    WalletKey      = bitcore.WalletKey;
 
 var Monitor = stampit().enclose(function () {
 
     var queue = [],
         that = this,
         requestId = 1,
+        requestDelayMs = 700,
         lastRequest = 0,
         intervalId,
-        seconds = 1,
 
-        postData = function(data, callback){
-            var cb = callback || function(){};
+        postData = function (data, callback) {
+            var cb = callback || function () {
+                };
             var options = {
-                host: 'uk.rddelectrum.com',
-                protocol: 'http:',
-                port: '8081',
-                path: '/',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json-rpc',
-                    'Content-Length': data.length
+                host     : 'uk.rddelectrum.com',
+                protocol : 'http:',
+                port     : '8081',
+                path     : '/',
+                method   : 'POST',
+                headers  : {
+                    'Content-Type'   : 'application/json-rpc',
+                    'Content-Length' : data.length
                 }
             };
 
             // Set up the request
-            var request = http.request(options, function(response) {
+            var request = http.request(options, function (response) {
                 var responseData = '';
                 //response.setEncoding('utf8');
                 response.on('data', function (chunk) {
                     responseData = responseData + chunk;
                 });
                 response.on('end', function () {
-                    try{
+                    try {
                         responseData = JSON.parse(responseData);
                     }
-                    catch(e){
+                    catch (e) {
 
                     }
                     cb(responseData);
@@ -350,15 +460,28 @@ var Monitor = stampit().enclose(function () {
             lastRequest = new Date() / 1000;
         },
 
-        handleResponse = function(response){
+        handleResponse = function (response) {
+            if(!response){
+                dbg("Empty Response");
+                return;
+            }
 
-            if(typeof response === 'string' && response.indexOf("session not found") > 0){
+            if (typeof response === 'string' && response.indexOf("session not found") > 0) {
                 console.log(response);
                 console.log('Clearing cookies');
                 that.clearCookies();
             }
             else {
-                that.processResponse(response);
+                // Sometimes the response is an array.
+                // We'll force it to an array to handle them all the same way.
+                var isArray = Array.isArray(response);
+                if(!isArray){
+                    response = [response];
+                }
+
+                response.forEach(function(resp){
+                    that.processResponse(resp);
+                });
             }
 
         },
@@ -367,18 +490,13 @@ var Monitor = stampit().enclose(function () {
             var now = new Date() / 1000,
                 secondsSinceRequest = now - lastRequest,
                 currentRequest;
-//            var currentQueue;
-            // Clone the queue then empty it immediately afterwards.
-            // Should prevent anything from being added while we're building/sending the update request.
-//            currentQueue = queue.slice(0);
-//            queue = [];
 
-            if(queue.length > 0 ){
+            if (queue.length > 0) {
                 currentRequest = queue.shift();
                 that.addPendingRequest(JSON.parse(currentRequest));
                 postData(currentRequest, handleResponse);
             }
-            else if(queue.length === 0 && secondsSinceRequest > 30){
+            else if (queue.length === 0 && secondsSinceRequest > 30) {
                 postData('{"id": null, "method": "node.keep_alive", "params": []}', handleResponse);
             }
 
@@ -398,24 +516,31 @@ var Monitor = stampit().enclose(function () {
         },
 
         getAddressHistory = function (address) {
-            enqueueRequest(that.types.history, [ address.toString() ]);
+            enqueueRequest(that.types.history, [address.toString()]);
         },
 
         getAddressBalance = function (address) {
-            enqueueRequest(that.types.balance, [ address.toString() ]);
+            enqueueRequest(that.types.balance, [address.toString()]);
         },
 
         subscribeToAddress = function (address) {
-            enqueueRequest(that.types.subscribe, [ address.toString() ]);
+            enqueueRequest(that.types.subscribe, [address.toString()]);
         };
 
+    this.broadcastTransaction = function(signedTransaction) {
+        enqueueRequest(that.types.broadcast, [signedTransaction]);
+    };
+
+    this.updateAddress = function (address) {
+        getAddressHistory(address);
+        getAddressBalance(address);
+    };
+
     this.getTransaction = function (hash) {
-        enqueueRequest(that.types.transaction, [ hash ]);
+        enqueueRequest(that.types.transaction, [hash]);
     };
 
     this.newAddress = function (address) {
-        getAddressHistory(address);
-        getAddressBalance(address);
         subscribeToAddress(address);
     };
 
@@ -427,7 +552,7 @@ var Monitor = stampit().enclose(function () {
             this.newAddress(address);
         }, this);
 
-        intervalId = setInterval(update, 1000 * seconds);
+        intervalId = setInterval(update, requestDelayMs);
     };
 
     this.stop = function () {
@@ -445,58 +570,85 @@ module.exports = {
         return monitor;
     }
 };
-},{"../attributes/Instantiable":5,"./CookieManager":6,"./ResponseParser":8,"bitcore":undefined,"http":17,"stampit":62}],8:[function(require,module,exports){
+},{"../attributes/Instantiable":5,"./CookieManager":6,"./ResponseParser":8,"bitcore":undefined,"http":19,"stampit":64}],8:[function(require,module,exports){
 var stampit = require('stampit');
 
 var ResponseParser = stampit().enclose(function () {
     var that = this,
         pendingRequests = {},
 
-        setBalance = function(result, address){
+        setBalance = function (result, address) {
             that.wallet.setAddressBalance(address, result.confirmed, result.unconfirmed);
         },
 
-        addFullTransaction = function(hash, rawTx){
+        addFullTransaction = function (hash, rawTx) {
             that.wallet.addFullTransaction(hash, rawTx);
-        }
+        },
 
-        addTransactions = function(transactions, address){
-            transactions.forEach(function(tr){
-                that.getTransaction(tr.tx_hash);
-            });
+        checkSubscription = function(address, txStatus){
+            var Addr = that.wallet.getAddress(address),
+                needsUpdate = Addr.needsTransactionUpdate(txStatus);
+
+            if(needsUpdate){
+                that.updateAddress(address);
+            }
+        },
+
+        addTransactions = function (transactions, address) {
             that.wallet.addTransactions(address, transactions);
+
+            transactions.forEach(function (tr) {
+
+                if(! that.wallet.hasFullTransaction(tr.tx_hash)){
+                    that.getTransaction(tr.tx_hash);
+                }
+
+            });
+
         };
 
     this.wallet = false;
 
     this.types = {
-        balance : 'blockchain.address.get_balance',
-        subscribe : 'blockchain.address.subscribe',
-        history : 'blockchain.address.get_history',
-        transaction : 'blockchain.transaction.get'
+        balance     : 'blockchain.address.get_balance',
+        subscribe   : 'blockchain.address.subscribe',
+        history     : 'blockchain.address.get_history',
+        transaction : 'blockchain.transaction.get',
+        broadcast   : 'blockchain.transaction.broadcast'
     };
 
-    this.addPendingRequest = function(expected){
+    this.addPendingRequest = function (expected) {
         pendingRequests[expected.id] = expected;
     };
 
-    this.setWallet = function(newWallet){
+    this.setWallet = function (newWallet) {
         this.wallet = newWallet;
     };
 
-    this.processResponse = function(response){
+    this.processResponse = function (response) {
         var id = response.id,
             request = pendingRequests[id],
+            method, params;
+
+        if(request){
             method = request.method;
+            params = request.params;
+        }
+        else if(response["method"] !== undefined){
+            method = response["method"];
+            params = response.params;
+        }
+        else {
+            dbg(request);
+            dbg(response);
+            throw new Error("Could not determine method");
+        }
 
-
-        switch (method){
+        switch (method) {
             case this.types.balance:
                 return setBalance(response.result, request.params[0]);
             case this.types.subscribe:
-                //console.log(request);
-                //return console.log(response);
-                return;
+                return checkSubscription(params[0], params[1]);
             case this.types.transaction:
                 return addFullTransaction(request.params[0], response.result);
             case this.types.history:
@@ -510,99 +662,129 @@ var ResponseParser = stampit().enclose(function () {
 });
 
 module.exports = ResponseParser;
-},{"stampit":62}],9:[function(require,module,exports){
+},{"stampit":64}],9:[function(require,module,exports){
 var stampit = require('stampit');
 
-var AbstractWallet = stampit().enclose(function(){
+var AbstractWallet = stampit().enclose(function () {
     var addresses = [];
 
-    this.addSimpleAddress = function(address){
+    this.addSimpleAddress = function (address) {
         addresses.push(address);
     };
 
-    this.getSimpleAddresses = function(){
+    this.getSimpleAddresses = function () {
         return addresses;
     };
 
-    this.isDeterministic = function(){
+    this.isDeterministic = function () {
         return false;
     };
 });
 
 module.exports = AbstractWallet;
-},{"stampit":62}],10:[function(require,module,exports){
-var stampit = require('stampit');
-var config = require('../../configuration.js');
-var AccountFactory = require('../address/AccountFactory');
-var bitcore = bitcore || require('bitcore');
-var BIP39 = bitcore.BIP39;
-var HierarchicalKey = bitcore.HierarchicalKey;
+},{"stampit":64}],10:[function(require,module,exports){
+var stampit         = require('stampit'),
+    config          = require('../../configuration.js'),
+    AccountFactory  = require('../address/AccountFactory'),
+    TxBuilder       = require('./TxBuilder'),
+    bitcore         = bitcore || require('bitcore'),
+    BIP39           = bitcore.BIP39,
+    HierarchicalKey = bitcore.HierarchicalKey;
 
-var Bip32HdWallet = stampit().enclose(function() {
+var Bip32HdWallet = stampit().enclose(function () {
     var masterPublicKey = false,
         masterPrivateKey = false,
+        txBuilder = false,
         accounts = [],
 
-        getRootDerivation = function(){
+        getRootDerivation = function () {
             var hardened = "'";
             //something like: "m/44'/0'"
             return 'm/' + config.bip44.purpose + hardened + '/' + config.bip44.coin_type + hardened;
         };
 
-    this.buildFromKeys = function(publicKey, privateKey){
+    this.buildFromKeys = function (publicKey, privateKey) {
         this.instantiating("Build Wallet");
         //private key is optional, so lets keep it boolean if not provided.
         privateKey = privateKey || false;
 
-        masterPublicKey  = privateKey;
+        masterPublicKey = privateKey;
         masterPrivateKey = privateKey;
+
+        txBuilder = TxBuilder.create();
 
         accounts.push(AccountFactory.account(0, masterPrivateKey));
     };
 
-    this.buildFromSeed = function(seed){
+    this.buildFromSeed = function (seed) {
+        //                                                                                                              @formatter:off
         var root             = new HierarchicalKey.seed(seed),
             rootXprv         = root.extendedPrivateKeyString(),
             rootDerivation   = getRootDerivation(),
             hkey             = new HierarchicalKey(rootXprv).derive(rootDerivation),
             masterPublicKey  = hkey.extendedPublicKeyString(),
             masterPrivateKey = hkey.extendedPrivateKeyString();
-
+//                                                                                                                      @formatter:on
         this.buildFromKeys(masterPublicKey, masterPrivateKey);
     };
 
-    this.getAccount = function(accountIndex){
+    this.getAccount = function (accountIndex) {
         var ai = accountIndex || 0;
-        if(accounts[ai] === undefined){
+        if (accounts[ai] === undefined) {
             throw new Error("Could not find account: " + ai);
         }
         return accounts[ai];
     };
 
-    this.buildFromMnemonic = function(mnemonicSeed){
+    this.buildFromMnemonic = function (mnemonicSeed) {
         var seed = BIP39.mnemonic2seed(mnemonicSeed, '');
         this.buildFromSeed(seed);
     };
 
-    this.getAddresses = function(){
+    this.getAddresses = function () {
         return accounts[0].getAddresses();
     };
 
-    this.isDeterministic = function(){
+    this.isDeterministic = function () {
         return true;
     };
 
-    this.addFullTransaction = function(hash, rawTx, accountIndex){
+    this.send = function(amount, to, monitor){
+        var account = this.getAccount(0),
+            utxos   = account.getUtxos(),
+            addresses = this.getAddresses(),
+            signedTransaction = txBuilder.createTransaction(amount, to, utxos, addresses);
+
+        console.log(signedTransaction);
+        return monitor.broadcastTransaction(signedTransaction);
+    };
+
+    this.getAddress = function(address, accountIndex){
+        var account = this.getAccount(accountIndex);
+        return account.getAddress(address);
+    };
+
+    this.hasFullTransaction = function(txHash, accountIndex){
+        var account = this.getAccount(accountIndex);
+        return account.hasFullTransaction(txHash);
+    };
+
+    this.getTransactions = function(accountIndex){
+        var account = this.getAccount(accountIndex);
+        return account.getTransactions();
+    };
+
+    this.addFullTransaction = function (hash, rawTx, accountIndex) {
         var account = this.getAccount(accountIndex);
         account.addFullTransaction(hash, rawTx);
     };
 
-    this.addTransactions = function(address, transactions, accountIndex){
+    this.addTransactions = function (address, transactions, accountIndex) {
         var account = this.getAccount(accountIndex);
         account.addTransactions(address, transactions);
     };
 
-    this.setAddressBalance = function(address, confirmed, unconfirmed, accountIndex){
+    this.setAddressBalance = function (address, confirmed, unconfirmed, accountIndex) {
         var account = this.getAccount(accountIndex);
         account.setAddressBalance(address, confirmed, unconfirmed);
     };
@@ -610,14 +792,261 @@ var Bip32HdWallet = stampit().enclose(function() {
 });
 
 module.exports = Bip32HdWallet;
-},{"../../configuration.js":1,"../address/AccountFactory":2,"bitcore":undefined,"stampit":62}],11:[function(require,module,exports){
-var abstract = require("./AbstractWallet");
-var bip32 = require("./Bip32HdWallet");
-var instantiable = require("../attributes/Instantiable");
-var stampit = require('stampit');
+},{"../../configuration.js":1,"../address/AccountFactory":2,"./TxBuilder":12,"bitcore":undefined,"stampit":64}],11:[function(require,module,exports){
+(function (Buffer){
+var stampit     = require('stampit'),
+    config      = require('../../configuration.js'),
+    bitcore     = bitcore || require('bitcore'),
+    buffertools = bitcore.buffertools,
+    util        = bitcore.util,
+    Tx          = bitcore.Transaction;
+
+var Transaction = stampit().enclose(function () {
+    var data = {
+        version   : false,
+        timestamp : false,
+        locktime  : false,
+        hash      : false,
+        size      : false,
+        inputs    : [],
+        outputs   : []
+    };
+
+    this.createFromRaw = function (rawTxBuffer) {
+        var tx, outputAddresses, inputAddresses;
+
+        tx = new Tx();
+        tx.parse(rawTxBuffer);
+        outputAddresses = tx.getReceivingAddresses();
+        inputAddresses = tx.getSendingAddresses();
+
+        data.version = tx.version;
+        data.timestamp = tx.timestamp;
+        data.locktime = tx.lock_time;
+        data.hash = util.formatHashFull(tx.getHash());
+        data.size = tx.getSize();
+
+        tx.outs.forEach(function (out, i) {
+            var script = out.getScript(),
+                type = false;
+
+            if (script.isPubkeyHash()) {
+                type = 'TX_PUBKEYHASH';
+            }
+            if (script.isPubkey()) {
+                type = 'TX_PUBKEY';
+            }
+
+            if (type === false) {
+                throw new Error("Unsupported Transaction Type.");
+            }
+
+            data.outputs.push({
+                txid         : data.hash,
+                vout         : i,
+                type         : type,
+                scriptPubKey : bitcore.buffertools.toHex(script.buffer),
+                payTo        : outputAddresses[i],
+                value        : out.getValue()
+            });
+        });
+
+        tx.ins.forEach(function (input, i) {
+            data.inputs.push({
+                output  : {
+                    hash  : buffertools.reverse(new Buffer(input.getOutpointHash())).toString('hex'),
+                    index : input.getOutpointIndex()
+                },
+                payFrom : inputAddresses[i]
+            });
+        });
+    };
+
+    this.get = function (property) {
+        //TODO: clone this a more efficient way.
+        var copy = JSON.parse(JSON.stringify(data));
+
+        if (property !== undefined && copy.hasOwnProperty(property)) {
+            return copy[property];
+        }
+
+        return copy;
+    };
+
+    this.getSummary = function (addressList) {
+        var allinputsMine = true,
+            totalOutputs = 0,
+            gained = 0,
+            lost = 0,
+            receivedWith = [],
+            sentTo = [],
+            total, ret,
+            isMine = function (address) {
+                return addressList.hasOwnProperty(address);
+            };
+
+        data.outputs.forEach(function (output) {
+            totalOutputs += output.value;
+            if (isMine(output.payTo)) {
+                gained += output.value;
+                receivedWith.push(output.payTo);
+            }
+            else {
+                sentTo.push(output.payTo);
+            }
+        });
+
+        data.inputs.forEach(function (input) {
+            if (!isMine(input.payFrom)) {
+                allinputsMine = false;
+            }
+        });
+
+        if (allinputsMine) {
+            lost += totalOutputs;
+        }
+
+        total = gained - lost;
+
+        ret = {
+            total : total,
+            time  : data.timestamp,
+            id    : data.hash
+        };
+
+        if (total > 0) {
+            ret.type = 'Received';
+            ret.address = receivedWith[0];
+        }
+        else {
+            ret.type = 'Sent';
+            if(sentTo.length === 0){
+                ret.address = 'Self Transaction';
+            }
+            else {
+                ret.address = sentTo[0];
+            }
+        }
+
+        return ret;
+    };
+});
 
 module.exports = {
-    standardWallet : function(){
+    createFromRaw : function (rawTx) {
+        var tx = stampit.compose(Transaction).create();
+
+        if (typeof rawTx === 'string') {
+            rawTx = new Buffer(rawTx, 'hex')
+        }
+
+        tx.createFromRaw(rawTx);
+        return tx;
+    }
+};
+}).call(this,require("buffer").Buffer)
+},{"../../configuration.js":1,"bitcore":undefined,"buffer":14,"stampit":64}],12:[function(require,module,exports){
+var stampit            = require('stampit'),
+    Transaction        = require('./Transaction'),
+    bitcore            = bitcore || require('bitcore'),
+    util               = bitcore.util,
+    TransactionBuilder = bitcore.TransactionBuilder;
+
+var TxBuilder = stampit().enclose(function () {
+    var test = '',
+
+        getAddressProp = function (property, address, addresses) {
+            var prop = false,
+                found;
+
+            found = addresses.some(function (Address) {
+                if (Address.toString() === address) {
+                    prop = Address.toString(property);
+                    return true;
+                }
+            });
+
+            if (!found) {
+                throw new Error("Address: " + address + " could not be located.");
+            }
+
+            return prop;
+        },
+
+        formatUtxos = function (utxos, addresses) {
+            var newUtxos = [];
+
+            utxos.forEach(function (utxo) {
+
+                newUtxos.push({
+                    address       : utxo.payTo,
+                    txid          : utxo.txid,
+                    scriptPubKey  : utxo.scriptPubKey,
+                    vout          : utxo.vout,
+                    amount        : util.formatValue(utxo.value),
+                    confirmations : 10
+                });
+
+            });
+            return newUtxos;
+        };
+
+    this.createTransaction = function (amount, to, utxos, addresses) {
+        var formattedUtxos = formatUtxos(utxos, addresses),
+            opts = {
+                remainderOut : {
+                    address : 'Rcv2GrdBV5F7Js4qwggrDjwzes69qpCJCB'
+                }
+            },
+            outs = [{
+                        address : to,
+                        amount  : amount
+                    }],
+            builder = new TransactionBuilder(opts);
+
+        builder.setUnspent(formattedUtxos).setOutputs(outs);
+
+        var selectedUnspent = builder.getSelectedUnspent();
+
+        var privateKeys = [];
+
+        selectedUnspent.forEach(function (unspent) {
+            var priv = getAddressProp('priv', unspent.address, addresses);
+
+            dbg("priv: " + priv);
+            privateKeys.push(priv);
+        });
+
+        builder.sign(privateKeys);
+
+        if (builder.isFullySigned()) {
+            var tx = builder.build();
+            dbg(tx);
+            dbg(Transaction.createFromRaw(tx.serialize().toString('hex')).get());
+            return tx.serialize().toString('hex');
+        }
+
+        dbg("Sending " + amount + " to: " + to);
+        dbg(selectedUnspent);
+        dbg(formattedUtxos);
+        throw new Error("Could not sign transaction");
+    }
+});
+
+module.exports = {
+
+    create : function () {
+        return stampit.compose(TxBuilder).create();
+    }
+};
+},{"./Transaction":11,"bitcore":undefined,"stampit":64}],13:[function(require,module,exports){
+var abstract     = require("./AbstractWallet"),
+    bip32        = require("./Bip32HdWallet"),
+    instantiable = require("../attributes/Instantiable"),
+    stampit      = require('stampit');
+
+module.exports = {
+    standardWallet : function () {
         //return abstract.create();
         return stampit.compose(instantiable, abstract, bip32).create();
     }
@@ -625,7 +1054,7 @@ module.exports = {
 
 
 
-},{"../attributes/Instantiable":5,"./AbstractWallet":9,"./Bip32HdWallet":10,"stampit":62}],12:[function(require,module,exports){
+},{"../attributes/Instantiable":5,"./AbstractWallet":9,"./Bip32HdWallet":10,"stampit":64}],14:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1677,7 +2106,7 @@ function decodeUtf8Char (str) {
   }
 }
 
-},{"base64-js":13,"ieee754":14,"is-array":15}],13:[function(require,module,exports){
+},{"base64-js":15,"ieee754":16,"is-array":17}],15:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -1799,7 +2228,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -1885,7 +2314,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 
 /**
  * isArray
@@ -1920,7 +2349,7 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2223,7 +2652,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var http = module.exports;
 var EventEmitter = require('events').EventEmitter;
 var Request = require('./lib/request');
@@ -2369,7 +2798,7 @@ http.STATUS_CODES = {
     510 : 'Not Extended',               // RFC 2774
     511 : 'Network Authentication Required' // RFC 6585
 };
-},{"./lib/request":18,"events":16,"url":41}],18:[function(require,module,exports){
+},{"./lib/request":20,"events":18,"url":43}],20:[function(require,module,exports){
 var Stream = require('stream');
 var Response = require('./response');
 var Base64 = require('Base64');
@@ -2580,7 +3009,7 @@ var isXHR2Compatible = function (obj) {
     if (typeof FormData !== 'undefined' && obj instanceof FormData) return true;
 };
 
-},{"./response":19,"Base64":20,"inherits":21,"stream":39}],19:[function(require,module,exports){
+},{"./response":21,"Base64":22,"inherits":23,"stream":41}],21:[function(require,module,exports){
 var Stream = require('stream');
 var util = require('util');
 
@@ -2702,7 +3131,7 @@ var isArray = Array.isArray || function (xs) {
     return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{"stream":39,"util":43}],20:[function(require,module,exports){
+},{"stream":41,"util":45}],22:[function(require,module,exports){
 ;(function () {
 
   var object = typeof exports != 'undefined' ? exports : this; // #8: web workers
@@ -2764,7 +3193,7 @@ var isArray = Array.isArray || function (xs) {
 
 }());
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -2789,12 +3218,12 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2882,7 +3311,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],24:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
@@ -3393,7 +3822,7 @@ process.chdir = function (dir) {
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3479,7 +3908,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3566,16 +3995,16 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":25,"./encode":26}],28:[function(require,module,exports){
+},{"./decode":27,"./encode":28}],30:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":29}],29:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":31}],31:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3668,7 +4097,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_readable":31,"./_stream_writable":33,"_process":23,"core-util-is":34,"inherits":21}],30:[function(require,module,exports){
+},{"./_stream_readable":33,"./_stream_writable":35,"_process":25,"core-util-is":36,"inherits":23}],32:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3716,7 +4145,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":32,"core-util-is":34,"inherits":21}],31:[function(require,module,exports){
+},{"./_stream_transform":34,"core-util-is":36,"inherits":23}],33:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4702,7 +5131,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require('_process'))
-},{"_process":23,"buffer":12,"core-util-is":34,"events":16,"inherits":21,"isarray":22,"stream":39,"string_decoder/":40}],32:[function(require,module,exports){
+},{"_process":25,"buffer":14,"core-util-is":36,"events":18,"inherits":23,"isarray":24,"stream":41,"string_decoder/":42}],34:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4914,7 +5343,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":29,"core-util-is":34,"inherits":21}],33:[function(require,module,exports){
+},{"./_stream_duplex":31,"core-util-is":36,"inherits":23}],35:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5304,7 +5733,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_duplex":29,"_process":23,"buffer":12,"core-util-is":34,"inherits":21,"stream":39}],34:[function(require,module,exports){
+},{"./_stream_duplex":31,"_process":25,"buffer":14,"core-util-is":36,"inherits":23,"stream":41}],36:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5414,10 +5843,10 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":12}],35:[function(require,module,exports){
+},{"buffer":14}],37:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":30}],36:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":32}],38:[function(require,module,exports){
 require('stream'); // hack to fix a circular dependency issue when used with browserify
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
@@ -5426,13 +5855,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":29,"./lib/_stream_passthrough.js":30,"./lib/_stream_readable.js":31,"./lib/_stream_transform.js":32,"./lib/_stream_writable.js":33,"stream":39}],37:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":31,"./lib/_stream_passthrough.js":32,"./lib/_stream_readable.js":33,"./lib/_stream_transform.js":34,"./lib/_stream_writable.js":35,"stream":41}],39:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":32}],38:[function(require,module,exports){
+},{"./lib/_stream_transform.js":34}],40:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":33}],39:[function(require,module,exports){
+},{"./lib/_stream_writable.js":35}],41:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5561,7 +5990,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":16,"inherits":21,"readable-stream/duplex.js":28,"readable-stream/passthrough.js":35,"readable-stream/readable.js":36,"readable-stream/transform.js":37,"readable-stream/writable.js":38}],40:[function(require,module,exports){
+},{"events":18,"inherits":23,"readable-stream/duplex.js":30,"readable-stream/passthrough.js":37,"readable-stream/readable.js":38,"readable-stream/transform.js":39,"readable-stream/writable.js":40}],42:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5784,7 +6213,7 @@ function base64DetectIncompleteChar(buffer) {
   this.charLength = this.charReceived ? 3 : 0;
 }
 
-},{"buffer":12}],41:[function(require,module,exports){
+},{"buffer":14}],43:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6493,14 +6922,14 @@ function isNullOrUndefined(arg) {
   return  arg == null;
 }
 
-},{"punycode":24,"querystring":27}],42:[function(require,module,exports){
+},{"punycode":26,"querystring":29}],44:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7090,7 +7519,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":42,"_process":23,"inherits":21}],44:[function(require,module,exports){
+},{"./support/isBuffer":44,"_process":25,"inherits":23}],46:[function(require,module,exports){
 var forIn = require('mout/object/forIn');
 
 function copyProp(val, key){
@@ -7110,7 +7539,7 @@ module.exports = function mixInChain(target, objects){
     return target;
 };
 
-},{"mout/object/forIn":57}],45:[function(require,module,exports){
+},{"mout/object/forIn":59}],47:[function(require,module,exports){
 
 
     /**
@@ -7135,7 +7564,7 @@ module.exports = function mixInChain(target, objects){
 
 
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 var forEach = require('./forEach');
 var makeIterator = require('../function/makeIterator_');
 
@@ -7160,7 +7589,7 @@ var makeIterator = require('../function/makeIterator_');
      module.exports = map;
 
 
-},{"../function/makeIterator_":47,"./forEach":45}],47:[function(require,module,exports){
+},{"../function/makeIterator_":49,"./forEach":47}],49:[function(require,module,exports){
 var prop = require('./prop');
 var deepMatches = require('../object/deepMatches');
 
@@ -7196,7 +7625,7 @@ var deepMatches = require('../object/deepMatches');
 
 
 
-},{"../object/deepMatches":56,"./prop":48}],48:[function(require,module,exports){
+},{"../object/deepMatches":58,"./prop":50}],50:[function(require,module,exports){
 
 
     /**
@@ -7212,7 +7641,7 @@ var deepMatches = require('../object/deepMatches');
 
 
 
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 var kindOf = require('./kindOf');
 var isPlainObject = require('./isPlainObject');
 var mixIn = require('../object/mixIn');
@@ -7263,7 +7692,7 @@ var mixIn = require('../object/mixIn');
 
 
 
-},{"../object/mixIn":61,"./isPlainObject":54,"./kindOf":55}],50:[function(require,module,exports){
+},{"../object/mixIn":63,"./isPlainObject":56,"./kindOf":57}],52:[function(require,module,exports){
 var clone = require('./clone');
 var forOwn = require('../object/forOwn');
 var kindOf = require('./kindOf');
@@ -7313,7 +7742,7 @@ var isPlainObject = require('./isPlainObject');
 
 
 
-},{"../object/forOwn":58,"./clone":49,"./isPlainObject":54,"./kindOf":55}],51:[function(require,module,exports){
+},{"../object/forOwn":60,"./clone":51,"./isPlainObject":56,"./kindOf":57}],53:[function(require,module,exports){
 var isKind = require('./isKind');
     /**
      */
@@ -7323,7 +7752,7 @@ var isKind = require('./isKind');
     module.exports = isArray;
 
 
-},{"./isKind":52}],52:[function(require,module,exports){
+},{"./isKind":54}],54:[function(require,module,exports){
 var kindOf = require('./kindOf');
     /**
      * Check if value is from a specific "kind".
@@ -7334,7 +7763,7 @@ var kindOf = require('./kindOf');
     module.exports = isKind;
 
 
-},{"./kindOf":55}],53:[function(require,module,exports){
+},{"./kindOf":57}],55:[function(require,module,exports){
 var isKind = require('./isKind');
     /**
      */
@@ -7344,7 +7773,7 @@ var isKind = require('./isKind');
     module.exports = isObject;
 
 
-},{"./isKind":52}],54:[function(require,module,exports){
+},{"./isKind":54}],56:[function(require,module,exports){
 
 
     /**
@@ -7360,7 +7789,7 @@ var isKind = require('./isKind');
 
 
 
-},{}],55:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 
 
     var _rKind = /^\[object (.*)\]$/,
@@ -7382,7 +7811,7 @@ var isKind = require('./isKind');
     module.exports = kindOf;
 
 
-},{}],56:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 var forOwn = require('./forOwn');
 var isArray = require('../lang/isArray');
 
@@ -7439,7 +7868,7 @@ var isArray = require('../lang/isArray');
 
 
 
-},{"../lang/isArray":51,"./forOwn":58}],57:[function(require,module,exports){
+},{"../lang/isArray":53,"./forOwn":60}],59:[function(require,module,exports){
 
 
     var _hasDontEnumBug,
@@ -7503,7 +7932,7 @@ var isArray = require('../lang/isArray');
 
 
 
-},{}],58:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 var hasOwn = require('./hasOwn');
 var forIn = require('./forIn');
 
@@ -7524,7 +7953,7 @@ var forIn = require('./forIn');
 
 
 
-},{"./forIn":57,"./hasOwn":59}],59:[function(require,module,exports){
+},{"./forIn":59,"./hasOwn":61}],61:[function(require,module,exports){
 
 
     /**
@@ -7538,7 +7967,7 @@ var forIn = require('./forIn');
 
 
 
-},{}],60:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 var hasOwn = require('./hasOwn');
 var deepClone = require('../lang/deepClone');
 var isObject = require('../lang/isObject');
@@ -7580,7 +8009,7 @@ var isObject = require('../lang/isObject');
 
 
 
-},{"../lang/deepClone":50,"../lang/isObject":53,"./hasOwn":59}],61:[function(require,module,exports){
+},{"../lang/deepClone":52,"../lang/isObject":55,"./hasOwn":61}],63:[function(require,module,exports){
 var forOwn = require('./forOwn');
 
     /**
@@ -7610,7 +8039,7 @@ var forOwn = require('./forOwn');
     module.exports = mixIn;
 
 
-},{"./forOwn":58}],62:[function(require,module,exports){
+},{"./forOwn":60}],64:[function(require,module,exports){
 /**
  * Stampit
  **
@@ -7833,9 +8262,16 @@ module.exports = mixIn(stampit, {
   convertConstructor: convertConstructor
 });
 
-},{"./mixinchain.js":44,"mout/array/forEach":45,"mout/array/map":46,"mout/object/forOwn":58,"mout/object/merge":60,"mout/object/mixIn":61}],"electrum":[function(require,module,exports){
+},{"./mixinchain.js":46,"mout/array/forEach":47,"mout/array/map":48,"mout/object/forOwn":60,"mout/object/merge":62,"mout/object/mixIn":63}],"electrum":[function(require,module,exports){
+(function (global){
+
+global.dbg = function(item){
+    console.log(item);
+};
+
 module.exports = {
     WalletFactory  : require('./lib/wallet/WalletFactory'),
     NetworkMonitor : require('./lib/network/Monitor')
 }
-},{"./lib/network/Monitor":7,"./lib/wallet/WalletFactory":11}]},{},[]);
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./lib/network/Monitor":7,"./lib/wallet/WalletFactory":13}]},{},[]);

@@ -177,6 +177,10 @@ module.exports = nodeunit.testCase({
                 return wKey.storeObj();
             };
 
+        console.log("priv:");
+        console.log(getAddress(account, 0).priv);
+        console.log("addr:");
+        console.log(getAddress(account, 0).addr);
         test.strictEqual(getAddress(account, 0).addr, addresses[0]);
         test.strictEqual(getAddress(account, 1).addr, addresses[1]);
         test.strictEqual(getAddress(account, 2).addr, addresses[2]);

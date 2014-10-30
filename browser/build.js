@@ -5,11 +5,11 @@ var config = require('../configuration');
 
 function build() {
     var doBitcore = true,
-        doBitcore = false,
+//        doBitcore = false,
         bitcoreOpts = {
-            //includeall : true,
             submodules : config.bitcoreModules,
-            dontminify : false
+            dontminify : true
+//            dontminify : false
         };
 
     if(doBitcore){

@@ -1,10 +1,11 @@
-var dtest = require("../dtest");
-var WalletFactory = require("../../lib/wallet/WalletFactory");
-var bitcore = bitcore || require('bitcore');
-var Transaction = bitcore.Transaction;
-
-var nodeunit = require("nodeunit");
-
+var dtest         = require("../dtest"),
+    WalletFactory = require("../../lib/wallet/WalletFactory"),
+    Transaction   = require('../../lib/wallet/Transaction'),
+    bitcore       = bitcore || require('bitcore'),
+    Address       = bitcore.Address,
+    Script        = bitcore.Script,
+    TX            = bitcore.Transaction,
+    nodeunit      = require("nodeunit");
 
 // All this data comes from Reddcoin Electrum in python
 var testData = {
@@ -38,23 +39,55 @@ module.exports = nodeunit.testCase({
         callback();
     },
 
-    'Test Script Pub Key to Address' : function (test) {
-        var pubKey = '0x570a934e8ebee5a7e0e8ce361768fd486b7285c9',
-            expectedAddress = 'RgZ2X79U7A5eLZ3tiTskkjHkX6H7PZjnVT',
-            tx = new Transaction();
+    'Test Create Transaction ' : function (test) {
+        var created  = '020000000 14c77a5705ff6e93344f2ea68f8f1607c3abdc34fb69ac0e2847692b001496d0f 000000006b4830450220 085bc69e7171b4132e8593fe6a0c8d7624366925a3992113f1523cdc48b424f5 022100 b27ba99493e3bd27e24e0f184f26e3ad7d76f1972c98b04f88d8999ce9c53d5 6012102c6a08f2ee18b0b25687bf391fd7155bded08f6bc1aa17517c905954915a7debfffffffff0200 f9029 5000000001976a914 9bb32f69157e07d389ad51189d4eaed83e5f017388acf0d1 0295000000001976a914 2f229a35c5d5ef27b9087ca3bcd612035e42846 388ac00000000 00000000';
+        var expected = '020000000 10f6d4901b0927684e2c09ab64fc3bd3a7c60f1f868eaf24433e9f65f70a5774c 000000006b4830450220 3b72d66e3b8ca19926131ead00e7aede0ef41e4d97230225ce801c641a774d57 022100 d2be83b31ed752d47c0200a61bbbb871c80ac183b2ecccb3c4285ff376da956 6012102c6a08f2ee18b0b25687bf391fd7155bded08f6bc1aa17517c905954915a7debfffffffff0260 72019 5000000001976a914 2f229a35c5d5ef27b9087ca3bcd612035e42846388ac00f9 0295000000001976a914 9bb32f69157e07d389ad51189d4eaed83e5f017 388ac00000000 f6485054';
 
-        //tx.parse(testData.transactions[0]);
-        //console.log(tx.getStandardizedObject());
-        //console.log(tx.getReceivingAddresses());
-        test.strictEqual("a", "a");
+        var c = Transaction.createFromRaw(created.replace(/ /g, '')).get();
+        var e = Transaction.createFromRaw(expected.replace(/ /g, '')).get();
+
+        var tx = new TX();
+        tx.parse(new Buffer(expected.replace(/ /g, ''), 'hex'));
+
+        dbg("");
+        dbg("Created - Expected");
+//        dbg(c);
+//        dbg(e);
+//        dbg(tx.getStandardizedObject());
+
+
+        test.deepEqual(c,e);
         test.done();
     },
 
 
+    'Test Script Pub Key' : function (test) {
+        var pubKey = "02c6a08f2ee18b0b25687bf391fd7155bded08f6bc1aa17517c905954915a7debf",
+            pubKey = '76a9146ce4e1163eb18939b1440c42844d5f0261c0338288ac';
+
+        var scriptBuf = new Buffer(pubKey, 'hex');
+        var scriptPubKey = new Script(scriptBuf);
+        var scriptType = scriptPubKey.classify();
+
+
+        //test.strictEqual(scriptType, "a");
+        test.done();
+    },
+
+    'Test Script Pub Key to Address' : function (test) {
+        var pubKey = '0x570a934e8ebee5a7e0e8ce361768fd486b7285c9',
+            expectedAddress = 'RgZ2X79U7A5eLZ3tiTskkjHkX6H7PZjnVT';
+
+        Transaction.createFromRaw(testData.transactions[0]);
+
+        test.strictEqual("a", "a");
+        test.done();
+    },
+
     'Test Parsing Transactions' : function (test) {
-        var seedText  = testData.mnemonicSeed,
-            txs       = testData.transactions,
-            hashes    = testData.hashes;
+        var seedText = testData.mnemonicSeed,
+            txs = testData.transactions,
+            hashes = testData.hashes;
 
         this.wallet.buildFromMnemonic(seedText);
 
