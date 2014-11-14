@@ -89,7 +89,7 @@ requireWhenAccessed('NetworkMonitor', './lib/NetworkMonitor');
 module.exports.Buffer = Buffer;
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/Base58":9,"./lib/HierarchicalKey":"pln06X","bignum":22,"bindings":35,"buffer":41}],"bitcore":[function(require,module,exports){
+},{"./lib/Base58":10,"./lib/HierarchicalKey":"pln06X","bignum":23,"bindings":37,"buffer":44}],"bitcore":[function(require,module,exports){
 module.exports=require('7UWBSF');
 },{}],3:[function(require,module,exports){
 module.exports = {
@@ -97,7 +97,7 @@ module.exports = {
   logger: 'normal' // none, normal, debug
 };
 
-},{}],4:[function(require,module,exports){
+},{}],"stV4m0":[function(require,module,exports){
 (function (Buffer){
 // Address
 // =======
@@ -314,7 +314,9 @@ Address.validate = function(s) {
 module.exports = Address;
 
 }).call(this,require("buffer").Buffer)
-},{"../networks":30,"../util":110,"../util/EncodedData":107,"../util/VersionedData":108,"./Script":14,"buffer":41,"util":64}],"./lib/BIP39":[function(require,module,exports){
+},{"../networks":"ycR0hy","../util":135,"../util/EncodedData":132,"../util/VersionedData":133,"./Script":15,"buffer":44,"util":89}],"./lib/Address":[function(require,module,exports){
+module.exports=require('stV4m0');
+},{}],"./lib/BIP39":[function(require,module,exports){
 module.exports=require('aa9J8G');
 },{}],"aa9J8G":[function(require,module,exports){
 (function (Buffer){
@@ -404,13 +406,2060 @@ BIP39.mnemonic2seed = function(mnemonic, passphrase) {
 module.exports = BIP39;
 
 }).call(this,require("buffer").Buffer)
-},{"../util":110,"./SecureRandom":25,"./sjcl":29,"buffer":41}],"./lib/BIP39WordlistEn":[function(require,module,exports){
+},{"../util":135,"./SecureRandom":26,"./sjcl":30,"buffer":44}],"./lib/BIP39WordlistEn":[function(require,module,exports){
 module.exports=require('l/Am2G');
 },{}],"l/Am2G":[function(require,module,exports){
-var BIP39WordlistEn = ["abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract", "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid", "acoustic", "acquire", "across", "act", "action", "actor", "actress", "actual", "adapt", "add", "addict", "address", "adjust", "admit", "adult", "advance", "advice", "aerobic", "affair", "afford", "afraid", "again", "age", "agent", "agree", "ahead", "aim", "air", "airport", "aisle", "alarm", "album", "alcohol", "alert", "alien", "all", "alley", "allow", "almost", "alone", "alpha", "already", "also", "alter", "always", "amateur", "amazing", "among", "amount", "amused", "analyst", "anchor", "ancient", "anger", "angle", "angry", "animal", "ankle", "announce", "annual", "another", "answer", "antenna", "antique", "anxiety", "any", "apart", "apology", "appear", "apple", "approve", "april", "arch", "arctic", "area", "arena", "argue", "arm", "armed", "armor", "army", "around", "arrange", "arrest", "arrive", "arrow", "art", "artefact", "artist", "artwork", "ask", "aspect", "assault", "asset", "assist", "assume", "asthma", "athlete", "atom", "attack", "attend", "attitude", "attract", "auction", "audit", "august", "aunt", "author", "auto", "autumn", "average", "avocado", "avoid", "awake", "aware", "away", "awesome", "awful", "awkward", "axis", "baby", "bachelor", "bacon", "badge", "bag", "balance", "balcony", "ball", "bamboo", "banana", "banner", "bar", "barely", "bargain", "barrel", "base", "basic", "basket", "battle", "beach", "bean", "beauty", "because", "become", "beef", "before", "begin", "behave", "behind", "believe", "below", "belt", "bench", "benefit", "best", "betray", "better", "between", "beyond", "bicycle", "bid", "bike", "bind", "biology", "bird", "birth", "bitter", "black", "blade", "blame", "blanket", "blast", "bleak", "bless", "blind", "blood", "blossom", "blouse", "blue", "blur", "blush", "board", "boat", "body", "boil", "bomb", "bone", "bonus", "book", "boost", "border", "boring", "borrow", "boss", "bottom", "bounce", "box", "boy", "bracket", "brain", "brand", "brass", "brave", "bread", "breeze", "brick", "bridge", "brief", "bright", "bring", "brisk", "broccoli", "broken", "bronze", "broom", "brother", "brown", "brush", "bubble", "buddy", "budget", "buffalo", "build", "bulb", "bulk", "bullet", "bundle", "bunker", "burden", "burger", "burst", "bus", "business", "busy", "butter", "buyer", "buzz", "cabbage", "cabin", "cable", "cactus", "cage", "cake", "call", "calm", "camera", "camp", "can", "canal", "cancel", "candy", "cannon", "canoe", "canvas", "canyon", "capable", "capital", "captain", "car", "carbon", "card", "cargo", "carpet", "carry", "cart", "case", "cash", "casino", "castle", "casual", "cat", "catalog", "catch", "category", "cattle", "caught", "cause", "caution", "cave", "ceiling", "celery", "cement", "census", "century", "cereal", "certain", "chair", "chalk", "champion", "change", "chaos", "chapter", "charge", "chase", "chat", "cheap", "check", "cheese", "chef", "cherry", "chest", "chicken", "chief", "child", "chimney", "choice", "choose", "chronic", "chuckle", "chunk", "churn", "cigar", "cinnamon", "circle", "citizen", "city", "civil", "claim", "clap", "clarify", "claw", "clay", "clean", "clerk", "clever", "click", "client", "cliff", "climb", "clinic", "clip", "clock", "clog", "close", "cloth", "cloud", "clown", "club", "clump", "cluster", "clutch", "coach", "coast", "coconut", "code", "coffee", "coil", "coin", "collect", "color", "column", "combine", "come", "comfort", "comic", "common", "company", "concert", "conduct", "confirm", "congress", "connect", "consider", "control", "convince", "cook", "cool", "copper", "copy", "coral", "core", "corn", "correct", "cost", "cotton", "couch", "country", "couple", "course", "cousin", "cover", "coyote", "crack", "cradle", "craft", "cram", "crane", "crash", "crater", "crawl", "crazy", "cream", "credit", "creek", "crew", "cricket", "crime", "crisp", "critic", "crop", "cross", "crouch", "crowd", "crucial", "cruel", "cruise", "crumble", "crunch", "crush", "cry", "crystal", "cube", "culture", "cup", "cupboard", "curious", "current", "curtain", "curve", "cushion", "custom", "cute", "cycle", "dad", "damage", "damp", "dance", "danger", "daring", "dash", "daughter", "dawn", "day", "deal", "debate", "debris", "decade", "december", "decide", "decline", "decorate", "decrease", "deer", "defense", "define", "defy", "degree", "delay", "deliver", "demand", "demise", "denial", "dentist", "deny", "depart", "depend", "deposit", "depth", "deputy", "derive", "describe", "desert", "design", "desk", "despair", "destroy", "detail", "detect", "develop", "device", "devote", "diagram", "dial", "diamond", "diary", "dice", "diesel", "diet", "differ", "digital", "dignity", "dilemma", "dinner", "dinosaur", "direct", "dirt", "disagree", "discover", "disease", "dish", "dismiss", "disorder", "display", "distance", "divert", "divide", "divorce", "dizzy", "doctor", "document", "dog", "doll", "dolphin", "domain", "donate", "donkey", "donor", "door", "dose", "double", "dove", "draft", "dragon", "drama", "drastic", "draw", "dream", "dress", "drift", "drill", "drink", "drip", "drive", "drop", "drum", "dry", "duck", "dumb", "dune", "during", "dust", "dutch", "duty", "dwarf", "dynamic", "eager", "eagle", "early", "earn", "earth", "easily", "east", "easy", "echo", "ecology", "economy", "edge", "edit", "educate", "effort", "egg", "eight", "either", "elbow", "elder", "electric", "elegant", "element", "elephant", "elevator", "elite", "else", "embark", "embody", "embrace", "emerge", "emotion", "employ", "empower", "empty", "enable", "enact", "end", "endless", "endorse", "enemy", "energy", "enforce", "engage", "engine", "enhance", "enjoy", "enlist", "enough", "enrich", "enroll", "ensure", "enter", "entire", "entry", "envelope", "episode", "equal", "equip", "era", "erase", "erode", "erosion", "error", "erupt", "escape", "essay", "essence", "estate", "eternal", "ethics", "evidence", "evil", "evoke", "evolve", "exact", "example", "excess", "exchange", "excite", "exclude", "excuse", "execute", "exercise", "exhaust", "exhibit", "exile", "exist", "exit", "exotic", "expand", "expect", "expire", "explain", "expose", "express", "extend", "extra", "eye", "eyebrow", "fabric", "face", "faculty", "fade", "faint", "faith", "fall", "false", "fame", "family", "famous", "fan", "fancy", "fantasy", "farm", "fashion", "fat", "fatal", "father", "fatigue", "fault", "favorite", "feature", "february", "federal", "fee", "feed", "feel", "female", "fence", "festival", "fetch", "fever", "few", "fiber", "fiction", "field", "figure", "file", "film", "filter", "final", "find", "fine", "finger", "finish", "fire", "firm", "first", "fiscal", "fish", "fit", "fitness", "fix", "flag", "flame", "flash", "flat", "flavor", "flee", "flight", "flip", "float", "flock", "floor", "flower", "fluid", "flush", "fly", "foam", "focus", "fog", "foil", "fold", "follow", "food", "foot", "force", "forest", "forget", "fork", "fortune", "forum", "forward", "fossil", "foster", "found", "fox", "fragile", "frame", "frequent", "fresh", "friend", "fringe", "frog", "front", "frost", "frown", "frozen", "fruit", "fuel", "fun", "funny", "furnace", "fury", "future", "gadget", "gain", "galaxy", "gallery", "game", "gap", "garage", "garbage", "garden", "garlic", "garment", "gas", "gasp", "gate", "gather", "gauge", "gaze", "general", "genius", "genre", "gentle", "genuine", "gesture", "ghost", "giant", "gift", "giggle", "ginger", "giraffe", "girl", "give", "glad", "glance", "glare", "glass", "glide", "glimpse", "globe", "gloom", "glory", "glove", "glow", "glue", "goat", "goddess", "gold", "good", "goose", "gorilla", "gospel", "gossip", "govern", "gown", "grab", "grace", "grain", "grant", "grape", "grass", "gravity", "great", "green", "grid", "grief", "grit", "grocery", "group", "grow", "grunt", "guard", "guess", "guide", "guilt", "guitar", "gun", "gym", "habit", "hair", "half", "hammer", "hamster", "hand", "happy", "harbor", "hard", "harsh", "harvest", "hat", "have", "hawk", "hazard", "head", "health", "heart", "heavy", "hedgehog", "height", "hello", "helmet", "help", "hen", "hero", "hidden", "high", "hill", "hint", "hip", "hire", "history", "hobby", "hockey", "hold", "hole", "holiday", "hollow", "home", "honey", "hood", "hope", "horn", "horror", "horse", "hospital", "host", "hotel", "hour", "hover", "hub", "huge", "human", "humble", "humor", "hundred", "hungry", "hunt", "hurdle", "hurry", "hurt", "husband", "hybrid", "ice", "icon", "idea", "identify", "idle", "ignore", "ill", "illegal", "illness", "image", "imitate", "immense", "immune", "impact", "impose", "improve", "impulse", "inch", "include", "income", "increase", "index", "indicate", "indoor", "industry", "infant", "inflict", "inform", "inhale", "inherit", "initial", "inject", "injury", "inmate", "inner", "innocent", "input", "inquiry", "insane", "insect", "inside", "inspire", "install", "intact", "interest", "into", "invest", "invite", "involve", "iron", "island", "isolate", "issue", "item", "ivory", "jacket", "jaguar", "jar", "jazz", "jealous", "jeans", "jelly", "jewel", "job", "join", "joke", "journey", "joy", "judge", "juice", "jump", "jungle", "junior", "junk", "just", "kangaroo", "keen", "keep", "ketchup", "key", "kick", "kid", "kidney", "kind", "kingdom", "kiss", "kit", "kitchen", "kite", "kitten", "kiwi", "knee", "knife", "knock", "know", "lab", "label", "labor", "ladder", "lady", "lake", "lamp", "language", "laptop", "large", "later", "latin", "laugh", "laundry", "lava", "law", "lawn", "lawsuit", "layer", "lazy", "leader", "leaf", "learn", "leave", "lecture", "left", "leg", "legal", "legend", "leisure", "lemon", "lend", "length", "lens", "leopard", "lesson", "letter", "level", "liar", "liberty", "library", "license", "life", "lift", "light", "like", "limb", "limit", "link", "lion", "liquid", "list", "little", "live", "lizard", "load", "loan", "lobster", "local", "lock", "logic", "lonely", "long", "loop", "lottery", "loud", "lounge", "love", "loyal", "lucky", "luggage", "lumber", "lunar", "lunch", "luxury", "lyrics", "machine", "mad", "magic", "magnet", "maid", "mail", "main", "major", "make", "mammal", "man", "manage", "mandate", "mango", "mansion", "manual", "maple", "marble", "march", "margin", "marine", "market", "marriage", "mask", "mass", "master", "match", "material", "math", "matrix", "matter", "maximum", "maze", "meadow", "mean", "measure", "meat", "mechanic", "medal", "media", "melody", "melt", "member", "memory", "mention", "menu", "mercy", "merge", "merit", "merry", "mesh", "message", "metal", "method", "middle", "midnight", "milk", "million", "mimic", "mind", "minimum", "minor", "minute", "miracle", "mirror", "misery", "miss", "mistake", "mix", "mixed", "mixture", "mobile", "model", "modify", "mom", "moment", "monitor", "monkey", "monster", "month", "moon", "moral", "more", "morning", "mosquito", "mother", "motion", "motor", "mountain", "mouse", "move", "movie", "much", "muffin", "mule", "multiply", "muscle", "museum", "mushroom", "music", "must", "mutual", "myself", "mystery", "myth", "naive", "name", "napkin", "narrow", "nasty", "nation", "nature", "near", "neck", "need", "negative", "neglect", "neither", "nephew", "nerve", "nest", "net", "network", "neutral", "never", "news", "next", "nice", "night", "noble", "noise", "nominee", "noodle", "normal", "north", "nose", "notable", "note", "nothing", "notice", "novel", "now", "nuclear", "number", "nurse", "nut", "oak", "obey", "object", "oblige", "obscure", "observe", "obtain", "obvious", "occur", "ocean", "october", "odor", "off", "offer", "office", "often", "oil", "okay", "old", "olive", "olympic", "omit", "once", "one", "onion", "online", "only", "open", "opera", "opinion", "oppose", "option", "orange", "orbit", "orchard", "order", "ordinary", "organ", "orient", "original", "orphan", "ostrich", "other", "outdoor", "outer", "output", "outside", "oval", "oven", "over", "own", "owner", "oxygen", "oyster", "ozone", "pact", "paddle", "page", "pair", "palace", "palm", "panda", "panel", "panic", "panther", "paper", "parade", "parent", "park", "parrot", "party", "pass", "patch", "path", "patient", "patrol", "pattern", "pause", "pave", "payment", "peace", "peanut", "pear", "peasant", "pelican", "pen", "penalty", "pencil", "people", "pepper", "perfect", "permit", "person", "pet", "phone", "photo", "phrase", "physical", "piano", "picnic", "picture", "piece", "pig", "pigeon", "pill", "pilot", "pink", "pioneer", "pipe", "pistol", "pitch", "pizza", "place", "planet", "plastic", "plate", "play", "please", "pledge", "pluck", "plug", "plunge", "poem", "poet", "point", "polar", "pole", "police", "pond", "pony", "pool", "popular", "portion", "position", "possible", "post", "potato", "pottery", "poverty", "powder", "power", "practice", "praise", "predict", "prefer", "prepare", "present", "pretty", "prevent", "price", "pride", "primary", "print", "priority", "prison", "private", "prize", "problem", "process", "produce", "profit", "program", "project", "promote", "proof", "property", "prosper", "protect", "proud", "provide", "public", "pudding", "pull", "pulp", "pulse", "pumpkin", "punch", "pupil", "puppy", "purchase", "purity", "purpose", "purse", "push", "put", "puzzle", "pyramid", "quality", "quantum", "quarter", "question", "quick", "quit", "quiz", "quote", "rabbit", "raccoon", "race", "rack", "radar", "radio", "rail", "rain", "raise", "rally", "ramp", "ranch", "random", "range", "rapid", "rare", "rate", "rather", "raven", "raw", "razor", "ready", "real", "reason", "rebel", "rebuild", "recall", "receive", "recipe", "record", "recycle", "reduce", "reflect", "reform", "refuse", "region", "regret", "regular", "reject", "relax", "release", "relief", "rely", "remain", "remember", "remind", "remove", "render", "renew", "rent", "reopen", "repair", "repeat", "replace", "report", "require", "rescue", "resemble", "resist", "resource", "response", "result", "retire", "retreat", "return", "reunion", "reveal", "review", "reward", "rhythm", "rib", "ribbon", "rice", "rich", "ride", "ridge", "rifle", "right", "rigid", "ring", "riot", "ripple", "risk", "ritual", "rival", "river", "road", "roast", "robot", "robust", "rocket", "romance", "roof", "rookie", "room", "rose", "rotate", "rough", "round", "route", "royal", "rubber", "rude", "rug", "rule", "run", "runway", "rural", "sad", "saddle", "sadness", "safe", "sail", "salad", "salmon", "salon", "salt", "salute", "same", "sample", "sand", "satisfy", "satoshi", "sauce", "sausage", "save", "say", "scale", "scan", "scare", "scatter", "scene", "scheme", "school", "science", "scissors", "scorpion", "scout", "scrap", "screen", "script", "scrub", "sea", "search", "season", "seat", "second", "secret", "section", "security", "seed", "seek", "segment", "select", "sell", "seminar", "senior", "sense", "sentence", "series", "service", "session", "settle", "setup", "seven", "shadow", "shaft", "shallow", "share", "shed", "shell", "sheriff", "shield", "shift", "shine", "ship", "shiver", "shock", "shoe", "shoot", "shop", "short", "shoulder", "shove", "shrimp", "shrug", "shuffle", "shy", "sibling", "sick", "side", "siege", "sight", "sign", "silent", "silk", "silly", "silver", "similar", "simple", "since", "sing", "siren", "sister", "situate", "six", "size", "skate", "sketch", "ski", "skill", "skin", "skirt", "skull", "slab", "slam", "sleep", "slender", "slice", "slide", "slight", "slim", "slogan", "slot", "slow", "slush", "small", "smart", "smile", "smoke", "smooth", "snack", "snake", "snap", "sniff", "snow", "soap", "soccer", "social", "sock", "soda", "soft", "solar", "soldier", "solid", "solution", "solve", "someone", "song", "soon", "sorry", "sort", "soul", "sound", "soup", "source", "south", "space", "spare", "spatial", "spawn", "speak", "special", "speed", "spell", "spend", "sphere", "spice", "spider", "spike", "spin", "spirit", "split", "spoil", "sponsor", "spoon", "sport", "spot", "spray", "spread", "spring", "spy", "square", "squeeze", "squirrel", "stable", "stadium", "staff", "stage", "stairs", "stamp", "stand", "start", "state", "stay", "steak", "steel", "stem", "step", "stereo", "stick", "still", "sting", "stock", "stomach", "stone", "stool", "story", "stove", "strategy", "street", "strike", "strong", "struggle", "student", "stuff", "stumble", "style", "subject", "submit", "subway", "success", "such", "sudden", "suffer", "sugar", "suggest", "suit", "summer", "sun", "sunny", "sunset", "super", "supply", "supreme", "sure", "surface", "surge", "surprise", "surround", "survey", "suspect", "sustain", "swallow", "swamp", "swap", "swarm", "swear", "sweet", "swift", "swim", "swing", "switch", "sword", "symbol", "symptom", "syrup", "system", "table", "tackle", "tag", "tail", "talent", "talk", "tank", "tape", "target", "task", "taste", "tattoo", "taxi", "teach", "team", "tell", "ten", "tenant", "tennis", "tent", "term", "test", "text", "thank", "that", "theme", "then", "theory", "there", "they", "thing", "this", "thought", "three", "thrive", "throw", "thumb", "thunder", "ticket", "tide", "tiger", "tilt", "timber", "time", "tiny", "tip", "tired", "tissue", "title", "toast", "tobacco", "today", "toddler", "toe", "together", "toilet", "token", "tomato", "tomorrow", "tone", "tongue", "tonight", "tool", "tooth", "top", "topic", "topple", "torch", "tornado", "tortoise", "toss", "total", "tourist", "toward", "tower", "town", "toy", "track", "trade", "traffic", "tragic", "train", "transfer", "trap", "trash", "travel", "tray", "treat", "tree", "trend", "trial", "tribe", "trick", "trigger", "trim", "trip", "trophy", "trouble", "truck", "true", "truly", "trumpet", "trust", "truth", "try", "tube", "tuition", "tumble", "tuna", "tunnel", "turkey", "turn", "turtle", "twelve", "twenty", "twice", "twin", "twist", "two", "type", "typical", "ugly", "umbrella", "unable", "unaware", "uncle", "uncover", "under", "undo", "unfair", "unfold", "unhappy", "uniform", "unique", "unit", "universe", "unknown", "unlock", "until", "unusual", "unveil", "update", "upgrade", "uphold", "upon", "upper", "upset", "urban", "urge", "usage", "use", "used", "useful", "useless", "usual", "utility", "vacant", "vacuum", "vague", "valid", "valley", "valve", "van", "vanish", "vapor", "various", "vast", "vault", "vehicle", "velvet", "vendor", "venture", "venue", "verb", "verify", "version", "very", "vessel", "veteran", "viable", "vibrant", "vicious", "victory", "video", "view", "village", "vintage", "violin", "virtual", "virus", "visa", "visit", "visual", "vital", "vivid", "vocal", "voice", "void", "volcano", "volume", "vote", "voyage", "wage", "wagon", "wait", "walk", "wall", "walnut", "want", "warfare", "warm", "warrior", "wash", "wasp", "waste", "water", "wave", "way", "wealth", "weapon", "wear", "weasel", "weather", "web", "wedding", "weekend", "weird", "welcome", "west", "wet", "whale", "what", "wheat", "wheel", "when", "where", "whip", "whisper", "wide", "width", "wife", "wild", "will", "win", "window", "wine", "wing", "wink", "winner", "winter", "wire", "wisdom", "wise", "wish", "witness", "wolf", "woman", "wonder", "wood", "wool", "word", "work", "world", "worry", "worth", "wrap", "wreck", "wrestle", "wrist", "write", "wrong", "yard", "year", "yellow", "you", "young", "youth", "zebra", "zero", "zone", "zoo"];
+var BIP39WordlistEn = ["abandon", 
+"ability", 
+"able", 
+"about", 
+"above", 
+"absent", 
+"absorb", 
+"abstract", 
+"absurd", 
+"abuse", 
+"access", 
+"accident", 
+"account", 
+"accuse", 
+"achieve", 
+"acid", 
+"acoustic", 
+"acquire", 
+"across", 
+"act", 
+"action", 
+"actor", 
+"actress", 
+"actual", 
+"adapt", 
+"add", 
+"addict", 
+"address", 
+"adjust", 
+"admit", 
+"adult", 
+"advance", 
+"advice", 
+"aerobic", 
+"affair", 
+"afford", 
+"afraid", 
+"again", 
+"age", 
+"agent", 
+"agree", 
+"ahead", 
+"aim", 
+"air", 
+"airport", 
+"aisle", 
+"alarm", 
+"album", 
+"alcohol", 
+"alert", 
+"alien", 
+"all", 
+"alley", 
+"allow", 
+"almost", 
+"alone", 
+"alpha", 
+"already", 
+"also", 
+"alter", 
+"always", 
+"amateur", 
+"amazing", 
+"among", 
+"amount", 
+"amused", 
+"analyst", 
+"anchor", 
+"ancient", 
+"anger", 
+"angle", 
+"angry", 
+"animal", 
+"ankle", 
+"announce", 
+"annual", 
+"another", 
+"answer", 
+"antenna", 
+"antique", 
+"anxiety", 
+"any", 
+"apart", 
+"apology", 
+"appear", 
+"apple", 
+"approve", 
+"april", 
+"arch", 
+"arctic", 
+"area", 
+"arena", 
+"argue", 
+"arm", 
+"armed", 
+"armor", 
+"army", 
+"around", 
+"arrange", 
+"arrest", 
+"arrive", 
+"arrow", 
+"art", 
+"artefact", 
+"artist", 
+"artwork", 
+"ask", 
+"aspect", 
+"assault", 
+"asset", 
+"assist", 
+"assume", 
+"asthma", 
+"athlete", 
+"atom", 
+"attack", 
+"attend", 
+"attitude", 
+"attract", 
+"auction", 
+"audit", 
+"august", 
+"aunt", 
+"author", 
+"auto", 
+"autumn", 
+"average", 
+"avocado", 
+"avoid", 
+"awake", 
+"aware", 
+"away", 
+"awesome", 
+"awful", 
+"awkward", 
+"axis", 
+"baby", 
+"bachelor", 
+"bacon", 
+"badge", 
+"bag", 
+"balance", 
+"balcony", 
+"ball", 
+"bamboo", 
+"banana", 
+"banner", 
+"bar", 
+"barely", 
+"bargain", 
+"barrel", 
+"base", 
+"basic", 
+"basket", 
+"battle", 
+"beach", 
+"bean", 
+"beauty", 
+"because", 
+"become", 
+"beef", 
+"before", 
+"begin", 
+"behave", 
+"behind", 
+"believe", 
+"below", 
+"belt", 
+"bench", 
+"benefit", 
+"best", 
+"betray", 
+"better", 
+"between", 
+"beyond", 
+"bicycle", 
+"bid", 
+"bike", 
+"bind", 
+"biology", 
+"bird", 
+"birth", 
+"bitter", 
+"black", 
+"blade", 
+"blame", 
+"blanket", 
+"blast", 
+"bleak", 
+"bless", 
+"blind", 
+"blood", 
+"blossom", 
+"blouse", 
+"blue", 
+"blur", 
+"blush", 
+"board", 
+"boat", 
+"body", 
+"boil", 
+"bomb", 
+"bone", 
+"bonus", 
+"book", 
+"boost", 
+"border", 
+"boring", 
+"borrow", 
+"boss", 
+"bottom", 
+"bounce", 
+"box", 
+"boy", 
+"bracket", 
+"brain", 
+"brand", 
+"brass", 
+"brave", 
+"bread", 
+"breeze", 
+"brick", 
+"bridge", 
+"brief", 
+"bright", 
+"bring", 
+"brisk", 
+"broccoli", 
+"broken", 
+"bronze", 
+"broom", 
+"brother", 
+"brown", 
+"brush", 
+"bubble", 
+"buddy", 
+"budget", 
+"buffalo", 
+"build", 
+"bulb", 
+"bulk", 
+"bullet", 
+"bundle", 
+"bunker", 
+"burden", 
+"burger", 
+"burst", 
+"bus", 
+"business", 
+"busy", 
+"butter", 
+"buyer", 
+"buzz", 
+"cabbage", 
+"cabin", 
+"cable", 
+"cactus", 
+"cage", 
+"cake", 
+"call", 
+"calm", 
+"camera", 
+"camp", 
+"can", 
+"canal", 
+"cancel", 
+"candy", 
+"cannon", 
+"canoe", 
+"canvas", 
+"canyon", 
+"capable", 
+"capital", 
+"captain", 
+"car", 
+"carbon", 
+"card", 
+"cargo", 
+"carpet", 
+"carry", 
+"cart", 
+"case", 
+"cash", 
+"casino", 
+"castle", 
+"casual", 
+"cat", 
+"catalog", 
+"catch", 
+"category", 
+"cattle", 
+"caught", 
+"cause", 
+"caution", 
+"cave", 
+"ceiling", 
+"celery", 
+"cement", 
+"census", 
+"century", 
+"cereal", 
+"certain", 
+"chair", 
+"chalk", 
+"champion", 
+"change", 
+"chaos", 
+"chapter", 
+"charge", 
+"chase", 
+"chat", 
+"cheap", 
+"check", 
+"cheese", 
+"chef", 
+"cherry", 
+"chest", 
+"chicken", 
+"chief", 
+"child", 
+"chimney", 
+"choice", 
+"choose", 
+"chronic", 
+"chuckle", 
+"chunk", 
+"churn", 
+"cigar", 
+"cinnamon", 
+"circle", 
+"citizen", 
+"city", 
+"civil", 
+"claim", 
+"clap", 
+"clarify", 
+"claw", 
+"clay", 
+"clean", 
+"clerk", 
+"clever", 
+"click", 
+"client", 
+"cliff", 
+"climb", 
+"clinic", 
+"clip", 
+"clock", 
+"clog", 
+"close", 
+"cloth", 
+"cloud", 
+"clown", 
+"club", 
+"clump", 
+"cluster", 
+"clutch", 
+"coach", 
+"coast", 
+"coconut", 
+"code", 
+"coffee", 
+"coil", 
+"coin", 
+"collect", 
+"color", 
+"column", 
+"combine", 
+"come", 
+"comfort", 
+"comic", 
+"common", 
+"company", 
+"concert", 
+"conduct", 
+"confirm", 
+"congress", 
+"connect", 
+"consider", 
+"control", 
+"convince", 
+"cook", 
+"cool", 
+"copper", 
+"copy", 
+"coral", 
+"core", 
+"corn", 
+"correct", 
+"cost", 
+"cotton", 
+"couch", 
+"country", 
+"couple", 
+"course", 
+"cousin", 
+"cover", 
+"coyote", 
+"crack", 
+"cradle", 
+"craft", 
+"cram", 
+"crane", 
+"crash", 
+"crater", 
+"crawl", 
+"crazy", 
+"cream", 
+"credit", 
+"creek", 
+"crew", 
+"cricket", 
+"crime", 
+"crisp", 
+"critic", 
+"crop", 
+"cross", 
+"crouch", 
+"crowd", 
+"crucial", 
+"cruel", 
+"cruise", 
+"crumble", 
+"crunch", 
+"crush", 
+"cry", 
+"crystal", 
+"cube", 
+"culture", 
+"cup", 
+"cupboard", 
+"curious", 
+"current", 
+"curtain", 
+"curve", 
+"cushion", 
+"custom", 
+"cute", 
+"cycle", 
+"dad", 
+"damage", 
+"damp", 
+"dance", 
+"danger", 
+"daring", 
+"dash", 
+"daughter", 
+"dawn", 
+"day", 
+"deal", 
+"debate", 
+"debris", 
+"decade", 
+"december", 
+"decide", 
+"decline", 
+"decorate", 
+"decrease", 
+"deer", 
+"defense", 
+"define", 
+"defy", 
+"degree", 
+"delay", 
+"deliver", 
+"demand", 
+"demise", 
+"denial", 
+"dentist", 
+"deny", 
+"depart", 
+"depend", 
+"deposit", 
+"depth", 
+"deputy", 
+"derive", 
+"describe", 
+"desert", 
+"design", 
+"desk", 
+"despair", 
+"destroy", 
+"detail", 
+"detect", 
+"develop", 
+"device", 
+"devote", 
+"diagram", 
+"dial", 
+"diamond", 
+"diary", 
+"dice", 
+"diesel", 
+"diet", 
+"differ", 
+"digital", 
+"dignity", 
+"dilemma", 
+"dinner", 
+"dinosaur", 
+"direct", 
+"dirt", 
+"disagree", 
+"discover", 
+"disease", 
+"dish", 
+"dismiss", 
+"disorder", 
+"display", 
+"distance", 
+"divert", 
+"divide", 
+"divorce", 
+"dizzy", 
+"doctor", 
+"document", 
+"dog", 
+"doll", 
+"dolphin", 
+"domain", 
+"donate", 
+"donkey", 
+"donor", 
+"door", 
+"dose", 
+"double", 
+"dove", 
+"draft", 
+"dragon", 
+"drama", 
+"drastic", 
+"draw", 
+"dream", 
+"dress", 
+"drift", 
+"drill", 
+"drink", 
+"drip", 
+"drive", 
+"drop", 
+"drum", 
+"dry", 
+"duck", 
+"dumb", 
+"dune", 
+"during", 
+"dust", 
+"dutch", 
+"duty", 
+"dwarf", 
+"dynamic", 
+"eager", 
+"eagle", 
+"early", 
+"earn", 
+"earth", 
+"easily", 
+"east", 
+"easy", 
+"echo", 
+"ecology", 
+"economy", 
+"edge", 
+"edit", 
+"educate", 
+"effort", 
+"egg", 
+"eight", 
+"either", 
+"elbow", 
+"elder", 
+"electric", 
+"elegant", 
+"element", 
+"elephant", 
+"elevator", 
+"elite", 
+"else", 
+"embark", 
+"embody", 
+"embrace", 
+"emerge", 
+"emotion", 
+"employ", 
+"empower", 
+"empty", 
+"enable", 
+"enact", 
+"end", 
+"endless", 
+"endorse", 
+"enemy", 
+"energy", 
+"enforce", 
+"engage", 
+"engine", 
+"enhance", 
+"enjoy", 
+"enlist", 
+"enough", 
+"enrich", 
+"enroll", 
+"ensure", 
+"enter", 
+"entire", 
+"entry", 
+"envelope", 
+"episode", 
+"equal", 
+"equip", 
+"era", 
+"erase", 
+"erode", 
+"erosion", 
+"error", 
+"erupt", 
+"escape", 
+"essay", 
+"essence", 
+"estate", 
+"eternal", 
+"ethics", 
+"evidence", 
+"evil", 
+"evoke", 
+"evolve", 
+"exact", 
+"example", 
+"excess", 
+"exchange", 
+"excite", 
+"exclude", 
+"excuse", 
+"execute", 
+"exercise", 
+"exhaust", 
+"exhibit", 
+"exile", 
+"exist", 
+"exit", 
+"exotic", 
+"expand", 
+"expect", 
+"expire", 
+"explain", 
+"expose", 
+"express", 
+"extend", 
+"extra", 
+"eye", 
+"eyebrow", 
+"fabric", 
+"face", 
+"faculty", 
+"fade", 
+"faint", 
+"faith", 
+"fall", 
+"false", 
+"fame", 
+"family", 
+"famous", 
+"fan", 
+"fancy", 
+"fantasy", 
+"farm", 
+"fashion", 
+"fat", 
+"fatal", 
+"father", 
+"fatigue", 
+"fault", 
+"favorite", 
+"feature", 
+"february", 
+"federal", 
+"fee", 
+"feed", 
+"feel", 
+"female", 
+"fence", 
+"festival", 
+"fetch", 
+"fever", 
+"few", 
+"fiber", 
+"fiction", 
+"field", 
+"figure", 
+"file", 
+"film", 
+"filter", 
+"final", 
+"find", 
+"fine", 
+"finger", 
+"finish", 
+"fire", 
+"firm", 
+"first", 
+"fiscal", 
+"fish", 
+"fit", 
+"fitness", 
+"fix", 
+"flag", 
+"flame", 
+"flash", 
+"flat", 
+"flavor", 
+"flee", 
+"flight", 
+"flip", 
+"float", 
+"flock", 
+"floor", 
+"flower", 
+"fluid", 
+"flush", 
+"fly", 
+"foam", 
+"focus", 
+"fog", 
+"foil", 
+"fold", 
+"follow", 
+"food", 
+"foot", 
+"force", 
+"forest", 
+"forget", 
+"fork", 
+"fortune", 
+"forum", 
+"forward", 
+"fossil", 
+"foster", 
+"found", 
+"fox", 
+"fragile", 
+"frame", 
+"frequent", 
+"fresh", 
+"friend", 
+"fringe", 
+"frog", 
+"front", 
+"frost", 
+"frown", 
+"frozen", 
+"fruit", 
+"fuel", 
+"fun", 
+"funny", 
+"furnace", 
+"fury", 
+"future", 
+"gadget", 
+"gain", 
+"galaxy", 
+"gallery", 
+"game", 
+"gap", 
+"garage", 
+"garbage", 
+"garden", 
+"garlic", 
+"garment", 
+"gas", 
+"gasp", 
+"gate", 
+"gather", 
+"gauge", 
+"gaze", 
+"general", 
+"genius", 
+"genre", 
+"gentle", 
+"genuine", 
+"gesture", 
+"ghost", 
+"giant", 
+"gift", 
+"giggle", 
+"ginger", 
+"giraffe", 
+"girl", 
+"give", 
+"glad", 
+"glance", 
+"glare", 
+"glass", 
+"glide", 
+"glimpse", 
+"globe", 
+"gloom", 
+"glory", 
+"glove", 
+"glow", 
+"glue", 
+"goat", 
+"goddess", 
+"gold", 
+"good", 
+"goose", 
+"gorilla", 
+"gospel", 
+"gossip", 
+"govern", 
+"gown", 
+"grab", 
+"grace", 
+"grain", 
+"grant", 
+"grape", 
+"grass", 
+"gravity", 
+"great", 
+"green", 
+"grid", 
+"grief", 
+"grit", 
+"grocery", 
+"group", 
+"grow", 
+"grunt", 
+"guard", 
+"guess", 
+"guide", 
+"guilt", 
+"guitar", 
+"gun", 
+"gym", 
+"habit", 
+"hair", 
+"half", 
+"hammer", 
+"hamster", 
+"hand", 
+"happy", 
+"harbor", 
+"hard", 
+"harsh", 
+"harvest", 
+"hat", 
+"have", 
+"hawk", 
+"hazard", 
+"head", 
+"health", 
+"heart", 
+"heavy", 
+"hedgehog", 
+"height", 
+"hello", 
+"helmet", 
+"help", 
+"hen", 
+"hero", 
+"hidden", 
+"high", 
+"hill", 
+"hint", 
+"hip", 
+"hire", 
+"history", 
+"hobby", 
+"hockey", 
+"hold", 
+"hole", 
+"holiday", 
+"hollow", 
+"home", 
+"honey", 
+"hood", 
+"hope", 
+"horn", 
+"horror", 
+"horse", 
+"hospital", 
+"host", 
+"hotel", 
+"hour", 
+"hover", 
+"hub", 
+"huge", 
+"human", 
+"humble", 
+"humor", 
+"hundred", 
+"hungry", 
+"hunt", 
+"hurdle", 
+"hurry", 
+"hurt", 
+"husband", 
+"hybrid", 
+"ice", 
+"icon", 
+"idea", 
+"identify", 
+"idle", 
+"ignore", 
+"ill", 
+"illegal", 
+"illness", 
+"image", 
+"imitate", 
+"immense", 
+"immune", 
+"impact", 
+"impose", 
+"improve", 
+"impulse", 
+"inch", 
+"include", 
+"income", 
+"increase", 
+"index", 
+"indicate", 
+"indoor", 
+"industry", 
+"infant", 
+"inflict", 
+"inform", 
+"inhale", 
+"inherit", 
+"initial", 
+"inject", 
+"injury", 
+"inmate", 
+"inner", 
+"innocent", 
+"input", 
+"inquiry", 
+"insane", 
+"insect", 
+"inside", 
+"inspire", 
+"install", 
+"intact", 
+"interest", 
+"into", 
+"invest", 
+"invite", 
+"involve", 
+"iron", 
+"island", 
+"isolate", 
+"issue", 
+"item", 
+"ivory", 
+"jacket", 
+"jaguar", 
+"jar", 
+"jazz", 
+"jealous", 
+"jeans", 
+"jelly", 
+"jewel", 
+"job", 
+"join", 
+"joke", 
+"journey", 
+"joy", 
+"judge", 
+"juice", 
+"jump", 
+"jungle", 
+"junior", 
+"junk", 
+"just", 
+"kangaroo", 
+"keen", 
+"keep", 
+"ketchup", 
+"key", 
+"kick", 
+"kid", 
+"kidney", 
+"kind", 
+"kingdom", 
+"kiss", 
+"kit", 
+"kitchen", 
+"kite", 
+"kitten", 
+"kiwi", 
+"knee", 
+"knife", 
+"knock", 
+"know", 
+"lab", 
+"label", 
+"labor", 
+"ladder", 
+"lady", 
+"lake", 
+"lamp", 
+"language", 
+"laptop", 
+"large", 
+"later", 
+"latin", 
+"laugh", 
+"laundry", 
+"lava", 
+"law", 
+"lawn", 
+"lawsuit", 
+"layer", 
+"lazy", 
+"leader", 
+"leaf", 
+"learn", 
+"leave", 
+"lecture", 
+"left", 
+"leg", 
+"legal", 
+"legend", 
+"leisure", 
+"lemon", 
+"lend", 
+"length", 
+"lens", 
+"leopard", 
+"lesson", 
+"letter", 
+"level", 
+"liar", 
+"liberty", 
+"library", 
+"license", 
+"life", 
+"lift", 
+"light", 
+"like", 
+"limb", 
+"limit", 
+"link", 
+"lion", 
+"liquid", 
+"list", 
+"little", 
+"live", 
+"lizard", 
+"load", 
+"loan", 
+"lobster", 
+"local", 
+"lock", 
+"logic", 
+"lonely", 
+"long", 
+"loop", 
+"lottery", 
+"loud", 
+"lounge", 
+"love", 
+"loyal", 
+"lucky", 
+"luggage", 
+"lumber", 
+"lunar", 
+"lunch", 
+"luxury", 
+"lyrics", 
+"machine", 
+"mad", 
+"magic", 
+"magnet", 
+"maid", 
+"mail", 
+"main", 
+"major", 
+"make", 
+"mammal", 
+"man", 
+"manage", 
+"mandate", 
+"mango", 
+"mansion", 
+"manual", 
+"maple", 
+"marble", 
+"march", 
+"margin", 
+"marine", 
+"market", 
+"marriage", 
+"mask", 
+"mass", 
+"master", 
+"match", 
+"material", 
+"math", 
+"matrix", 
+"matter", 
+"maximum", 
+"maze", 
+"meadow", 
+"mean", 
+"measure", 
+"meat", 
+"mechanic", 
+"medal", 
+"media", 
+"melody", 
+"melt", 
+"member", 
+"memory", 
+"mention", 
+"menu", 
+"mercy", 
+"merge", 
+"merit", 
+"merry", 
+"mesh", 
+"message", 
+"metal", 
+"method", 
+"middle", 
+"midnight", 
+"milk", 
+"million", 
+"mimic", 
+"mind", 
+"minimum", 
+"minor", 
+"minute", 
+"miracle", 
+"mirror", 
+"misery", 
+"miss", 
+"mistake", 
+"mix", 
+"mixed", 
+"mixture", 
+"mobile", 
+"model", 
+"modify", 
+"mom", 
+"moment", 
+"monitor", 
+"monkey", 
+"monster", 
+"month", 
+"moon", 
+"moral", 
+"more", 
+"morning", 
+"mosquito", 
+"mother", 
+"motion", 
+"motor", 
+"mountain", 
+"mouse", 
+"move", 
+"movie", 
+"much", 
+"muffin", 
+"mule", 
+"multiply", 
+"muscle", 
+"museum", 
+"mushroom", 
+"music", 
+"must", 
+"mutual", 
+"myself", 
+"mystery", 
+"myth", 
+"naive", 
+"name", 
+"napkin", 
+"narrow", 
+"nasty", 
+"nation", 
+"nature", 
+"near", 
+"neck", 
+"need", 
+"negative", 
+"neglect", 
+"neither", 
+"nephew", 
+"nerve", 
+"nest", 
+"net", 
+"network", 
+"neutral", 
+"never", 
+"news", 
+"next", 
+"nice", 
+"night", 
+"noble", 
+"noise", 
+"nominee", 
+"noodle", 
+"normal", 
+"north", 
+"nose", 
+"notable", 
+"note", 
+"nothing", 
+"notice", 
+"novel", 
+"now", 
+"nuclear", 
+"number", 
+"nurse", 
+"nut", 
+"oak", 
+"obey", 
+"object", 
+"oblige", 
+"obscure", 
+"observe", 
+"obtain", 
+"obvious", 
+"occur", 
+"ocean", 
+"october", 
+"odor", 
+"off", 
+"offer", 
+"office", 
+"often", 
+"oil", 
+"okay", 
+"old", 
+"olive", 
+"olympic", 
+"omit", 
+"once", 
+"one", 
+"onion", 
+"online", 
+"only", 
+"open", 
+"opera", 
+"opinion", 
+"oppose", 
+"option", 
+"orange", 
+"orbit", 
+"orchard", 
+"order", 
+"ordinary", 
+"organ", 
+"orient", 
+"original", 
+"orphan", 
+"ostrich", 
+"other", 
+"outdoor", 
+"outer", 
+"output", 
+"outside", 
+"oval", 
+"oven", 
+"over", 
+"own", 
+"owner", 
+"oxygen", 
+"oyster", 
+"ozone", 
+"pact", 
+"paddle", 
+"page", 
+"pair", 
+"palace", 
+"palm", 
+"panda", 
+"panel", 
+"panic", 
+"panther", 
+"paper", 
+"parade", 
+"parent", 
+"park", 
+"parrot", 
+"party", 
+"pass", 
+"patch", 
+"path", 
+"patient", 
+"patrol", 
+"pattern", 
+"pause", 
+"pave", 
+"payment", 
+"peace", 
+"peanut", 
+"pear", 
+"peasant", 
+"pelican", 
+"pen", 
+"penalty", 
+"pencil", 
+"people", 
+"pepper", 
+"perfect", 
+"permit", 
+"person", 
+"pet", 
+"phone", 
+"photo", 
+"phrase", 
+"physical", 
+"piano", 
+"picnic", 
+"picture", 
+"piece", 
+"pig", 
+"pigeon", 
+"pill", 
+"pilot", 
+"pink", 
+"pioneer", 
+"pipe", 
+"pistol", 
+"pitch", 
+"pizza", 
+"place", 
+"planet", 
+"plastic", 
+"plate", 
+"play", 
+"please", 
+"pledge", 
+"pluck", 
+"plug", 
+"plunge", 
+"poem", 
+"poet", 
+"point", 
+"polar", 
+"pole", 
+"police", 
+"pond", 
+"pony", 
+"pool", 
+"popular", 
+"portion", 
+"position", 
+"possible", 
+"post", 
+"potato", 
+"pottery", 
+"poverty", 
+"powder", 
+"power", 
+"practice", 
+"praise", 
+"predict", 
+"prefer", 
+"prepare", 
+"present", 
+"pretty", 
+"prevent", 
+"price", 
+"pride", 
+"primary", 
+"print", 
+"priority", 
+"prison", 
+"private", 
+"prize", 
+"problem", 
+"process", 
+"produce", 
+"profit", 
+"program", 
+"project", 
+"promote", 
+"proof", 
+"property", 
+"prosper", 
+"protect", 
+"proud", 
+"provide", 
+"public", 
+"pudding", 
+"pull", 
+"pulp", 
+"pulse", 
+"pumpkin", 
+"punch", 
+"pupil", 
+"puppy", 
+"purchase", 
+"purity", 
+"purpose", 
+"purse", 
+"push", 
+"put", 
+"puzzle", 
+"pyramid", 
+"quality", 
+"quantum", 
+"quarter", 
+"question", 
+"quick", 
+"quit", 
+"quiz", 
+"quote", 
+"rabbit", 
+"raccoon", 
+"race", 
+"rack", 
+"radar", 
+"radio", 
+"rail", 
+"rain", 
+"raise", 
+"rally", 
+"ramp", 
+"ranch", 
+"random", 
+"range", 
+"rapid", 
+"rare", 
+"rate", 
+"rather", 
+"raven", 
+"raw", 
+"razor", 
+"ready", 
+"real", 
+"reason", 
+"rebel", 
+"rebuild", 
+"recall", 
+"receive", 
+"recipe", 
+"record", 
+"recycle", 
+"reduce", 
+"reflect", 
+"reform", 
+"refuse", 
+"region", 
+"regret", 
+"regular", 
+"reject", 
+"relax", 
+"release", 
+"relief", 
+"rely", 
+"remain", 
+"remember", 
+"remind", 
+"remove", 
+"render", 
+"renew", 
+"rent", 
+"reopen", 
+"repair", 
+"repeat", 
+"replace", 
+"report", 
+"require", 
+"rescue", 
+"resemble", 
+"resist", 
+"resource", 
+"response", 
+"result", 
+"retire", 
+"retreat", 
+"return", 
+"reunion", 
+"reveal", 
+"review", 
+"reward", 
+"rhythm", 
+"rib", 
+"ribbon", 
+"rice", 
+"rich", 
+"ride", 
+"ridge", 
+"rifle", 
+"right", 
+"rigid", 
+"ring", 
+"riot", 
+"ripple", 
+"risk", 
+"ritual", 
+"rival", 
+"river", 
+"road", 
+"roast", 
+"robot", 
+"robust", 
+"rocket", 
+"romance", 
+"roof", 
+"rookie", 
+"room", 
+"rose", 
+"rotate", 
+"rough", 
+"round", 
+"route", 
+"royal", 
+"rubber", 
+"rude", 
+"rug", 
+"rule", 
+"run", 
+"runway", 
+"rural", 
+"sad", 
+"saddle", 
+"sadness", 
+"safe", 
+"sail", 
+"salad", 
+"salmon", 
+"salon", 
+"salt", 
+"salute", 
+"same", 
+"sample", 
+"sand", 
+"satisfy", 
+"satoshi", 
+"sauce", 
+"sausage", 
+"save", 
+"say", 
+"scale", 
+"scan", 
+"scare", 
+"scatter", 
+"scene", 
+"scheme", 
+"school", 
+"science", 
+"scissors", 
+"scorpion", 
+"scout", 
+"scrap", 
+"screen", 
+"script", 
+"scrub", 
+"sea", 
+"search", 
+"season", 
+"seat", 
+"second", 
+"secret", 
+"section", 
+"security", 
+"seed", 
+"seek", 
+"segment", 
+"select", 
+"sell", 
+"seminar", 
+"senior", 
+"sense", 
+"sentence", 
+"series", 
+"service", 
+"session", 
+"settle", 
+"setup", 
+"seven", 
+"shadow", 
+"shaft", 
+"shallow", 
+"share", 
+"shed", 
+"shell", 
+"sheriff", 
+"shield", 
+"shift", 
+"shine", 
+"ship", 
+"shiver", 
+"shock", 
+"shoe", 
+"shoot", 
+"shop", 
+"short", 
+"shoulder", 
+"shove", 
+"shrimp", 
+"shrug", 
+"shuffle", 
+"shy", 
+"sibling", 
+"sick", 
+"side", 
+"siege", 
+"sight", 
+"sign", 
+"silent", 
+"silk", 
+"silly", 
+"silver", 
+"similar", 
+"simple", 
+"since", 
+"sing", 
+"siren", 
+"sister", 
+"situate", 
+"six", 
+"size", 
+"skate", 
+"sketch", 
+"ski", 
+"skill", 
+"skin", 
+"skirt", 
+"skull", 
+"slab", 
+"slam", 
+"sleep", 
+"slender", 
+"slice", 
+"slide", 
+"slight", 
+"slim", 
+"slogan", 
+"slot", 
+"slow", 
+"slush", 
+"small", 
+"smart", 
+"smile", 
+"smoke", 
+"smooth", 
+"snack", 
+"snake", 
+"snap", 
+"sniff", 
+"snow", 
+"soap", 
+"soccer", 
+"social", 
+"sock", 
+"soda", 
+"soft", 
+"solar", 
+"soldier", 
+"solid", 
+"solution", 
+"solve", 
+"someone", 
+"song", 
+"soon", 
+"sorry", 
+"sort", 
+"soul", 
+"sound", 
+"soup", 
+"source", 
+"south", 
+"space", 
+"spare", 
+"spatial", 
+"spawn", 
+"speak", 
+"special", 
+"speed", 
+"spell", 
+"spend", 
+"sphere", 
+"spice", 
+"spider", 
+"spike", 
+"spin", 
+"spirit", 
+"split", 
+"spoil", 
+"sponsor", 
+"spoon", 
+"sport", 
+"spot", 
+"spray", 
+"spread", 
+"spring", 
+"spy", 
+"square", 
+"squeeze", 
+"squirrel", 
+"stable", 
+"stadium", 
+"staff", 
+"stage", 
+"stairs", 
+"stamp", 
+"stand", 
+"start", 
+"state", 
+"stay", 
+"steak", 
+"steel", 
+"stem", 
+"step", 
+"stereo", 
+"stick", 
+"still", 
+"sting", 
+"stock", 
+"stomach", 
+"stone", 
+"stool", 
+"story", 
+"stove", 
+"strategy", 
+"street", 
+"strike", 
+"strong", 
+"struggle", 
+"student", 
+"stuff", 
+"stumble", 
+"style", 
+"subject", 
+"submit", 
+"subway", 
+"success", 
+"such", 
+"sudden", 
+"suffer", 
+"sugar", 
+"suggest", 
+"suit", 
+"summer", 
+"sun", 
+"sunny", 
+"sunset", 
+"super", 
+"supply", 
+"supreme", 
+"sure", 
+"surface", 
+"surge", 
+"surprise", 
+"surround", 
+"survey", 
+"suspect", 
+"sustain", 
+"swallow", 
+"swamp", 
+"swap", 
+"swarm", 
+"swear", 
+"sweet", 
+"swift", 
+"swim", 
+"swing", 
+"switch", 
+"sword", 
+"symbol", 
+"symptom", 
+"syrup", 
+"system", 
+"table", 
+"tackle", 
+"tag", 
+"tail", 
+"talent", 
+"talk", 
+"tank", 
+"tape", 
+"target", 
+"task", 
+"taste", 
+"tattoo", 
+"taxi", 
+"teach", 
+"team", 
+"tell", 
+"ten", 
+"tenant", 
+"tennis", 
+"tent", 
+"term", 
+"test", 
+"text", 
+"thank", 
+"that", 
+"theme", 
+"then", 
+"theory", 
+"there", 
+"they", 
+"thing", 
+"this", 
+"thought", 
+"three", 
+"thrive", 
+"throw", 
+"thumb", 
+"thunder", 
+"ticket", 
+"tide", 
+"tiger", 
+"tilt", 
+"timber", 
+"time", 
+"tiny", 
+"tip", 
+"tired", 
+"tissue", 
+"title", 
+"toast", 
+"tobacco", 
+"today", 
+"toddler", 
+"toe", 
+"together", 
+"toilet", 
+"token", 
+"tomato", 
+"tomorrow", 
+"tone", 
+"tongue", 
+"tonight", 
+"tool", 
+"tooth", 
+"top", 
+"topic", 
+"topple", 
+"torch", 
+"tornado", 
+"tortoise", 
+"toss", 
+"total", 
+"tourist", 
+"toward", 
+"tower", 
+"town", 
+"toy", 
+"track", 
+"trade", 
+"traffic", 
+"tragic", 
+"train", 
+"transfer", 
+"trap", 
+"trash", 
+"travel", 
+"tray", 
+"treat", 
+"tree", 
+"trend", 
+"trial", 
+"tribe", 
+"trick", 
+"trigger", 
+"trim", 
+"trip", 
+"trophy", 
+"trouble", 
+"truck", 
+"true", 
+"truly", 
+"trumpet", 
+"trust", 
+"truth", 
+"try", 
+"tube", 
+"tuition", 
+"tumble", 
+"tuna", 
+"tunnel", 
+"turkey", 
+"turn", 
+"turtle", 
+"twelve", 
+"twenty", 
+"twice", 
+"twin", 
+"twist", 
+"two", 
+"type", 
+"typical", 
+"ugly", 
+"umbrella", 
+"unable", 
+"unaware", 
+"uncle", 
+"uncover", 
+"under", 
+"undo", 
+"unfair", 
+"unfold", 
+"unhappy", 
+"uniform", 
+"unique", 
+"unit", 
+"universe", 
+"unknown", 
+"unlock", 
+"until", 
+"unusual", 
+"unveil", 
+"update", 
+"upgrade", 
+"uphold", 
+"upon", 
+"upper", 
+"upset", 
+"urban", 
+"urge", 
+"usage", 
+"use", 
+"used", 
+"useful", 
+"useless", 
+"usual", 
+"utility", 
+"vacant", 
+"vacuum", 
+"vague", 
+"valid", 
+"valley", 
+"valve", 
+"van", 
+"vanish", 
+"vapor", 
+"various", 
+"vast", 
+"vault", 
+"vehicle", 
+"velvet", 
+"vendor", 
+"venture", 
+"venue", 
+"verb", 
+"verify", 
+"version", 
+"very", 
+"vessel", 
+"veteran", 
+"viable", 
+"vibrant", 
+"vicious", 
+"victory", 
+"video", 
+"view", 
+"village", 
+"vintage", 
+"violin", 
+"virtual", 
+"virus", 
+"visa", 
+"visit", 
+"visual", 
+"vital", 
+"vivid", 
+"vocal", 
+"voice", 
+"void", 
+"volcano", 
+"volume", 
+"vote", 
+"voyage", 
+"wage", 
+"wagon", 
+"wait", 
+"walk", 
+"wall", 
+"walnut", 
+"want", 
+"warfare", 
+"warm", 
+"warrior", 
+"wash", 
+"wasp", 
+"waste", 
+"water", 
+"wave", 
+"way", 
+"wealth", 
+"weapon", 
+"wear", 
+"weasel", 
+"weather", 
+"web", 
+"wedding", 
+"weekend", 
+"weird", 
+"welcome", 
+"west", 
+"wet", 
+"whale", 
+"what", 
+"wheat", 
+"wheel", 
+"when", 
+"where", 
+"whip", 
+"whisper", 
+"wide", 
+"width", 
+"wife", 
+"wild", 
+"will", 
+"win", 
+"window", 
+"wine", 
+"wing", 
+"wink", 
+"winner", 
+"winter", 
+"wire", 
+"wisdom", 
+"wise", 
+"wish", 
+"witness", 
+"wolf", 
+"woman", 
+"wonder", 
+"wood", 
+"wool", 
+"word", 
+"work", 
+"world", 
+"worry", 
+"worth", 
+"wrap", 
+"wreck", 
+"wrestle", 
+"wrist", 
+"write", 
+"wrong", 
+"yard", 
+"year", 
+"yellow", 
+"you", 
+"young", 
+"youth", 
+"zebra", 
+"zero", 
+"zone", 
+"zoo"];
 module.exports = BIP39WordlistEn;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (Buffer){
 var crypto = require('crypto');
 var bignum = require('bignum');
@@ -530,7 +2579,7 @@ exports.encode = base58.encode;
 exports.decode = base58.decode;
 
 }).call(this,require("buffer").Buffer)
-},{"bignum":22,"buffer":41,"crypto":45}],"pln06X":[function(require,module,exports){
+},{"bignum":23,"buffer":44,"crypto":50}],"pln06X":[function(require,module,exports){
 (function (Buffer){
 var base58 = require('./Base58').base58;
 var coinUtil = require('../util');
@@ -893,9 +2942,9 @@ function u64(f) {
 module.exports = HierarchicalKey;
 
 }).call(this,require("buffer").Buffer)
-},{"../networks":30,"../util":110,"./Base58":9,"./Key":23,"./Point":24,"./SecureRandom":25,"bignum":22,"buffer":41}],"./lib/HierarchicalKey":[function(require,module,exports){
+},{"../networks":"ycR0hy","../util":135,"./Base58":10,"./Key":24,"./Point":25,"./SecureRandom":26,"bignum":23,"buffer":44}],"./lib/HierarchicalKey":[function(require,module,exports){
 module.exports=require('pln06X');
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 function Opcode(num) {
   this.code = num;
 };
@@ -1063,7 +3112,7 @@ Opcode.asList = function() {
 
 module.exports = Opcode;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 (function (Buffer){
 
 var VersionedData = require('../util/VersionedData');
@@ -1149,7 +3198,7 @@ PrivateKey.prototype.network = function() {
 module.exports = PrivateKey;
 
 }).call(this,require("buffer").Buffer)
-},{"../networks":30,"../util/EncodedData":107,"../util/VersionedData":108,"buffer":41,"util":64}],14:[function(require,module,exports){
+},{"../networks":"ycR0hy","../util/EncodedData":132,"../util/VersionedData":133,"buffer":44,"util":89}],15:[function(require,module,exports){
 (function (Buffer){
 var config = require('../config');
 var log = require('../util/log');
@@ -1852,7 +3901,7 @@ Script.chunksToBuffer = function(chunks) {
 module.exports = Script;
 
 }).call(this,require("buffer").Buffer)
-},{"../config":3,"../util/BinaryParser":106,"../util/log":111,"../util/util":"fTiz/i","./Opcode":12,"buffer":41,"bufferput":"kz9Lsx","buffertools":"Bd6gk8"}],15:[function(require,module,exports){
+},{"../config":3,"../util/BinaryParser":131,"../util/log":136,"../util/util":"fTiz/i","./Opcode":13,"buffer":44,"bufferput":"kz9Lsx","buffertools":"Bd6gk8"}],16:[function(require,module,exports){
 (function (process,Buffer){
 var config = require('../config');
 var log = require('../util/log');
@@ -2941,7 +4990,7 @@ ScriptInterpreter.prototype.isCanonicalSignature = function(sig) {
 module.exports = ScriptInterpreter;
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),require("buffer").Buffer)
-},{"../config":3,"../util":110,"../util/log":111,"./Key":23,"./Opcode":12,"./Script":14,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53,"bignum":22,"buffer":41,"buffertools":"Bd6gk8"}],"hb5Qds":[function(require,module,exports){
+},{"../config":3,"../util":135,"../util/log":136,"./Key":24,"./Opcode":13,"./Script":15,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78,"bignum":23,"buffer":44,"buffertools":"Bd6gk8"}],"hb5Qds":[function(require,module,exports){
 (function (Buffer){
 var config = require('../config');
 var log = require('../util/log');
@@ -3643,7 +5692,7 @@ Transaction.prototype.getSendingAddresses = function(networkName) {
 module.exports = Transaction;
 
 }).call(this,require("buffer").Buffer)
-},{"../config":3,"../util":110,"../util/BinaryParser":106,"../util/error":109,"../util/log":111,"../util/time":112,"./Address":4,"./PrivateKey":13,"./Script":14,"./ScriptInterpreter":15,"./WalletKey":"VPFgfu","bignum":22,"buffer":41,"bufferput":"kz9Lsx","buffertools":"Bd6gk8","preconditions":98,"step":105}],"./lib/Transaction":[function(require,module,exports){
+},{"../config":3,"../util":135,"../util/BinaryParser":131,"../util/error":134,"../util/log":136,"../util/time":137,"./Address":"stV4m0","./PrivateKey":14,"./Script":15,"./ScriptInterpreter":16,"./WalletKey":"VPFgfu","bignum":23,"buffer":44,"bufferput":"kz9Lsx","buffertools":"Bd6gk8","preconditions":123,"step":130}],"./lib/Transaction":[function(require,module,exports){
 module.exports=require('hb5Qds');
 },{}],"./lib/TransactionBuilder":[function(require,module,exports){
 module.exports=require('qPYAQW');
@@ -4691,9 +6740,7 @@ TransactionBuilder.prototype.merge = function(inB) {
 module.exports = TransactionBuilder;
 
 }).call(this,require("buffer").Buffer)
-},{"../networks":30,"../util":110,"../util/log":111,"./Address":4,"./Key":23,"./PrivateKey":13,"./Script":14,"./Transaction":"hb5Qds","./WalletKey":"VPFgfu","bignum":22,"buffer":41,"buffertools":"Bd6gk8"}],"./lib/WalletKey":[function(require,module,exports){
-module.exports=require('VPFgfu');
-},{}],"VPFgfu":[function(require,module,exports){
+},{"../networks":"ycR0hy","../util":135,"../util/log":136,"./Address":"stV4m0","./Key":24,"./PrivateKey":14,"./Script":15,"./Transaction":"hb5Qds","./WalletKey":"VPFgfu","bignum":23,"buffer":44,"buffertools":"Bd6gk8"}],"VPFgfu":[function(require,module,exports){
 (function (Buffer){
 var coinUtil = require('../util');
 var timeUtil = require('../util/time');
@@ -4726,6 +6773,8 @@ WalletKey.prototype.storeObj = function() {
     addr: addr.toString()
   };
 
+
+    //console.log(this.privKey.public);
   return obj;
 };
 
@@ -4747,7 +6796,9 @@ WalletKey.prototype.fromObj = function(obj) {
 module.exports = WalletKey;
 
 }).call(this,require("buffer").Buffer)
-},{"../networks":30,"../util":110,"../util/time":112,"./Address":4,"./Key":23,"./PrivateKey":13,"buffer":41}],22:[function(require,module,exports){
+},{"../networks":"ycR0hy","../util":135,"../util/time":137,"./Address":"stV4m0","./Key":24,"./PrivateKey":14,"buffer":44}],"./lib/WalletKey":[function(require,module,exports){
+module.exports=require('VPFgfu');
+},{}],23:[function(require,module,exports){
 (function (Buffer){
 var _bnjs = require('bn.js');
 
@@ -4858,7 +6909,7 @@ bnjs.prototype.toNumber = function() {
 module.exports = bnjs;
 
 }).call(this,require("buffer").Buffer)
-},{"bn.js":36,"buffer":41}],23:[function(require,module,exports){
+},{"bn.js":38,"buffer":44}],24:[function(require,module,exports){
 (function (Buffer){
 var SecureRandom = require('../SecureRandom');
 var bignum = require('bignum');
@@ -5073,7 +7124,7 @@ Key.verifyCompressed = function(hash, sigbuf) {
 module.exports = Key;
 
 }).call(this,require("buffer").Buffer)
-},{"../SecureRandom":25,"../common/Key":26,"./Point":24,"bignum":22,"buffer":41,"elliptic":69,"util":64}],24:[function(require,module,exports){
+},{"../SecureRandom":26,"../common/Key":27,"./Point":25,"bignum":23,"buffer":44,"elliptic":94,"util":89}],25:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 
@@ -5108,7 +7159,7 @@ Point.multiply = function(p1, x) {
 module.exports = Point;
 
 }).call(this,require("buffer").Buffer)
-},{"../common/Point":27,"./Key":23,"assert":40,"bignum":22,"buffer":41,"elliptic":69}],25:[function(require,module,exports){
+},{"../common/Point":28,"./Key":24,"assert":42,"bignum":23,"buffer":44,"elliptic":94}],26:[function(require,module,exports){
 (function (Buffer){
 var SecureRandom = require('../common/SecureRandom');
 
@@ -5133,7 +7184,7 @@ SecureRandom.getRandomBuffer = function(size) {
 module.exports = SecureRandom;
 
 }).call(this,require("buffer").Buffer)
-},{"../common/SecureRandom":28,"buffer":41}],26:[function(require,module,exports){
+},{"../common/SecureRandom":29,"buffer":44}],27:[function(require,module,exports){
 (function (Buffer){
 var bignum = require('bignum');
 var Point = require('../Point');
@@ -5303,7 +7354,7 @@ Key.genk = function() {
 module.exports = Key;
 
 }).call(this,require("buffer").Buffer)
-},{"../Point":24,"../SecureRandom":25,"bignum":22,"bn.js":36,"buffer":41,"elliptic":69}],27:[function(require,module,exports){
+},{"../Point":25,"../SecureRandom":26,"bignum":23,"bn.js":38,"buffer":44,"elliptic":94}],28:[function(require,module,exports){
 (function (Buffer){
 var bignum = require('bignum');
 
@@ -5376,7 +7427,7 @@ Point.prototype.toCompressedPubKey = function() {
 module.exports = Point;
 
 }).call(this,require("buffer").Buffer)
-},{"bignum":22,"buffer":41}],28:[function(require,module,exports){
+},{"bignum":23,"buffer":44}],29:[function(require,module,exports){
 (function (Buffer){
 var SecureRandom = function() {};
 
@@ -5405,7 +7456,7 @@ SecureRandom.getPseudoRandomBuffer = function(size) {
 module.exports = SecureRandom;
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41}],29:[function(require,module,exports){
+},{"buffer":44}],30:[function(require,module,exports){
 "use strict";function l(a){throw a;}var s=void 0,v=!1;var sjcl={cipher:{},hash:{},keyexchange:{},mode:{},misc:{},codec:{},exception:{corrupt:function(a){this.toString=function(){return"CORRUPT: "+this.message};this.message=a},invalid:function(a){this.toString=function(){return"INVALID: "+this.message};this.message=a},bug:function(a){this.toString=function(){return"BUG: "+this.message};this.message=a},notReady:function(a){this.toString=function(){return"NOT READY: "+this.message};this.message=a}}};
 "undefined"!==typeof module&&module.exports&&(module.exports=sjcl);
 sjcl.cipher.aes=function(a){this.m[0][0][0]||this.q();var b,c,d,e,f=this.m[0][4],g=this.m[1];b=a.length;var h=1;4!==b&&(6!==b&&8!==b)&&l(new sjcl.exception.invalid("invalid aes key size"));this.a=[d=a.slice(0),e=[]];for(a=b;a<4*b+28;a++){c=d[a-1];if(0===a%b||8===b&&4===a%b)c=f[c>>>24]<<24^f[c>>16&255]<<16^f[c>>8&255]<<8^f[c&255],0===a%b&&(c=c<<8^c>>>24^h<<24,h=h<<1^283*(h>>7));d[a]=d[a-b]^c}for(b=0;a;b++,a--)c=d[b&3?a:a-4],e[b]=4>=a||4>b?c:g[0][f[c>>>24]]^g[1][f[c>>16&255]]^g[2][f[c>>8&255]]^g[3][f[c&
@@ -5463,7 +7514,7 @@ a=a.replace(/^\{|\}$/g,"").split(/,/);var b={},c,d;for(c=0;c<a.length;c++)(d=a[c
 a[d]=b[d]);return a},ea:function(a,b){var c={},d;for(d in a)a.hasOwnProperty(d)&&a[d]!==b[d]&&(c[d]=a[d]);return c},da:function(a,b){var c={},d;for(d=0;d<b.length;d++)a[b[d]]!==s&&(c[b[d]]=a[b[d]]);return c}};sjcl.encrypt=sjcl.json.encrypt;sjcl.decrypt=sjcl.json.decrypt;sjcl.misc.ca={};
 sjcl.misc.cachedPbkdf2=function(a,b){var c=sjcl.misc.ca,d;b=b||{};d=b.iter||1E3;c=c[a]=c[a]||{};d=c[d]=c[d]||{firstSalt:b.salt&&b.salt.length?b.salt.slice(0):sjcl.random.randomWords(2,0)};c=b.salt===s?d.firstSalt:b.salt;d[c]=d[c]||sjcl.misc.pbkdf2(a,c,b.iter);return{key:d[c].slice(0),salt:c.slice(0)}};
 
-},{"crypto":45}],30:[function(require,module,exports){
+},{"crypto":50}],"ycR0hy":[function(require,module,exports){
 (function (Buffer){
 var Put = require('bufferput');
 var buffertools = require('buffertools');
@@ -5520,7 +7571,9 @@ exports.testnet = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41,"bufferput":"kz9Lsx","buffertools":"Bd6gk8"}],31:[function(require,module,exports){
+},{"buffer":44,"bufferput":"kz9Lsx","buffertools":"Bd6gk8"}],"./networks":[function(require,module,exports){
+module.exports=require('ycR0hy');
+},{}],33:[function(require,module,exports){
 (function (Buffer){
 var Chainsaw = require('chainsaw');
 var EventEmitter = require('events').EventEmitter;
@@ -5921,7 +7974,7 @@ function words (decode) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/vars.js":32,"buffer":41,"buffers":"8c7T3E","chainsaw":33,"events":"dwHHxT","stream":56}],32:[function(require,module,exports){
+},{"./lib/vars.js":34,"buffer":44,"buffers":"8c7T3E","chainsaw":35,"events":"dwHHxT","stream":81}],34:[function(require,module,exports){
 module.exports = function (store) {
     function getset (name, value) {
         var node = vars.store;
@@ -5951,7 +8004,7 @@ module.exports = function (store) {
     return vars;
 };
 
-},{}],33:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 (function (process){
 var Traverse = require('traverse');
 var EventEmitter = require('events').EventEmitter;
@@ -6100,7 +8153,7 @@ function upgradeChainsaw(saw) {
 };
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53,"events":"dwHHxT","traverse":34}],34:[function(require,module,exports){
+},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78,"events":"dwHHxT","traverse":36}],36:[function(require,module,exports){
 module.exports = Traverse;
 function Traverse (obj) {
     if (!(this instanceof Traverse)) return new Traverse(obj);
@@ -6424,7 +8477,7 @@ function copy (src) {
     else return src;
 }
 
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 (function (process,__filename){
 
 /**
@@ -6587,7 +8640,7 @@ exports.getRoot = function getRoot (file) {
 }
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),"/node_modules/bindings/bindings.js")
-},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53,"fs":39,"path":54}],36:[function(require,module,exports){
+},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78,"fs":41,"path":79}],38:[function(require,module,exports){
 // Utils
 
 function assert(val, msg) {
@@ -8625,11 +10678,11 @@ WritableBufferStream.prototype.toString = function() {
 exports.WritableBufferStream = WritableBufferStream;
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41,"events":"dwHHxT","util":64}],"buffertools":[function(require,module,exports){
+},{"buffer":44,"events":"dwHHxT","util":89}],"buffertools":[function(require,module,exports){
 module.exports=require('Bd6gk8');
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -8991,7 +11044,9 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":64}],41:[function(require,module,exports){
+},{"util/":89}],43:[function(require,module,exports){
+module.exports=require(41)
+},{}],44:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -10102,7 +12157,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":42,"ieee754":43}],42:[function(require,module,exports){
+},{"base64-js":45,"ieee754":46}],45:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -10224,7 +12279,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],43:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -10310,8 +12365,89 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],44:[function(require,module,exports){
-var Buffer = require('buffer').Buffer;
+},{}],47:[function(require,module,exports){
+(function (Buffer){
+var createHash = require('sha.js')
+
+var md5 = toConstructor(require('./md5'))
+var rmd160 = toConstructor(require('ripemd160'))
+
+function toConstructor (fn) {
+  return function () {
+    var buffers = []
+    var m= {
+      update: function (data, enc) {
+        if(!Buffer.isBuffer(data)) data = new Buffer(data, enc)
+        buffers.push(data)
+        return this
+      },
+      digest: function (enc) {
+        var buf = Buffer.concat(buffers)
+        var r = fn(buf)
+        buffers = null
+        return enc ? r.toString(enc) : r
+      }
+    }
+    return m
+  }
+}
+
+module.exports = function (alg) {
+  if('md5' === alg) return new md5()
+  if('rmd160' === alg) return new rmd160()
+  return createHash(alg)
+}
+
+}).call(this,require("buffer").Buffer)
+},{"./md5":51,"buffer":44,"ripemd160":67,"sha.js":69}],48:[function(require,module,exports){
+(function (Buffer){
+var createHash = require('./create-hash')
+
+var zeroBuffer = new Buffer(128)
+zeroBuffer.fill(0)
+
+module.exports = Hmac
+
+function Hmac (alg, key) {
+  if(!(this instanceof Hmac)) return new Hmac(alg, key)
+  this._opad = opad
+  this._alg = alg
+
+  var blocksize = (alg === 'sha512') ? 128 : 64
+
+  key = this._key = !Buffer.isBuffer(key) ? new Buffer(key) : key
+
+  if(key.length > blocksize) {
+    key = createHash(alg).update(key).digest()
+  } else if(key.length < blocksize) {
+    key = Buffer.concat([key, zeroBuffer], blocksize)
+  }
+
+  var ipad = this._ipad = new Buffer(blocksize)
+  var opad = this._opad = new Buffer(blocksize)
+
+  for(var i = 0; i < blocksize; i++) {
+    ipad[i] = key[i] ^ 0x36
+    opad[i] = key[i] ^ 0x5C
+  }
+
+  this._hash = createHash(alg).update(ipad)
+}
+
+Hmac.prototype.update = function (data, enc) {
+  this._hash.update(data, enc)
+  return this
+}
+
+Hmac.prototype.digest = function (enc) {
+  var h = this._hash.digest()
+  return createHash(this._alg).update(this._opad).update(h).digest(enc)
+}
+
+
+}).call(this,require("buffer").Buffer)
+},{"./create-hash":47,"buffer":44}],49:[function(require,module,exports){
+(function (Buffer){
 var intSize = 4;
 var zeroBuffer = new Buffer(intSize); zeroBuffer.fill(0);
 var chrsz = 8;
@@ -10347,63 +12483,10 @@ function hash(buf, fn, hashSize, bigEndian) {
 
 module.exports = { hash: hash };
 
-},{"buffer":41}],45:[function(require,module,exports){
-var Buffer = require('buffer').Buffer
-var sha = require('./sha')
-var sha256 = require('./sha256')
+}).call(this,require("buffer").Buffer)
+},{"buffer":44}],50:[function(require,module,exports){
+(function (Buffer){
 var rng = require('./rng')
-var md5 = require('./md5')
-
-var algorithms = {
-  sha1: sha,
-  sha256: sha256,
-  md5: md5
-}
-
-var blocksize = 64
-var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
-function hmac(fn, key, data) {
-  if(!Buffer.isBuffer(key)) key = new Buffer(key)
-  if(!Buffer.isBuffer(data)) data = new Buffer(data)
-
-  if(key.length > blocksize) {
-    key = fn(key)
-  } else if(key.length < blocksize) {
-    key = Buffer.concat([key, zeroBuffer], blocksize)
-  }
-
-  var ipad = new Buffer(blocksize), opad = new Buffer(blocksize)
-  for(var i = 0; i < blocksize; i++) {
-    ipad[i] = key[i] ^ 0x36
-    opad[i] = key[i] ^ 0x5C
-  }
-
-  var hash = fn(Buffer.concat([ipad, data]))
-  return fn(Buffer.concat([opad, hash]))
-}
-
-function hash(alg, key) {
-  alg = alg || 'sha1'
-  var fn = algorithms[alg]
-  var bufs = []
-  var length = 0
-  if(!fn) error('algorithm:', alg, 'is not yet supported')
-  return {
-    update: function (data) {
-      if(!Buffer.isBuffer(data)) data = new Buffer(data)
-        
-      bufs.push(data)
-      length += data.length
-      return this
-    },
-    digest: function (enc) {
-      var buf = Buffer.concat(bufs)
-      var r = key ? hmac(fn, key, buf) : fn(buf)
-      bufs = null
-      return enc ? r.toString(enc) : r
-    }
-  }
-}
 
 function error () {
   var m = [].slice.call(arguments).join(' ')
@@ -10414,8 +12497,10 @@ function error () {
     ].join('\n'))
 }
 
-exports.createHash = function (alg) { return hash(alg) }
-exports.createHmac = function (alg, key) { return hash(alg, key) }
+exports.createHash = require('./create-hash')
+
+exports.createHmac = require('./create-hmac')
+
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
@@ -10431,22 +12516,28 @@ function each(a, f) {
     f(a[i], i)
 }
 
+exports.getHashes = function () {
+  return ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
+}
+
+var p = require('./pbkdf2')(exports)
+exports.pbkdf2 = p.pbkdf2
+exports.pbkdf2Sync = p.pbkdf2Sync
+require('browserify-aes/inject')(exports, module.exports);
+
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each(['createCredentials'
-, 'createCipher'
-, 'createCipheriv'
-, 'createDecipher'
-, 'createDecipheriv'
 , 'createSign'
 , 'createVerify'
 , 'createDiffieHellman'
-, 'pbkdf2'], function (name) {
+], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
 })
 
-},{"./md5":46,"./rng":47,"./sha":48,"./sha256":49,"buffer":41}],46:[function(require,module,exports){
+}).call(this,require("buffer").Buffer)
+},{"./create-hash":47,"./create-hmac":48,"./pbkdf2":73,"./rng":74,"browserify-aes/inject":57,"buffer":44}],51:[function(require,module,exports){
 /*
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
  * Digest Algorithm, as defined in RFC 1321.
@@ -10457,14 +12548,6 @@ each(['createCredentials'
  */
 
 var helpers = require('./helpers');
-
-/*
- * Perform a simple self-test to see if the VM is working
- */
-function md5_vm_test()
-{
-  return hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
-}
 
 /*
  * Calculate the MD5 of an array of little-endian words, and a bit length
@@ -10611,40 +12694,1189 @@ module.exports = function md5(buf) {
   return helpers.hash(buf, core_md5, 16);
 };
 
-},{"./helpers":44}],47:[function(require,module,exports){
-// Original code adapted from Robert Kieffer.
-// details at https://github.com/broofa/node-uuid
-(function() {
-  var _global = this;
+},{"./helpers":49}],52:[function(require,module,exports){
+(function (Buffer){
 
-  var mathRNG, whatwgRNG;
-
-  // NOTE: Math.random() does not guarantee "cryptographic quality"
-  mathRNG = function(size) {
-    var bytes = new Array(size);
-    var r;
-
-    for (var i = 0, r; i < size; i++) {
-      if ((i & 0x03) == 0) r = Math.random() * 0x100000000;
-      bytes[i] = r >>> ((i & 0x03) << 3) & 0xff;
+module.exports = function (crypto, password, keyLen, ivLen) {
+  keyLen = keyLen/8;
+  ivLen = ivLen || 0;
+  var ki = 0;
+  var ii = 0;
+  var key = new Buffer(keyLen);
+  var iv = new Buffer(ivLen);
+  var addmd = 0;
+  var md, md_buf;
+  var i;
+  while (true) {
+    md = crypto.createHash('md5');
+    if(addmd++ > 0) {
+       md.update(md_buf);
     }
+    md.update(password);
+    md_buf = md.digest();
+    i = 0;
+    if(keyLen > 0) {
+      while(true) {
+        if(keyLen === 0) {
+          break;
+        }
+        if(i === md_buf.length) {
+          break;
+        }
+        key[ki++] = md_buf[i];
+        keyLen--;
+        i++;
+       }
+    }
+    if(ivLen > 0 && i !== md_buf.length) {
+      while(true) {
+        if(ivLen === 0) {
+          break;
+        }
+        if(i === md_buf.length) {
+          break;
+        }
+       iv[ii++] = md_buf[i];
+       ivLen--;
+       i++;
+     }
+   }
+   if(keyLen === 0 && ivLen === 0) {
+      break;
+    }
+  }
+  for(i=0;i<md_buf.length;i++) {
+    md_buf[i] = 0;
+  }
+  return {
+    key: key,
+    iv: iv
+  };
+};
+}).call(this,require("buffer").Buffer)
+},{"buffer":44}],53:[function(require,module,exports){
+(function (Buffer){
+var uint_max = Math.pow(2, 32);
+function fixup_uint32(x) {
+    var ret, x_pos;
+    ret = x > uint_max || x < 0 ? (x_pos = Math.abs(x) % uint_max, x < 0 ? uint_max - x_pos : x_pos) : x;
+    return ret;
+}
+function scrub_vec(v) {
+  var i, _i, _ref;
+  for (i = _i = 0, _ref = v.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+    v[i] = 0;
+  }
+  return false;
+}
 
-    return bytes;
+function Global() {
+  var i;
+  this.SBOX = [];
+  this.INV_SBOX = [];
+  this.SUB_MIX = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 0; _i < 4; i = ++_i) {
+      _results.push([]);
+    }
+    return _results;
+  })();
+  this.INV_SUB_MIX = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 0; _i < 4; i = ++_i) {
+      _results.push([]);
+    }
+    return _results;
+  })();
+  this.init();
+  this.RCON = [0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36];
+}
+
+Global.prototype.init = function() {
+  var d, i, sx, t, x, x2, x4, x8, xi, _i;
+  d = (function() {
+    var _i, _results;
+    _results = [];
+    for (i = _i = 0; _i < 256; i = ++_i) {
+      if (i < 128) {
+        _results.push(i << 1);
+      } else {
+        _results.push((i << 1) ^ 0x11b);
+      }
+    }
+    return _results;
+  })();
+  x = 0;
+  xi = 0;
+  for (i = _i = 0; _i < 256; i = ++_i) {
+    sx = xi ^ (xi << 1) ^ (xi << 2) ^ (xi << 3) ^ (xi << 4);
+    sx = (sx >>> 8) ^ (sx & 0xff) ^ 0x63;
+    this.SBOX[x] = sx;
+    this.INV_SBOX[sx] = x;
+    x2 = d[x];
+    x4 = d[x2];
+    x8 = d[x4];
+    t = (d[sx] * 0x101) ^ (sx * 0x1010100);
+    this.SUB_MIX[0][x] = (t << 24) | (t >>> 8);
+    this.SUB_MIX[1][x] = (t << 16) | (t >>> 16);
+    this.SUB_MIX[2][x] = (t << 8) | (t >>> 24);
+    this.SUB_MIX[3][x] = t;
+    t = (x8 * 0x1010101) ^ (x4 * 0x10001) ^ (x2 * 0x101) ^ (x * 0x1010100);
+    this.INV_SUB_MIX[0][sx] = (t << 24) | (t >>> 8);
+    this.INV_SUB_MIX[1][sx] = (t << 16) | (t >>> 16);
+    this.INV_SUB_MIX[2][sx] = (t << 8) | (t >>> 24);
+    this.INV_SUB_MIX[3][sx] = t;
+    if (x === 0) {
+      x = xi = 1;
+    } else {
+      x = x2 ^ d[d[d[x8 ^ x2]]];
+      xi ^= d[d[xi]];
+    }
+  }
+  return true;
+};
+
+var G = new Global();
+
+
+AES.blockSize = 4 * 4;
+
+AES.prototype.blockSize = AES.blockSize;
+
+AES.keySize = 256 / 8;
+
+AES.prototype.keySize = AES.keySize;
+
+AES.ivSize = AES.blockSize;
+
+AES.prototype.ivSize = AES.ivSize;
+
+ function bufferToArray(buf) {
+  var len = buf.length/4;
+  var out = new Array(len);
+  var i = -1;
+  while (++i < len) {
+    out[i] = buf.readUInt32BE(i * 4);
+  }
+  return out;
+ }
+function AES(key) {
+  this._key = bufferToArray(key);
+  this._doReset();
+}
+
+AES.prototype._doReset = function() {
+  var invKsRow, keySize, keyWords, ksRow, ksRows, t, _i, _j;
+  keyWords = this._key;
+  keySize = keyWords.length;
+  this._nRounds = keySize + 6;
+  ksRows = (this._nRounds + 1) * 4;
+  this._keySchedule = [];
+  for (ksRow = _i = 0; 0 <= ksRows ? _i < ksRows : _i > ksRows; ksRow = 0 <= ksRows ? ++_i : --_i) {
+    this._keySchedule[ksRow] = ksRow < keySize ? keyWords[ksRow] : (t = this._keySchedule[ksRow - 1], (ksRow % keySize) === 0 ? (t = (t << 8) | (t >>> 24), t = (G.SBOX[t >>> 24] << 24) | (G.SBOX[(t >>> 16) & 0xff] << 16) | (G.SBOX[(t >>> 8) & 0xff] << 8) | G.SBOX[t & 0xff], t ^= G.RCON[(ksRow / keySize) | 0] << 24) : keySize > 6 && ksRow % keySize === 4 ? t = (G.SBOX[t >>> 24] << 24) | (G.SBOX[(t >>> 16) & 0xff] << 16) | (G.SBOX[(t >>> 8) & 0xff] << 8) | G.SBOX[t & 0xff] : void 0, this._keySchedule[ksRow - keySize] ^ t);
+  }
+  this._invKeySchedule = [];
+  for (invKsRow = _j = 0; 0 <= ksRows ? _j < ksRows : _j > ksRows; invKsRow = 0 <= ksRows ? ++_j : --_j) {
+    ksRow = ksRows - invKsRow;
+    t = this._keySchedule[ksRow - (invKsRow % 4 ? 0 : 4)];
+    this._invKeySchedule[invKsRow] = invKsRow < 4 || ksRow <= 4 ? t : G.INV_SUB_MIX[0][G.SBOX[t >>> 24]] ^ G.INV_SUB_MIX[1][G.SBOX[(t >>> 16) & 0xff]] ^ G.INV_SUB_MIX[2][G.SBOX[(t >>> 8) & 0xff]] ^ G.INV_SUB_MIX[3][G.SBOX[t & 0xff]];
+  }
+  return true;
+};
+
+AES.prototype.encryptBlock = function(M) {
+  M = bufferToArray(new Buffer(M));
+  var out = this._doCryptBlock(M, this._keySchedule, G.SUB_MIX, G.SBOX);
+  var buf = new Buffer(16);
+  buf.writeUInt32BE(out[0], 0);
+  buf.writeUInt32BE(out[1], 4);
+  buf.writeUInt32BE(out[2], 8);
+  buf.writeUInt32BE(out[3], 12);
+  return buf;
+};
+
+AES.prototype.decryptBlock = function(M) {
+  M = bufferToArray(new Buffer(M));
+  var temp = [M[3], M[1]];
+  M[1] = temp[0];
+  M[3] = temp[1];
+  var out = this._doCryptBlock(M, this._invKeySchedule, G.INV_SUB_MIX, G.INV_SBOX);
+  var buf = new Buffer(16);
+  buf.writeUInt32BE(out[0], 0);
+  buf.writeUInt32BE(out[3], 4);
+  buf.writeUInt32BE(out[2], 8);
+  buf.writeUInt32BE(out[1], 12);
+  return buf;
+};
+
+AES.prototype.scrub = function() {
+  scrub_vec(this._keySchedule);
+  scrub_vec(this._invKeySchedule);
+  scrub_vec(this._key);
+};
+
+AES.prototype._doCryptBlock = function(M, keySchedule, SUB_MIX, SBOX) {
+  var ksRow, round, s0, s1, s2, s3, t0, t1, t2, t3, _i, _ref;
+
+  s0 = M[0] ^ keySchedule[0];
+  s1 = M[1] ^ keySchedule[1];
+  s2 = M[2] ^ keySchedule[2];
+  s3 = M[3] ^ keySchedule[3];
+  ksRow = 4;
+  for (round = _i = 1, _ref = this._nRounds; 1 <= _ref ? _i < _ref : _i > _ref; round = 1 <= _ref ? ++_i : --_i) {
+    t0 = SUB_MIX[0][s0 >>> 24] ^ SUB_MIX[1][(s1 >>> 16) & 0xff] ^ SUB_MIX[2][(s2 >>> 8) & 0xff] ^ SUB_MIX[3][s3 & 0xff] ^ keySchedule[ksRow++];
+    t1 = SUB_MIX[0][s1 >>> 24] ^ SUB_MIX[1][(s2 >>> 16) & 0xff] ^ SUB_MIX[2][(s3 >>> 8) & 0xff] ^ SUB_MIX[3][s0 & 0xff] ^ keySchedule[ksRow++];
+    t2 = SUB_MIX[0][s2 >>> 24] ^ SUB_MIX[1][(s3 >>> 16) & 0xff] ^ SUB_MIX[2][(s0 >>> 8) & 0xff] ^ SUB_MIX[3][s1 & 0xff] ^ keySchedule[ksRow++];
+    t3 = SUB_MIX[0][s3 >>> 24] ^ SUB_MIX[1][(s0 >>> 16) & 0xff] ^ SUB_MIX[2][(s1 >>> 8) & 0xff] ^ SUB_MIX[3][s2 & 0xff] ^ keySchedule[ksRow++];
+    s0 = t0;
+    s1 = t1;
+    s2 = t2;
+    s3 = t3;
+  }
+  t0 = ((SBOX[s0 >>> 24] << 24) | (SBOX[(s1 >>> 16) & 0xff] << 16) | (SBOX[(s2 >>> 8) & 0xff] << 8) | SBOX[s3 & 0xff]) ^ keySchedule[ksRow++];
+  t1 = ((SBOX[s1 >>> 24] << 24) | (SBOX[(s2 >>> 16) & 0xff] << 16) | (SBOX[(s3 >>> 8) & 0xff] << 8) | SBOX[s0 & 0xff]) ^ keySchedule[ksRow++];
+  t2 = ((SBOX[s2 >>> 24] << 24) | (SBOX[(s3 >>> 16) & 0xff] << 16) | (SBOX[(s0 >>> 8) & 0xff] << 8) | SBOX[s1 & 0xff]) ^ keySchedule[ksRow++];
+  t3 = ((SBOX[s3 >>> 24] << 24) | (SBOX[(s0 >>> 16) & 0xff] << 16) | (SBOX[(s1 >>> 8) & 0xff] << 8) | SBOX[s2 & 0xff]) ^ keySchedule[ksRow++];
+  return [
+    fixup_uint32(t0),
+    fixup_uint32(t1),
+    fixup_uint32(t2),
+    fixup_uint32(t3)
+  ];
+
+};
+
+
+
+
+  exports.AES = AES;
+}).call(this,require("buffer").Buffer)
+},{"buffer":44}],54:[function(require,module,exports){
+(function (Buffer){
+var Transform = require('stream').Transform;
+var inherits = require('inherits');
+
+module.exports = CipherBase;
+inherits(CipherBase, Transform);
+function CipherBase() {
+  Transform.call(this);
+}
+CipherBase.prototype.update = function (data, inputEnd, outputEnc) {
+  this.write(data, inputEnd);
+  var outData = new Buffer('');
+  var chunk;
+  while ((chunk = this.read())) {
+    outData = Buffer.concat([outData, chunk]);
+  }
+  if (outputEnc) {
+    outData = outData.toString(outputEnc);
+  }
+  return outData;
+};
+CipherBase.prototype.final = function (outputEnc) {
+  this.end();
+  var outData = new Buffer('');
+  var chunk;
+  while ((chunk = this.read())) {
+    outData = Buffer.concat([outData, chunk]);
+  }
+  if (outputEnc) {
+    outData = outData.toString(outputEnc);
+  }
+  return outData;
+};
+}).call(this,require("buffer").Buffer)
+},{"buffer":44,"inherits":77,"stream":81}],55:[function(require,module,exports){
+(function (Buffer){
+var aes = require('./aes');
+var Transform = require('./cipherBase');
+var inherits = require('inherits');
+var modes = require('./modes');
+var StreamCipher = require('./streamCipher');
+var ebtk = require('./EVP_BytesToKey');
+
+inherits(Decipher, Transform);
+function Decipher(mode, key, iv) {
+  if (!(this instanceof Decipher)) {
+    return new Decipher(mode, key, iv);
+  }
+  Transform.call(this);
+  this._cache = new Splitter();
+  this._last = void 0;
+  this._cipher = new aes.AES(key);
+  this._prev = new Buffer(iv.length);
+  iv.copy(this._prev);
+  this._mode = mode;
+}
+Decipher.prototype._transform = function (data, _, next) {
+  this._cache.add(data);
+  var chunk;
+  var thing;
+  while ((chunk = this._cache.get())) {
+    thing = this._mode.decrypt(this, chunk);
+    this.push(thing);
+  }
+  next();
+};
+Decipher.prototype._flush = function (next) {
+  var chunk = this._cache.flush();
+  if (!chunk) {
+    return next;
   }
 
-  if (_global.crypto && crypto.getRandomValues) {
-    whatwgRNG = function(size) {
-      var bytes = new Uint8Array(size);
-      crypto.getRandomValues(bytes);
-      return bytes;
+  this.push(unpad(this._mode.decrypt(this, chunk)));
+
+  next();
+};
+
+function Splitter() {
+   if (!(this instanceof Splitter)) {
+    return new Splitter();
+  }
+  this.cache = new Buffer('');
+}
+Splitter.prototype.add = function (data) {
+  this.cache = Buffer.concat([this.cache, data]);
+};
+
+Splitter.prototype.get = function () {
+  if (this.cache.length > 16) {
+    var out = this.cache.slice(0, 16);
+    this.cache = this.cache.slice(16);
+    return out;
+  }
+  return null;
+};
+Splitter.prototype.flush = function () {
+  if (this.cache.length) {
+    return this.cache;
+  }
+};
+function unpad(last) {
+  var padded = last[15];
+  if (padded === 16) {
+    return;
+  }
+  return last.slice(0, 16 - padded);
+}
+
+var modelist = {
+  ECB: require('./modes/ecb'),
+  CBC: require('./modes/cbc'),
+  CFB: require('./modes/cfb'),
+  OFB: require('./modes/ofb'),
+  CTR: require('./modes/ctr')
+};
+
+module.exports = function (crypto) {
+  function createDecipheriv(suite, password, iv) {
+    var config = modes[suite];
+    if (!config) {
+      throw new TypeError('invalid suite type');
     }
+    if (typeof iv === 'string') {
+      iv = new Buffer(iv);
+    }
+    if (typeof password === 'string') {
+      password = new Buffer(password);
+    }
+    if (password.length !== config.key/8) {
+      throw new TypeError('invalid key length ' + password.length);
+    }
+    if (iv.length !== config.iv) {
+      throw new TypeError('invalid iv length ' + iv.length);
+    }
+    if (config.type === 'stream') {
+      return new StreamCipher(modelist[config.mode], password, iv, true);
+    }
+    return new Decipher(modelist[config.mode], password, iv);
   }
 
-  module.exports = whatwgRNG || mathRNG;
+  function createDecipher (suite, password) {
+    var config = modes[suite];
+    if (!config) {
+      throw new TypeError('invalid suite type');
+    }
+    var keys = ebtk(crypto, password, config.key, config.iv);
+    return createDecipheriv(suite, keys.key, keys.iv);
+  }
+  return {
+    createDecipher: createDecipher,
+    createDecipheriv: createDecipheriv
+  };
+};
 
-}())
+}).call(this,require("buffer").Buffer)
+},{"./EVP_BytesToKey":52,"./aes":53,"./cipherBase":54,"./modes":58,"./modes/cbc":59,"./modes/cfb":60,"./modes/ctr":61,"./modes/ecb":62,"./modes/ofb":63,"./streamCipher":64,"buffer":44,"inherits":77}],56:[function(require,module,exports){
+(function (Buffer){
+var aes = require('./aes');
+var Transform = require('./cipherBase');
+var inherits = require('inherits');
+var modes = require('./modes');
+var ebtk = require('./EVP_BytesToKey');
+var StreamCipher = require('./streamCipher');
+inherits(Cipher, Transform);
+function Cipher(mode, key, iv) {
+  if (!(this instanceof Cipher)) {
+    return new Cipher(mode, key, iv);
+  }
+  Transform.call(this);
+  this._cache = new Splitter();
+  this._cipher = new aes.AES(key);
+  this._prev = new Buffer(iv.length);
+  iv.copy(this._prev);
+  this._mode = mode;
+}
+Cipher.prototype._transform = function (data, _, next) {
+  this._cache.add(data);
+  var chunk;
+  var thing;
+  while ((chunk = this._cache.get())) {
+    thing = this._mode.encrypt(this, chunk);
+    this.push(thing);
+  }
+  next();
+};
+Cipher.prototype._flush = function (next) {
+  var chunk = this._cache.flush();
+  this.push(this._mode.encrypt(this, chunk));
+  this._cipher.scrub();
+  next();
+};
 
-},{}],48:[function(require,module,exports){
+
+function Splitter() {
+   if (!(this instanceof Splitter)) {
+    return new Splitter();
+  }
+  this.cache = new Buffer('');
+}
+Splitter.prototype.add = function (data) {
+  this.cache = Buffer.concat([this.cache, data]);
+};
+
+Splitter.prototype.get = function () {
+  if (this.cache.length > 15) {
+    var out = this.cache.slice(0, 16);
+    this.cache = this.cache.slice(16);
+    return out;
+  }
+  return null;
+};
+Splitter.prototype.flush = function () {
+  var len = 16 - this.cache.length;
+  var padBuff = new Buffer(len);
+
+  var i = -1;
+  while (++i < len) {
+    padBuff.writeUInt8(len, i);
+  }
+  var out = Buffer.concat([this.cache, padBuff]);
+  return out;
+};
+var modelist = {
+  ECB: require('./modes/ecb'),
+  CBC: require('./modes/cbc'),
+  CFB: require('./modes/cfb'),
+  OFB: require('./modes/ofb'),
+  CTR: require('./modes/ctr')
+};
+module.exports = function (crypto) {
+  function createCipheriv(suite, password, iv) {
+    var config = modes[suite];
+    if (!config) {
+      throw new TypeError('invalid suite type');
+    }
+    if (typeof iv === 'string') {
+      iv = new Buffer(iv);
+    }
+    if (typeof password === 'string') {
+      password = new Buffer(password);
+    }
+    if (password.length !== config.key/8) {
+      throw new TypeError('invalid key length ' + password.length);
+    }
+    if (iv.length !== config.iv) {
+      throw new TypeError('invalid iv length ' + iv.length);
+    }
+    if (config.type === 'stream') {
+      return new StreamCipher(modelist[config.mode], password, iv);
+    }
+    return new Cipher(modelist[config.mode], password, iv);
+  }
+  function createCipher (suite, password) {
+    var config = modes[suite];
+    if (!config) {
+      throw new TypeError('invalid suite type');
+    }
+    var keys = ebtk(crypto, password, config.key, config.iv);
+    return createCipheriv(suite, keys.key, keys.iv);
+  }
+  return {
+    createCipher: createCipher,
+    createCipheriv: createCipheriv
+  };
+};
+
+}).call(this,require("buffer").Buffer)
+},{"./EVP_BytesToKey":52,"./aes":53,"./cipherBase":54,"./modes":58,"./modes/cbc":59,"./modes/cfb":60,"./modes/ctr":61,"./modes/ecb":62,"./modes/ofb":63,"./streamCipher":64,"buffer":44,"inherits":77}],57:[function(require,module,exports){
+module.exports = function (crypto, exports) {
+  exports = exports || {};
+  var ciphers = require('./encrypter')(crypto);
+  exports.createCipher = ciphers.createCipher;
+  exports.createCipheriv = ciphers.createCipheriv;
+  var deciphers = require('./decrypter')(crypto);
+  exports.createDecipher = deciphers.createDecipher;
+  exports.createDecipheriv = deciphers.createDecipheriv;
+  var modes = require('./modes');
+  function listCiphers () {
+    return Object.keys(modes);
+  }
+  exports.listCiphers = listCiphers;
+};
+
+
+},{"./decrypter":55,"./encrypter":56,"./modes":58}],58:[function(require,module,exports){
+exports['aes-128-ecb'] = {
+  cipher: 'AES',
+  key: 128,
+  iv: 0,
+  mode: 'ECB',
+  type: 'block'
+};
+exports['aes-192-ecb'] = {
+  cipher: 'AES',
+  key: 192,
+  iv: 0,
+  mode: 'ECB',
+  type: 'block'
+};
+exports['aes-256-ecb'] = {
+  cipher: 'AES',
+  key: 256,
+  iv: 0,
+  mode: 'ECB',
+  type: 'block'
+};
+exports['aes-128-cbc'] = {
+  cipher: 'AES',
+  key: 128,
+  iv: 16,
+  mode: 'CBC',
+  type: 'block'
+};
+exports['aes-192-cbc'] = {
+  cipher: 'AES',
+  key: 192,
+  iv: 16,
+  mode: 'CBC',
+  type: 'block'
+};
+exports['aes-256-cbc'] = {
+  cipher: 'AES',
+  key: 256,
+  iv: 16,
+  mode: 'CBC',
+  type: 'block'
+};
+exports['aes128'] = exports['aes-128-cbc'];
+exports['aes192'] = exports['aes-192-cbc'];
+exports['aes256'] = exports['aes-256-cbc'];
+exports['aes-128-cfb'] = {
+  cipher: 'AES',
+  key: 128,
+  iv: 16,
+  mode: 'CFB',
+  type: 'stream'
+};
+exports['aes-192-cfb'] = {
+  cipher: 'AES',
+  key: 192,
+  iv: 16,
+  mode: 'CFB',
+  type: 'stream'
+};
+exports['aes-256-cfb'] = {
+  cipher: 'AES',
+  key: 256,
+  iv: 16,
+  mode: 'CFB',
+  type: 'stream'
+};
+exports['aes-128-ofb'] = {
+  cipher: 'AES',
+  key: 128,
+  iv: 16,
+  mode: 'OFB',
+  type: 'stream'
+};
+exports['aes-192-ofb'] = {
+  cipher: 'AES',
+  key: 192,
+  iv: 16,
+  mode: 'OFB',
+  type: 'stream'
+};
+exports['aes-256-ofb'] = {
+  cipher: 'AES',
+  key: 256,
+  iv: 16,
+  mode: 'OFB',
+  type: 'stream'
+};
+exports['aes-128-ctr'] = {
+  cipher: 'AES',
+  key: 128,
+  iv: 16,
+  mode: 'CTR',
+  type: 'stream'
+};
+exports['aes-192-ctr'] = {
+  cipher: 'AES',
+  key: 192,
+  iv: 16,
+  mode: 'CTR',
+  type: 'stream'
+};
+exports['aes-256-ctr'] = {
+  cipher: 'AES',
+  key: 256,
+  iv: 16,
+  mode: 'CTR',
+  type: 'stream'
+};
+},{}],59:[function(require,module,exports){
+var xor = require('../xor');
+exports.encrypt = function (self, block) {
+  var data = xor(block, self._prev);
+  self._prev = self._cipher.encryptBlock(data);
+  return self._prev;
+};
+exports.decrypt = function (self, block) {
+  var pad = self._prev;
+  self._prev = block;
+  var out = self._cipher.decryptBlock(block);
+  return xor(out, pad);
+};
+},{"../xor":65}],60:[function(require,module,exports){
+(function (Buffer){
+var xor = require('../xor');
+exports.encrypt = function (self, data, decrypt) {
+  var out = new Buffer('');
+  var len;
+  while (data.length) {
+    if (self._cache.length === 0) {
+      self._cache = self._cipher.encryptBlock(self._prev);
+      self._prev = new Buffer('');
+    }
+    if (self._cache.length <= data.length) {
+      len = self._cache.length;
+      out = Buffer.concat([out, encryptStart(self, data.slice(0, len), decrypt)]);
+      data = data.slice(len);
+    } else {
+      out = Buffer.concat([out, encryptStart(self, data, decrypt)]);
+      break;
+    }
+  }
+  return out;
+};
+function encryptStart(self, data, decrypt) {
+  var len = data.length;
+  var out = xor(data, self._cache);
+  self._cache = self._cache.slice(len);
+  self._prev = Buffer.concat([self._prev, decrypt?data:out]);
+  return out;
+}
+}).call(this,require("buffer").Buffer)
+},{"../xor":65,"buffer":44}],61:[function(require,module,exports){
+(function (Buffer){
+var xor = require('../xor');
+function getBlock(self) {
+  var out = self._cipher.encryptBlock(self._prev);
+  incr32(self._prev);
+  return out;
+}
+exports.encrypt = function (self, chunk) {
+  while (self._cache.length < chunk.length) {
+    self._cache = Buffer.concat([self._cache, getBlock(self)]);
+  }
+  var pad = self._cache.slice(0, chunk.length);
+  self._cache = self._cache.slice(chunk.length);
+  return xor(chunk, pad);
+};
+function incr32(iv) {
+  var len = iv.length;
+  var item;
+  while (len--) {
+    item = iv.readUInt8(len);
+    if (item === 255) {
+      iv.writeUInt8(0, len);
+    } else {
+      item++;
+      iv.writeUInt8(item, len);
+      break;
+    }
+  }
+}
+}).call(this,require("buffer").Buffer)
+},{"../xor":65,"buffer":44}],62:[function(require,module,exports){
+exports.encrypt = function (self, block) {
+  return self._cipher.encryptBlock(block);
+};
+exports.decrypt = function (self, block) {
+  return self._cipher.decryptBlock(block);
+};
+},{}],63:[function(require,module,exports){
+(function (Buffer){
+var xor = require('../xor');
+function getBlock(self) {
+  self._prev = self._cipher.encryptBlock(self._prev);
+  return self._prev;
+}
+exports.encrypt = function (self, chunk) {
+  while (self._cache.length < chunk.length) {
+    self._cache = Buffer.concat([self._cache, getBlock(self)]);
+  }
+  var pad = self._cache.slice(0, chunk.length);
+  self._cache = self._cache.slice(chunk.length);
+  return xor(chunk, pad);
+};
+}).call(this,require("buffer").Buffer)
+},{"../xor":65,"buffer":44}],64:[function(require,module,exports){
+(function (Buffer){
+var aes = require('./aes');
+var Transform = require('./cipherBase');
+var inherits = require('inherits');
+
+inherits(StreamCipher, Transform);
+module.exports = StreamCipher;
+function StreamCipher(mode, key, iv, decrypt) {
+  if (!(this instanceof StreamCipher)) {
+    return new StreamCipher(mode, key, iv);
+  }
+  Transform.call(this);
+  this._cipher = new aes.AES(key);
+  this._prev = new Buffer(iv.length);
+  this._cache = new Buffer('');
+  this._secCache = new Buffer('');
+  this._decrypt = decrypt;
+  iv.copy(this._prev);
+  this._mode = mode;
+}
+StreamCipher.prototype._transform = function (chunk, _, next) {
+  next(null, this._mode.encrypt(this, chunk, this._decrypt));
+};
+StreamCipher.prototype._flush = function (next) {
+  this._cipher.scrub();
+  next();
+};
+}).call(this,require("buffer").Buffer)
+},{"./aes":53,"./cipherBase":54,"buffer":44,"inherits":77}],65:[function(require,module,exports){
+(function (Buffer){
+module.exports = xor;
+function xor(a, b) {
+  var len = Math.min(a.length, b.length);
+  var out = new Buffer(len);
+  var i = -1;
+  while (++i < len) {
+    out.writeUInt8(a[i] ^ b[i], i);
+  }
+  return out;
+}
+}).call(this,require("buffer").Buffer)
+},{"buffer":44}],66:[function(require,module,exports){
+(function (Buffer){
+module.exports = function(crypto) {
+  function pbkdf2(password, salt, iterations, keylen, digest, callback) {
+    if ('function' === typeof digest) {
+      callback = digest
+      digest = undefined
+    }
+
+    if ('function' !== typeof callback)
+      throw new Error('No callback provided to pbkdf2')
+
+    setTimeout(function() {
+      var result
+
+      try {
+        result = pbkdf2Sync(password, salt, iterations, keylen, digest)
+      } catch (e) {
+        return callback(e)
+      }
+
+      callback(undefined, result)
+    })
+  }
+
+  function pbkdf2Sync(password, salt, iterations, keylen, digest) {
+    if ('number' !== typeof iterations)
+      throw new TypeError('Iterations not a number')
+
+    if (iterations < 0)
+      throw new TypeError('Bad iterations')
+
+    if ('number' !== typeof keylen)
+      throw new TypeError('Key length not a number')
+
+    if (keylen < 0)
+      throw new TypeError('Bad key length')
+
+    digest = digest || 'sha1'
+
+    if (!Buffer.isBuffer(password)) password = new Buffer(password)
+    if (!Buffer.isBuffer(salt)) salt = new Buffer(salt)
+
+    var hLen, l = 1, r, T
+    var DK = new Buffer(keylen)
+    var block1 = new Buffer(salt.length + 4)
+    salt.copy(block1, 0, 0, salt.length)
+
+    for (var i = 1; i <= l; i++) {
+      block1.writeUInt32BE(i, salt.length)
+
+      var U = crypto.createHmac(digest, password).update(block1).digest()
+
+      if (!hLen) {
+        hLen = U.length
+        T = new Buffer(hLen)
+        l = Math.ceil(keylen / hLen)
+        r = keylen - (l - 1) * hLen
+
+        if (keylen > (Math.pow(2, 32) - 1) * hLen)
+          throw new TypeError('keylen exceeds maximum length')
+      }
+
+      U.copy(T, 0, 0, hLen)
+
+      for (var j = 1; j < iterations; j++) {
+        U = crypto.createHmac(digest, password).update(U).digest()
+
+        for (var k = 0; k < hLen; k++) {
+          T[k] ^= U[k]
+        }
+      }
+
+      var destPos = (i - 1) * hLen
+      var len = (i == l ? r : hLen)
+      T.copy(DK, destPos, 0, len)
+    }
+
+    return DK
+  }
+
+  return {
+    pbkdf2: pbkdf2,
+    pbkdf2Sync: pbkdf2Sync
+  }
+}
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":44}],67:[function(require,module,exports){
+(function (Buffer){
+
+module.exports = ripemd160
+
+
+
+/*
+CryptoJS v3.1.2
+code.google.com/p/crypto-js
+(c) 2009-2013 by Jeff Mott. All rights reserved.
+code.google.com/p/crypto-js/wiki/License
+*/
+/** @preserve
+(c) 2012 by Cédric Mesnil. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+    - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+// Constants table
+var zl = [
+    0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
+    7,  4, 13,  1, 10,  6, 15,  3, 12,  0,  9,  5,  2, 14, 11,  8,
+    3, 10, 14,  4,  9, 15,  8,  1,  2,  7,  0,  6, 13, 11,  5, 12,
+    1,  9, 11, 10,  0,  8, 12,  4, 13,  3,  7, 15, 14,  5,  6,  2,
+    4,  0,  5,  9,  7, 12,  2, 10, 14,  1,  3,  8, 11,  6, 15, 13];
+var zr = [
+    5, 14,  7,  0,  9,  2, 11,  4, 13,  6, 15,  8,  1, 10,  3, 12,
+    6, 11,  3,  7,  0, 13,  5, 10, 14, 15,  8, 12,  4,  9,  1,  2,
+    15,  5,  1,  3,  7, 14,  6,  9, 11,  8, 12,  2, 10,  0,  4, 13,
+    8,  6,  4,  1,  3, 11, 15,  0,  5, 12,  2, 13,  9,  7, 10, 14,
+    12, 15, 10,  4,  1,  5,  8,  7,  6,  2, 13, 14,  0,  3,  9, 11];
+var sl = [
+     11, 14, 15, 12,  5,  8,  7,  9, 11, 13, 14, 15,  6,  7,  9,  8,
+    7, 6,   8, 13, 11,  9,  7, 15,  7, 12, 15,  9, 11,  7, 13, 12,
+    11, 13,  6,  7, 14,  9, 13, 15, 14,  8, 13,  6,  5, 12,  7,  5,
+      11, 12, 14, 15, 14, 15,  9,  8,  9, 14,  5,  6,  8,  6,  5, 12,
+    9, 15,  5, 11,  6,  8, 13, 12,  5, 12, 13, 14, 11,  8,  5,  6 ];
+var sr = [
+    8,  9,  9, 11, 13, 15, 15,  5,  7,  7,  8, 11, 14, 14, 12,  6,
+    9, 13, 15,  7, 12,  8,  9, 11,  7,  7, 12,  7,  6, 15, 13, 11,
+    9,  7, 15, 11,  8,  6,  6, 14, 12, 13,  5, 14, 13, 13,  7,  5,
+    15,  5,  8, 11, 14, 14,  6, 14,  6,  9, 12,  9, 12,  5, 15,  8,
+    8,  5, 12,  9, 12,  5, 14,  6,  8, 13,  6,  5, 15, 13, 11, 11 ];
+
+var hl =  [ 0x00000000, 0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xA953FD4E];
+var hr =  [ 0x50A28BE6, 0x5C4DD124, 0x6D703EF3, 0x7A6D76E9, 0x00000000];
+
+var bytesToWords = function (bytes) {
+  var words = [];
+  for (var i = 0, b = 0; i < bytes.length; i++, b += 8) {
+    words[b >>> 5] |= bytes[i] << (24 - b % 32);
+  }
+  return words;
+};
+
+var wordsToBytes = function (words) {
+  var bytes = [];
+  for (var b = 0; b < words.length * 32; b += 8) {
+    bytes.push((words[b >>> 5] >>> (24 - b % 32)) & 0xFF);
+  }
+  return bytes;
+};
+
+var processBlock = function (H, M, offset) {
+
+  // Swap endian
+  for (var i = 0; i < 16; i++) {
+    var offset_i = offset + i;
+    var M_offset_i = M[offset_i];
+
+    // Swap
+    M[offset_i] = (
+        (((M_offset_i << 8)  | (M_offset_i >>> 24)) & 0x00ff00ff) |
+        (((M_offset_i << 24) | (M_offset_i >>> 8))  & 0xff00ff00)
+    );
+  }
+
+  // Working variables
+  var al, bl, cl, dl, el;
+  var ar, br, cr, dr, er;
+
+  ar = al = H[0];
+  br = bl = H[1];
+  cr = cl = H[2];
+  dr = dl = H[3];
+  er = el = H[4];
+  // Computation
+  var t;
+  for (var i = 0; i < 80; i += 1) {
+    t = (al +  M[offset+zl[i]])|0;
+    if (i<16){
+        t +=  f1(bl,cl,dl) + hl[0];
+    } else if (i<32) {
+        t +=  f2(bl,cl,dl) + hl[1];
+    } else if (i<48) {
+        t +=  f3(bl,cl,dl) + hl[2];
+    } else if (i<64) {
+        t +=  f4(bl,cl,dl) + hl[3];
+    } else {// if (i<80) {
+        t +=  f5(bl,cl,dl) + hl[4];
+    }
+    t = t|0;
+    t =  rotl(t,sl[i]);
+    t = (t+el)|0;
+    al = el;
+    el = dl;
+    dl = rotl(cl, 10);
+    cl = bl;
+    bl = t;
+
+    t = (ar + M[offset+zr[i]])|0;
+    if (i<16){
+        t +=  f5(br,cr,dr) + hr[0];
+    } else if (i<32) {
+        t +=  f4(br,cr,dr) + hr[1];
+    } else if (i<48) {
+        t +=  f3(br,cr,dr) + hr[2];
+    } else if (i<64) {
+        t +=  f2(br,cr,dr) + hr[3];
+    } else {// if (i<80) {
+        t +=  f1(br,cr,dr) + hr[4];
+    }
+    t = t|0;
+    t =  rotl(t,sr[i]) ;
+    t = (t+er)|0;
+    ar = er;
+    er = dr;
+    dr = rotl(cr, 10);
+    cr = br;
+    br = t;
+  }
+  // Intermediate hash value
+  t    = (H[1] + cl + dr)|0;
+  H[1] = (H[2] + dl + er)|0;
+  H[2] = (H[3] + el + ar)|0;
+  H[3] = (H[4] + al + br)|0;
+  H[4] = (H[0] + bl + cr)|0;
+  H[0] =  t;
+};
+
+function f1(x, y, z) {
+  return ((x) ^ (y) ^ (z));
+}
+
+function f2(x, y, z) {
+  return (((x)&(y)) | ((~x)&(z)));
+}
+
+function f3(x, y, z) {
+  return (((x) | (~(y))) ^ (z));
+}
+
+function f4(x, y, z) {
+  return (((x) & (z)) | ((y)&(~(z))));
+}
+
+function f5(x, y, z) {
+  return ((x) ^ ((y) |(~(z))));
+}
+
+function rotl(x,n) {
+  return (x<<n) | (x>>>(32-n));
+}
+
+function ripemd160(message) {
+  var H = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+
+  if (typeof message == 'string')
+    message = new Buffer(message, 'utf8');
+
+  var m = bytesToWords(message);
+
+  var nBitsLeft = message.length * 8;
+  var nBitsTotal = message.length * 8;
+
+  // Add padding
+  m[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
+  m[(((nBitsLeft + 64) >>> 9) << 4) + 14] = (
+      (((nBitsTotal << 8)  | (nBitsTotal >>> 24)) & 0x00ff00ff) |
+      (((nBitsTotal << 24) | (nBitsTotal >>> 8))  & 0xff00ff00)
+  );
+
+  for (var i=0 ; i<m.length; i += 16) {
+    processBlock(H, m, i);
+  }
+
+  // Swap endian
+  for (var i = 0; i < 5; i++) {
+      // Shortcut
+    var H_i = H[i];
+
+    // Swap
+    H[i] = (((H_i << 8)  | (H_i >>> 24)) & 0x00ff00ff) |
+          (((H_i << 24) | (H_i >>> 8))  & 0xff00ff00);
+  }
+
+  var digestbytes = wordsToBytes(H);
+  return new Buffer(digestbytes);
+}
+
+
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":44}],68:[function(require,module,exports){
+module.exports = function (Buffer) {
+
+  //prototype class for hash functions
+  function Hash (blockSize, finalSize) {
+    this._block = new Buffer(blockSize) //new Uint32Array(blockSize/4)
+    this._finalSize = finalSize
+    this._blockSize = blockSize
+    this._len = 0
+    this._s = 0
+  }
+
+  Hash.prototype.init = function () {
+    this._s = 0
+    this._len = 0
+  }
+
+  Hash.prototype.update = function (data, enc) {
+    if ("string" === typeof data) {
+      enc = enc || "utf8"
+      data = new Buffer(data, enc)
+    }
+
+    var l = this._len += data.length
+    var s = this._s = (this._s || 0)
+    var f = 0
+    var buffer = this._block
+
+    while (s < l) {
+      var t = Math.min(data.length, f + this._blockSize - (s % this._blockSize))
+      var ch = (t - f)
+
+      for (var i = 0; i < ch; i++) {
+        buffer[(s % this._blockSize) + i] = data[i + f]
+      }
+
+      s += ch
+      f += ch
+
+      if ((s % this._blockSize) === 0) {
+        this._update(buffer)
+      }
+    }
+    this._s = s
+
+    return this
+  }
+
+  Hash.prototype.digest = function (enc) {
+    // Suppose the length of the message M, in bits, is l
+    var l = this._len * 8
+
+    // Append the bit 1 to the end of the message
+    this._block[this._len % this._blockSize] = 0x80
+
+    // and then k zero bits, where k is the smallest non-negative solution to the equation (l + 1 + k) === finalSize mod blockSize
+    this._block.fill(0, this._len % this._blockSize + 1)
+
+    if (l % (this._blockSize * 8) >= this._finalSize * 8) {
+      this._update(this._block)
+      this._block.fill(0)
+    }
+
+    // to this append the block which is equal to the number l written in binary
+    // TODO: handle case where l is > Math.pow(2, 29)
+    this._block.writeInt32BE(l, this._blockSize - 4)
+
+    var hash = this._update(this._block) || this._hash()
+
+    return enc ? hash.toString(enc) : hash
+  }
+
+  Hash.prototype._update = function () {
+    throw new Error('_update must be implemented by subclass')
+  }
+
+  return Hash
+}
+
+},{}],69:[function(require,module,exports){
+var exports = module.exports = function (alg) {
+  var Alg = exports[alg]
+  if(!Alg) throw new Error(alg + ' is not supported (we accept pull requests)')
+  return new Alg()
+}
+
+var Buffer = require('buffer').Buffer
+var Hash   = require('./hash')(Buffer)
+
+exports.sha1 = require('./sha1')(Buffer, Hash)
+exports.sha256 = require('./sha256')(Buffer, Hash)
+exports.sha512 = require('./sha512')(Buffer, Hash)
+
+},{"./hash":68,"./sha1":70,"./sha256":71,"./sha512":72,"buffer":44}],70:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -10654,100 +13886,137 @@ module.exports = function md5(buf) {
  * See http://pajhome.org.uk/crypt/md5 for details.
  */
 
-var helpers = require('./helpers');
+var inherits = require('util').inherits
 
-/*
- * Calculate the SHA-1 of an array of big-endian words, and a bit length
- */
-function core_sha1(x, len)
-{
-  /* append padding */
-  x[len >> 5] |= 0x80 << (24 - len % 32);
-  x[((len + 64 >> 9) << 4) + 15] = len;
+module.exports = function (Buffer, Hash) {
 
-  var w = Array(80);
-  var a =  1732584193;
-  var b = -271733879;
-  var c = -1732584194;
-  var d =  271733878;
-  var e = -1009589776;
+  var A = 0|0
+  var B = 4|0
+  var C = 8|0
+  var D = 12|0
+  var E = 16|0
 
-  for(var i = 0; i < x.length; i += 16)
-  {
-    var olda = a;
-    var oldb = b;
-    var oldc = c;
-    var oldd = d;
-    var olde = e;
+  var W = new (typeof Int32Array === 'undefined' ? Array : Int32Array)(80)
 
-    for(var j = 0; j < 80; j++)
-    {
-      if(j < 16) w[j] = x[i + j];
-      else w[j] = rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1);
-      var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)),
-                       safe_add(safe_add(e, w[j]), sha1_kt(j)));
-      e = d;
-      d = c;
-      c = rol(b, 30);
-      b = a;
-      a = t;
+  var POOL = []
+
+  function Sha1 () {
+    if(POOL.length)
+      return POOL.pop().init()
+
+    if(!(this instanceof Sha1)) return new Sha1()
+    this._w = W
+    Hash.call(this, 16*4, 14*4)
+
+    this._h = null
+    this.init()
+  }
+
+  inherits(Sha1, Hash)
+
+  Sha1.prototype.init = function () {
+    this._a = 0x67452301
+    this._b = 0xefcdab89
+    this._c = 0x98badcfe
+    this._d = 0x10325476
+    this._e = 0xc3d2e1f0
+
+    Hash.prototype.init.call(this)
+    return this
+  }
+
+  Sha1.prototype._POOL = POOL
+  Sha1.prototype._update = function (X) {
+
+    var a, b, c, d, e, _a, _b, _c, _d, _e
+
+    a = _a = this._a
+    b = _b = this._b
+    c = _c = this._c
+    d = _d = this._d
+    e = _e = this._e
+
+    var w = this._w
+
+    for(var j = 0; j < 80; j++) {
+      var W = w[j] = j < 16 ? X.readInt32BE(j*4)
+        : rol(w[j - 3] ^ w[j -  8] ^ w[j - 14] ^ w[j - 16], 1)
+
+      var t = add(
+        add(rol(a, 5), sha1_ft(j, b, c, d)),
+        add(add(e, W), sha1_kt(j))
+      )
+
+      e = d
+      d = c
+      c = rol(b, 30)
+      b = a
+      a = t
     }
 
-    a = safe_add(a, olda);
-    b = safe_add(b, oldb);
-    c = safe_add(c, oldc);
-    d = safe_add(d, oldd);
-    e = safe_add(e, olde);
+    this._a = add(a, _a)
+    this._b = add(b, _b)
+    this._c = add(c, _c)
+    this._d = add(d, _d)
+    this._e = add(e, _e)
   }
-  return Array(a, b, c, d, e);
 
+  Sha1.prototype._hash = function () {
+    if(POOL.length < 100) POOL.push(this)
+    var H = new Buffer(20)
+    //console.log(this._a|0, this._b|0, this._c|0, this._d|0, this._e|0)
+    H.writeInt32BE(this._a|0, A)
+    H.writeInt32BE(this._b|0, B)
+    H.writeInt32BE(this._c|0, C)
+    H.writeInt32BE(this._d|0, D)
+    H.writeInt32BE(this._e|0, E)
+    return H
+  }
+
+  /*
+   * Perform the appropriate triplet combination function for the current
+   * iteration
+   */
+  function sha1_ft(t, b, c, d) {
+    if(t < 20) return (b & c) | ((~b) & d);
+    if(t < 40) return b ^ c ^ d;
+    if(t < 60) return (b & c) | (b & d) | (c & d);
+    return b ^ c ^ d;
+  }
+
+  /*
+   * Determine the appropriate additive constant for the current iteration
+   */
+  function sha1_kt(t) {
+    return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
+           (t < 60) ? -1894007588 : -899497514;
+  }
+
+  /*
+   * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+   * to work around bugs in some JS interpreters.
+   * //dominictarr: this is 10 years old, so maybe this can be dropped?)
+   *
+   */
+  function add(x, y) {
+    return (x + y ) | 0
+  //lets see how this goes on testling.
+  //  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  //  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  //  return (msw << 16) | (lsw & 0xFFFF);
+  }
+
+  /*
+   * Bitwise rotate a 32-bit number to the left.
+   */
+  function rol(num, cnt) {
+    return (num << cnt) | (num >>> (32 - cnt));
+  }
+
+  return Sha1
 }
 
-/*
- * Perform the appropriate triplet combination function for the current
- * iteration
- */
-function sha1_ft(t, b, c, d)
-{
-  if(t < 20) return (b & c) | ((~b) & d);
-  if(t < 40) return b ^ c ^ d;
-  if(t < 60) return (b & c) | (b & d) | (c & d);
-  return b ^ c ^ d;
-}
-
-/*
- * Determine the appropriate additive constant for the current iteration
- */
-function sha1_kt(t)
-{
-  return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
-         (t < 60) ? -1894007588 : -899497514;
-}
-
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-function safe_add(x, y)
-{
-  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
-  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return (msw << 16) | (lsw & 0xFFFF);
-}
-
-/*
- * Bitwise rotate a 32-bit number to the left.
- */
-function rol(num, cnt)
-{
-  return (num << cnt) | (num >>> (32 - cnt));
-}
-
-module.exports = function sha1(buf) {
-  return helpers.hash(buf, core_sha1, 20, true);
-};
-
-},{"./helpers":44}],49:[function(require,module,exports){
+},{"util":89}],71:[function(require,module,exports){
 
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
@@ -10757,78 +14026,436 @@ module.exports = function sha1(buf) {
  *
  */
 
-var helpers = require('./helpers');
+var inherits = require('util').inherits
 
-var safe_add = function(x, y) {
-  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
-  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return (msw << 16) | (lsw & 0xFFFF);
-};
+module.exports = function (Buffer, Hash) {
 
-var S = function(X, n) {
-  return (X >>> n) | (X << (32 - n));
-};
+  var K = [
+      0x428A2F98, 0x71374491, 0xB5C0FBCF, 0xE9B5DBA5,
+      0x3956C25B, 0x59F111F1, 0x923F82A4, 0xAB1C5ED5,
+      0xD807AA98, 0x12835B01, 0x243185BE, 0x550C7DC3,
+      0x72BE5D74, 0x80DEB1FE, 0x9BDC06A7, 0xC19BF174,
+      0xE49B69C1, 0xEFBE4786, 0x0FC19DC6, 0x240CA1CC,
+      0x2DE92C6F, 0x4A7484AA, 0x5CB0A9DC, 0x76F988DA,
+      0x983E5152, 0xA831C66D, 0xB00327C8, 0xBF597FC7,
+      0xC6E00BF3, 0xD5A79147, 0x06CA6351, 0x14292967,
+      0x27B70A85, 0x2E1B2138, 0x4D2C6DFC, 0x53380D13,
+      0x650A7354, 0x766A0ABB, 0x81C2C92E, 0x92722C85,
+      0xA2BFE8A1, 0xA81A664B, 0xC24B8B70, 0xC76C51A3,
+      0xD192E819, 0xD6990624, 0xF40E3585, 0x106AA070,
+      0x19A4C116, 0x1E376C08, 0x2748774C, 0x34B0BCB5,
+      0x391C0CB3, 0x4ED8AA4A, 0x5B9CCA4F, 0x682E6FF3,
+      0x748F82EE, 0x78A5636F, 0x84C87814, 0x8CC70208,
+      0x90BEFFFA, 0xA4506CEB, 0xBEF9A3F7, 0xC67178F2
+    ]
 
-var R = function(X, n) {
-  return (X >>> n);
-};
+  var W = new Array(64)
 
-var Ch = function(x, y, z) {
-  return ((x & y) ^ ((~x) & z));
-};
+  function Sha256() {
+    this.init()
 
-var Maj = function(x, y, z) {
-  return ((x & y) ^ (x & z) ^ (y & z));
-};
+    this._w = W //new Array(64)
 
-var Sigma0256 = function(x) {
-  return (S(x, 2) ^ S(x, 13) ^ S(x, 22));
-};
-
-var Sigma1256 = function(x) {
-  return (S(x, 6) ^ S(x, 11) ^ S(x, 25));
-};
-
-var Gamma0256 = function(x) {
-  return (S(x, 7) ^ S(x, 18) ^ R(x, 3));
-};
-
-var Gamma1256 = function(x) {
-  return (S(x, 17) ^ S(x, 19) ^ R(x, 10));
-};
-
-var core_sha256 = function(m, l) {
-  var K = new Array(0x428A2F98,0x71374491,0xB5C0FBCF,0xE9B5DBA5,0x3956C25B,0x59F111F1,0x923F82A4,0xAB1C5ED5,0xD807AA98,0x12835B01,0x243185BE,0x550C7DC3,0x72BE5D74,0x80DEB1FE,0x9BDC06A7,0xC19BF174,0xE49B69C1,0xEFBE4786,0xFC19DC6,0x240CA1CC,0x2DE92C6F,0x4A7484AA,0x5CB0A9DC,0x76F988DA,0x983E5152,0xA831C66D,0xB00327C8,0xBF597FC7,0xC6E00BF3,0xD5A79147,0x6CA6351,0x14292967,0x27B70A85,0x2E1B2138,0x4D2C6DFC,0x53380D13,0x650A7354,0x766A0ABB,0x81C2C92E,0x92722C85,0xA2BFE8A1,0xA81A664B,0xC24B8B70,0xC76C51A3,0xD192E819,0xD6990624,0xF40E3585,0x106AA070,0x19A4C116,0x1E376C08,0x2748774C,0x34B0BCB5,0x391C0CB3,0x4ED8AA4A,0x5B9CCA4F,0x682E6FF3,0x748F82EE,0x78A5636F,0x84C87814,0x8CC70208,0x90BEFFFA,0xA4506CEB,0xBEF9A3F7,0xC67178F2);
-  var HASH = new Array(0x6A09E667, 0xBB67AE85, 0x3C6EF372, 0xA54FF53A, 0x510E527F, 0x9B05688C, 0x1F83D9AB, 0x5BE0CD19);
-    var W = new Array(64);
-    var a, b, c, d, e, f, g, h, i, j;
-    var T1, T2;
-  /* append padding */
-  m[l >> 5] |= 0x80 << (24 - l % 32);
-  m[((l + 64 >> 9) << 4) + 15] = l;
-  for (var i = 0; i < m.length; i += 16) {
-    a = HASH[0]; b = HASH[1]; c = HASH[2]; d = HASH[3]; e = HASH[4]; f = HASH[5]; g = HASH[6]; h = HASH[7];
-    for (var j = 0; j < 64; j++) {
-      if (j < 16) {
-        W[j] = m[j + i];
-      } else {
-        W[j] = safe_add(safe_add(safe_add(Gamma1256(W[j - 2]), W[j - 7]), Gamma0256(W[j - 15])), W[j - 16]);
-      }
-      T1 = safe_add(safe_add(safe_add(safe_add(h, Sigma1256(e)), Ch(e, f, g)), K[j]), W[j]);
-      T2 = safe_add(Sigma0256(a), Maj(a, b, c));
-      h = g; g = f; f = e; e = safe_add(d, T1); d = c; c = b; b = a; a = safe_add(T1, T2);
-    }
-    HASH[0] = safe_add(a, HASH[0]); HASH[1] = safe_add(b, HASH[1]); HASH[2] = safe_add(c, HASH[2]); HASH[3] = safe_add(d, HASH[3]);
-    HASH[4] = safe_add(e, HASH[4]); HASH[5] = safe_add(f, HASH[5]); HASH[6] = safe_add(g, HASH[6]); HASH[7] = safe_add(h, HASH[7]);
+    Hash.call(this, 16*4, 14*4)
   }
-  return HASH;
-};
 
-module.exports = function sha256(buf) {
-  return helpers.hash(buf, core_sha256, 32, true);
-};
+  inherits(Sha256, Hash)
 
-},{"./helpers":44}],"events":[function(require,module,exports){
+  Sha256.prototype.init = function () {
+
+    this._a = 0x6a09e667|0
+    this._b = 0xbb67ae85|0
+    this._c = 0x3c6ef372|0
+    this._d = 0xa54ff53a|0
+    this._e = 0x510e527f|0
+    this._f = 0x9b05688c|0
+    this._g = 0x1f83d9ab|0
+    this._h = 0x5be0cd19|0
+
+    this._len = this._s = 0
+
+    return this
+  }
+
+  function S (X, n) {
+    return (X >>> n) | (X << (32 - n));
+  }
+
+  function R (X, n) {
+    return (X >>> n);
+  }
+
+  function Ch (x, y, z) {
+    return ((x & y) ^ ((~x) & z));
+  }
+
+  function Maj (x, y, z) {
+    return ((x & y) ^ (x & z) ^ (y & z));
+  }
+
+  function Sigma0256 (x) {
+    return (S(x, 2) ^ S(x, 13) ^ S(x, 22));
+  }
+
+  function Sigma1256 (x) {
+    return (S(x, 6) ^ S(x, 11) ^ S(x, 25));
+  }
+
+  function Gamma0256 (x) {
+    return (S(x, 7) ^ S(x, 18) ^ R(x, 3));
+  }
+
+  function Gamma1256 (x) {
+    return (S(x, 17) ^ S(x, 19) ^ R(x, 10));
+  }
+
+  Sha256.prototype._update = function(M) {
+
+    var W = this._w
+    var a, b, c, d, e, f, g, h
+    var T1, T2
+
+    a = this._a | 0
+    b = this._b | 0
+    c = this._c | 0
+    d = this._d | 0
+    e = this._e | 0
+    f = this._f | 0
+    g = this._g | 0
+    h = this._h | 0
+
+    for (var j = 0; j < 64; j++) {
+      var w = W[j] = j < 16
+        ? M.readInt32BE(j * 4)
+        : Gamma1256(W[j - 2]) + W[j - 7] + Gamma0256(W[j - 15]) + W[j - 16]
+
+      T1 = h + Sigma1256(e) + Ch(e, f, g) + K[j] + w
+
+      T2 = Sigma0256(a) + Maj(a, b, c);
+      h = g; g = f; f = e; e = d + T1; d = c; c = b; b = a; a = T1 + T2;
+    }
+
+    this._a = (a + this._a) | 0
+    this._b = (b + this._b) | 0
+    this._c = (c + this._c) | 0
+    this._d = (d + this._d) | 0
+    this._e = (e + this._e) | 0
+    this._f = (f + this._f) | 0
+    this._g = (g + this._g) | 0
+    this._h = (h + this._h) | 0
+
+  };
+
+  Sha256.prototype._hash = function () {
+    var H = new Buffer(32)
+
+    H.writeInt32BE(this._a,  0)
+    H.writeInt32BE(this._b,  4)
+    H.writeInt32BE(this._c,  8)
+    H.writeInt32BE(this._d, 12)
+    H.writeInt32BE(this._e, 16)
+    H.writeInt32BE(this._f, 20)
+    H.writeInt32BE(this._g, 24)
+    H.writeInt32BE(this._h, 28)
+
+    return H
+  }
+
+  return Sha256
+
+}
+
+},{"util":89}],72:[function(require,module,exports){
+var inherits = require('util').inherits
+
+module.exports = function (Buffer, Hash) {
+  var K = [
+    0x428a2f98, 0xd728ae22, 0x71374491, 0x23ef65cd,
+    0xb5c0fbcf, 0xec4d3b2f, 0xe9b5dba5, 0x8189dbbc,
+    0x3956c25b, 0xf348b538, 0x59f111f1, 0xb605d019,
+    0x923f82a4, 0xaf194f9b, 0xab1c5ed5, 0xda6d8118,
+    0xd807aa98, 0xa3030242, 0x12835b01, 0x45706fbe,
+    0x243185be, 0x4ee4b28c, 0x550c7dc3, 0xd5ffb4e2,
+    0x72be5d74, 0xf27b896f, 0x80deb1fe, 0x3b1696b1,
+    0x9bdc06a7, 0x25c71235, 0xc19bf174, 0xcf692694,
+    0xe49b69c1, 0x9ef14ad2, 0xefbe4786, 0x384f25e3,
+    0x0fc19dc6, 0x8b8cd5b5, 0x240ca1cc, 0x77ac9c65,
+    0x2de92c6f, 0x592b0275, 0x4a7484aa, 0x6ea6e483,
+    0x5cb0a9dc, 0xbd41fbd4, 0x76f988da, 0x831153b5,
+    0x983e5152, 0xee66dfab, 0xa831c66d, 0x2db43210,
+    0xb00327c8, 0x98fb213f, 0xbf597fc7, 0xbeef0ee4,
+    0xc6e00bf3, 0x3da88fc2, 0xd5a79147, 0x930aa725,
+    0x06ca6351, 0xe003826f, 0x14292967, 0x0a0e6e70,
+    0x27b70a85, 0x46d22ffc, 0x2e1b2138, 0x5c26c926,
+    0x4d2c6dfc, 0x5ac42aed, 0x53380d13, 0x9d95b3df,
+    0x650a7354, 0x8baf63de, 0x766a0abb, 0x3c77b2a8,
+    0x81c2c92e, 0x47edaee6, 0x92722c85, 0x1482353b,
+    0xa2bfe8a1, 0x4cf10364, 0xa81a664b, 0xbc423001,
+    0xc24b8b70, 0xd0f89791, 0xc76c51a3, 0x0654be30,
+    0xd192e819, 0xd6ef5218, 0xd6990624, 0x5565a910,
+    0xf40e3585, 0x5771202a, 0x106aa070, 0x32bbd1b8,
+    0x19a4c116, 0xb8d2d0c8, 0x1e376c08, 0x5141ab53,
+    0x2748774c, 0xdf8eeb99, 0x34b0bcb5, 0xe19b48a8,
+    0x391c0cb3, 0xc5c95a63, 0x4ed8aa4a, 0xe3418acb,
+    0x5b9cca4f, 0x7763e373, 0x682e6ff3, 0xd6b2b8a3,
+    0x748f82ee, 0x5defb2fc, 0x78a5636f, 0x43172f60,
+    0x84c87814, 0xa1f0ab72, 0x8cc70208, 0x1a6439ec,
+    0x90befffa, 0x23631e28, 0xa4506ceb, 0xde82bde9,
+    0xbef9a3f7, 0xb2c67915, 0xc67178f2, 0xe372532b,
+    0xca273ece, 0xea26619c, 0xd186b8c7, 0x21c0c207,
+    0xeada7dd6, 0xcde0eb1e, 0xf57d4f7f, 0xee6ed178,
+    0x06f067aa, 0x72176fba, 0x0a637dc5, 0xa2c898a6,
+    0x113f9804, 0xbef90dae, 0x1b710b35, 0x131c471b,
+    0x28db77f5, 0x23047d84, 0x32caab7b, 0x40c72493,
+    0x3c9ebe0a, 0x15c9bebc, 0x431d67c4, 0x9c100d4c,
+    0x4cc5d4be, 0xcb3e42b6, 0x597f299c, 0xfc657e2a,
+    0x5fcb6fab, 0x3ad6faec, 0x6c44198c, 0x4a475817
+  ]
+
+  var W = new Array(160)
+
+  function Sha512() {
+    this.init()
+    this._w = W
+
+    Hash.call(this, 128, 112)
+  }
+
+  inherits(Sha512, Hash)
+
+  Sha512.prototype.init = function () {
+
+    this._a = 0x6a09e667|0
+    this._b = 0xbb67ae85|0
+    this._c = 0x3c6ef372|0
+    this._d = 0xa54ff53a|0
+    this._e = 0x510e527f|0
+    this._f = 0x9b05688c|0
+    this._g = 0x1f83d9ab|0
+    this._h = 0x5be0cd19|0
+
+    this._al = 0xf3bcc908|0
+    this._bl = 0x84caa73b|0
+    this._cl = 0xfe94f82b|0
+    this._dl = 0x5f1d36f1|0
+    this._el = 0xade682d1|0
+    this._fl = 0x2b3e6c1f|0
+    this._gl = 0xfb41bd6b|0
+    this._hl = 0x137e2179|0
+
+    this._len = this._s = 0
+
+    return this
+  }
+
+  function S (X, Xl, n) {
+    return (X >>> n) | (Xl << (32 - n))
+  }
+
+  function Ch (x, y, z) {
+    return ((x & y) ^ ((~x) & z));
+  }
+
+  function Maj (x, y, z) {
+    return ((x & y) ^ (x & z) ^ (y & z));
+  }
+
+  Sha512.prototype._update = function(M) {
+
+    var W = this._w
+    var a, b, c, d, e, f, g, h
+    var al, bl, cl, dl, el, fl, gl, hl
+
+    a = this._a | 0
+    b = this._b | 0
+    c = this._c | 0
+    d = this._d | 0
+    e = this._e | 0
+    f = this._f | 0
+    g = this._g | 0
+    h = this._h | 0
+
+    al = this._al | 0
+    bl = this._bl | 0
+    cl = this._cl | 0
+    dl = this._dl | 0
+    el = this._el | 0
+    fl = this._fl | 0
+    gl = this._gl | 0
+    hl = this._hl | 0
+
+    for (var i = 0; i < 80; i++) {
+      var j = i * 2
+
+      var Wi, Wil
+
+      if (i < 16) {
+        Wi = W[j] = M.readInt32BE(j * 4)
+        Wil = W[j + 1] = M.readInt32BE(j * 4 + 4)
+
+      } else {
+        var x  = W[j - 15*2]
+        var xl = W[j - 15*2 + 1]
+        var gamma0  = S(x, xl, 1) ^ S(x, xl, 8) ^ (x >>> 7)
+        var gamma0l = S(xl, x, 1) ^ S(xl, x, 8) ^ S(xl, x, 7)
+
+        x  = W[j - 2*2]
+        xl = W[j - 2*2 + 1]
+        var gamma1  = S(x, xl, 19) ^ S(xl, x, 29) ^ (x >>> 6)
+        var gamma1l = S(xl, x, 19) ^ S(x, xl, 29) ^ S(xl, x, 6)
+
+        // W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16]
+        var Wi7  = W[j - 7*2]
+        var Wi7l = W[j - 7*2 + 1]
+
+        var Wi16  = W[j - 16*2]
+        var Wi16l = W[j - 16*2 + 1]
+
+        Wil = gamma0l + Wi7l
+        Wi  = gamma0  + Wi7 + ((Wil >>> 0) < (gamma0l >>> 0) ? 1 : 0)
+        Wil = Wil + gamma1l
+        Wi  = Wi  + gamma1  + ((Wil >>> 0) < (gamma1l >>> 0) ? 1 : 0)
+        Wil = Wil + Wi16l
+        Wi  = Wi  + Wi16 + ((Wil >>> 0) < (Wi16l >>> 0) ? 1 : 0)
+
+        W[j] = Wi
+        W[j + 1] = Wil
+      }
+
+      var maj = Maj(a, b, c)
+      var majl = Maj(al, bl, cl)
+
+      var sigma0h = S(a, al, 28) ^ S(al, a, 2) ^ S(al, a, 7)
+      var sigma0l = S(al, a, 28) ^ S(a, al, 2) ^ S(a, al, 7)
+      var sigma1h = S(e, el, 14) ^ S(e, el, 18) ^ S(el, e, 9)
+      var sigma1l = S(el, e, 14) ^ S(el, e, 18) ^ S(e, el, 9)
+
+      // t1 = h + sigma1 + ch + K[i] + W[i]
+      var Ki = K[j]
+      var Kil = K[j + 1]
+
+      var ch = Ch(e, f, g)
+      var chl = Ch(el, fl, gl)
+
+      var t1l = hl + sigma1l
+      var t1 = h + sigma1h + ((t1l >>> 0) < (hl >>> 0) ? 1 : 0)
+      t1l = t1l + chl
+      t1 = t1 + ch + ((t1l >>> 0) < (chl >>> 0) ? 1 : 0)
+      t1l = t1l + Kil
+      t1 = t1 + Ki + ((t1l >>> 0) < (Kil >>> 0) ? 1 : 0)
+      t1l = t1l + Wil
+      t1 = t1 + Wi + ((t1l >>> 0) < (Wil >>> 0) ? 1 : 0)
+
+      // t2 = sigma0 + maj
+      var t2l = sigma0l + majl
+      var t2 = sigma0h + maj + ((t2l >>> 0) < (sigma0l >>> 0) ? 1 : 0)
+
+      h  = g
+      hl = gl
+      g  = f
+      gl = fl
+      f  = e
+      fl = el
+      el = (dl + t1l) | 0
+      e  = (d + t1 + ((el >>> 0) < (dl >>> 0) ? 1 : 0)) | 0
+      d  = c
+      dl = cl
+      c  = b
+      cl = bl
+      b  = a
+      bl = al
+      al = (t1l + t2l) | 0
+      a  = (t1 + t2 + ((al >>> 0) < (t1l >>> 0) ? 1 : 0)) | 0
+    }
+
+    this._al = (this._al + al) | 0
+    this._bl = (this._bl + bl) | 0
+    this._cl = (this._cl + cl) | 0
+    this._dl = (this._dl + dl) | 0
+    this._el = (this._el + el) | 0
+    this._fl = (this._fl + fl) | 0
+    this._gl = (this._gl + gl) | 0
+    this._hl = (this._hl + hl) | 0
+
+    this._a = (this._a + a + ((this._al >>> 0) < (al >>> 0) ? 1 : 0)) | 0
+    this._b = (this._b + b + ((this._bl >>> 0) < (bl >>> 0) ? 1 : 0)) | 0
+    this._c = (this._c + c + ((this._cl >>> 0) < (cl >>> 0) ? 1 : 0)) | 0
+    this._d = (this._d + d + ((this._dl >>> 0) < (dl >>> 0) ? 1 : 0)) | 0
+    this._e = (this._e + e + ((this._el >>> 0) < (el >>> 0) ? 1 : 0)) | 0
+    this._f = (this._f + f + ((this._fl >>> 0) < (fl >>> 0) ? 1 : 0)) | 0
+    this._g = (this._g + g + ((this._gl >>> 0) < (gl >>> 0) ? 1 : 0)) | 0
+    this._h = (this._h + h + ((this._hl >>> 0) < (hl >>> 0) ? 1 : 0)) | 0
+  }
+
+  Sha512.prototype._hash = function () {
+    var H = new Buffer(64)
+
+    function writeInt64BE(h, l, offset) {
+      H.writeInt32BE(h, offset)
+      H.writeInt32BE(l, offset + 4)
+    }
+
+    writeInt64BE(this._a, this._al, 0)
+    writeInt64BE(this._b, this._bl, 8)
+    writeInt64BE(this._c, this._cl, 16)
+    writeInt64BE(this._d, this._dl, 24)
+    writeInt64BE(this._e, this._el, 32)
+    writeInt64BE(this._f, this._fl, 40)
+    writeInt64BE(this._g, this._gl, 48)
+    writeInt64BE(this._h, this._hl, 56)
+
+    return H
+  }
+
+  return Sha512
+
+}
+
+},{"util":89}],73:[function(require,module,exports){
+var pbkdf2Export = require('pbkdf2-compat/pbkdf2')
+
+module.exports = function (crypto, exports) {
+  exports = exports || {}
+
+  var exported = pbkdf2Export(crypto)
+
+  exports.pbkdf2 = exported.pbkdf2
+  exports.pbkdf2Sync = exported.pbkdf2Sync
+
+  return exports
+}
+
+},{"pbkdf2-compat/pbkdf2":66}],74:[function(require,module,exports){
+(function (global,Buffer){
+(function() {
+  var g = ('undefined' === typeof window ? global : window) || {}
+  _crypto = (
+    g.crypto || g.msCrypto || require('crypto')
+  )
+  module.exports = function(size) {
+    // Modern Browsers
+    if(_crypto.getRandomValues) {
+      var bytes = new Buffer(size); //in browserify, this is an extended Uint8Array
+      /* This will not work in older browsers.
+       * See https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
+       */
+    
+      _crypto.getRandomValues(bytes);
+      return bytes;
+    }
+    else if (_crypto.randomBytes) {
+      return _crypto.randomBytes(size)
+    }
+    else
+      throw new Error(
+        'secure random number generation not supported by this browser\n'+
+        'use chrome, FireFox or Internet Explorer 11'
+      )
+  }
+}())
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
+},{"buffer":44,"crypto":43}],"events":[function(require,module,exports){
 module.exports=require('dwHHxT');
 },{}],"dwHHxT":[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
@@ -11133,7 +14760,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],52:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -11158,7 +14785,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],53:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -11220,7 +14847,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],54:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11448,7 +15075,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53}],55:[function(require,module,exports){
+},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78}],80:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11522,7 +15149,7 @@ function onend() {
   });
 }
 
-},{"./readable.js":59,"./writable.js":61,"inherits":52,"process/browser.js":57}],56:[function(require,module,exports){
+},{"./readable.js":84,"./writable.js":86,"inherits":77,"process/browser.js":82}],81:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11651,7 +15278,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"./duplex.js":55,"./passthrough.js":58,"./readable.js":59,"./transform.js":60,"./writable.js":61,"events":"dwHHxT","inherits":52}],57:[function(require,module,exports){
+},{"./duplex.js":80,"./passthrough.js":83,"./readable.js":84,"./transform.js":85,"./writable.js":86,"events":"dwHHxT","inherits":77}],82:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -11706,7 +15333,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],58:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11749,7 +15376,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./transform.js":60,"inherits":52}],59:[function(require,module,exports){
+},{"./transform.js":85,"inherits":77}],84:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12686,7 +16313,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./index.js":56,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53,"buffer":41,"events":"dwHHxT","inherits":52,"process/browser.js":57,"string_decoder":62}],60:[function(require,module,exports){
+},{"./index.js":81,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78,"buffer":44,"events":"dwHHxT","inherits":77,"process/browser.js":82,"string_decoder":87}],85:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -12892,7 +16519,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./duplex.js":55,"inherits":52}],61:[function(require,module,exports){
+},{"./duplex.js":80,"inherits":77}],86:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13280,7 +16907,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"./index.js":56,"buffer":41,"inherits":52,"process/browser.js":57}],62:[function(require,module,exports){
+},{"./index.js":81,"buffer":44,"inherits":77,"process/browser.js":82}],87:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13473,14 +17100,14 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":41}],63:[function(require,module,exports){
+},{"buffer":44}],88:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],64:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -14070,7 +17697,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":63,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53,"inherits":52}],"kz9Lsx":[function(require,module,exports){
+},{"./support/isBuffer":88,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78,"inherits":77}],"kz9Lsx":[function(require,module,exports){
 (function (Buffer){
 function BufferPut () {
   this.words = [];
@@ -14176,7 +17803,7 @@ BufferPut.prototype.write = function(stream) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41}],"bufferput":[function(require,module,exports){
+},{"buffer":44}],"bufferput":[function(require,module,exports){
 module.exports=require('kz9Lsx');
 },{}],"8c7T3E":[function(require,module,exports){
 (function (Buffer){
@@ -14451,9 +18078,9 @@ Buffers.prototype.toString = function(encoding, start, end) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41}],"buffers":[function(require,module,exports){
+},{"buffer":44}],"buffers":[function(require,module,exports){
 module.exports=require('8c7T3E');
-},{}],69:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 var elliptic = exports;
 
 elliptic.version = require('../package.json').version;
@@ -14466,7 +18093,7 @@ elliptic.curves = require('./elliptic/curves');
 // Protocols
 elliptic.ec = require('./elliptic/ec');
 
-},{"../package.json":90,"./elliptic/curve":72,"./elliptic/curves":75,"./elliptic/ec":76,"./elliptic/hmac-drbg":79,"./elliptic/rand":80,"./elliptic/utils":81}],70:[function(require,module,exports){
+},{"../package.json":115,"./elliptic/curve":97,"./elliptic/curves":100,"./elliptic/ec":101,"./elliptic/hmac-drbg":104,"./elliptic/rand":105,"./elliptic/utils":106}],95:[function(require,module,exports){
 var assert = require('assert');
 var bn = require('bn.js');
 var elliptic = require('../../elliptic');
@@ -14770,7 +18397,7 @@ BasePoint.prototype.dblp = function dblp(k) {
   return r;
 };
 
-},{"../../elliptic":69,"assert":40,"bn.js":82}],71:[function(require,module,exports){
+},{"../../elliptic":94,"assert":42,"bn.js":107}],96:[function(require,module,exports){
 var assert = require('assert');
 var curve = require('../curve');
 var elliptic = require('../../elliptic');
@@ -15133,7 +18760,7 @@ Point.prototype.getY = function getY() {
 Point.prototype.toP = Point.prototype.normalize;
 Point.prototype.mixedAdd = Point.prototype.add;
 
-},{"../../elliptic":69,"../curve":72,"assert":40,"bn.js":82,"inherits":89}],72:[function(require,module,exports){
+},{"../../elliptic":94,"../curve":97,"assert":42,"bn.js":107,"inherits":114}],97:[function(require,module,exports){
 var curve = exports;
 
 curve.base = require('./base');
@@ -15141,7 +18768,7 @@ curve.short = require('./short');
 curve.mont = require('./mont');
 curve.edwards = require('./edwards');
 
-},{"./base":70,"./edwards":71,"./mont":73,"./short":74}],73:[function(require,module,exports){
+},{"./base":95,"./edwards":96,"./mont":98,"./short":99}],98:[function(require,module,exports){
 var assert = require('assert');
 var curve = require('../curve');
 var elliptic = require('../../elliptic');
@@ -15306,7 +18933,7 @@ Point.prototype.getX = function getX() {
   return this.x.fromRed();
 };
 
-},{"../../elliptic":69,"../curve":72,"assert":40,"bn.js":82,"inherits":89}],74:[function(require,module,exports){
+},{"../../elliptic":94,"../curve":97,"assert":42,"bn.js":107,"inherits":114}],99:[function(require,module,exports){
 var assert = require('assert');
 var curve = require('../curve');
 var elliptic = require('../../elliptic');
@@ -16204,7 +19831,7 @@ JPoint.prototype.isInfinity = function isInfinity() {
   return this.z.cmpn(0) === 0;
 };
 
-},{"../../elliptic":69,"../curve":72,"assert":40,"bn.js":82,"inherits":89}],75:[function(require,module,exports){
+},{"../../elliptic":94,"../curve":97,"assert":42,"bn.js":107,"inherits":114}],100:[function(require,module,exports){
 var curves = exports;
 
 var assert = require('assert');
@@ -17133,7 +20760,7 @@ defineCurve('secp256k1', {
   ]
 });
 
-},{"../elliptic":69,"assert":40,"bn.js":82,"hash.js":83}],76:[function(require,module,exports){
+},{"../elliptic":94,"assert":42,"bn.js":107,"hash.js":108}],101:[function(require,module,exports){
 var assert = require('assert');
 var bn = require('bn.js');
 var elliptic = require('../../elliptic');
@@ -17283,7 +20910,7 @@ EC.prototype.verify = function verify(msg, signature, key) {
   return p.getX().mod(this.n).cmp(r) === 0;
 };
 
-},{"../../elliptic":69,"./key":77,"./signature":78,"assert":40,"bn.js":82}],77:[function(require,module,exports){
+},{"../../elliptic":94,"./key":102,"./signature":103,"assert":42,"bn.js":107}],102:[function(require,module,exports){
 var assert = require('assert');
 var bn = require('bn.js');
 
@@ -17429,7 +21056,7 @@ KeyPair.prototype.inspect = function inspect() {
          ' pub: ' + (this.pub && this.pub.inspect()) + ' >';
 };
 
-},{"../../elliptic":69,"assert":40,"bn.js":82}],78:[function(require,module,exports){
+},{"../../elliptic":94,"assert":42,"bn.js":107}],103:[function(require,module,exports){
 var assert = require('assert');
 var bn = require('bn.js');
 
@@ -17494,7 +21121,7 @@ Signature.prototype.toDER = function toDER(enc) {
   return utils.encode(res, enc);
 };
 
-},{"../../elliptic":69,"assert":40,"bn.js":82}],79:[function(require,module,exports){
+},{"../../elliptic":94,"assert":42,"bn.js":107}],104:[function(require,module,exports){
 var assert = require('assert');
 
 var hash = require('hash.js');
@@ -17609,7 +21236,7 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
   return utils.encode(res, enc);
 };
 
-},{"../elliptic":69,"assert":40,"hash.js":83}],80:[function(require,module,exports){
+},{"../elliptic":94,"assert":42,"hash.js":108}],105:[function(require,module,exports){
 var assert = require('assert');
 var elliptic = require('../elliptic');
 
@@ -17653,7 +21280,7 @@ if (typeof window === 'object') {
   };
 }
 
-},{"../elliptic":69,"assert":40}],81:[function(require,module,exports){
+},{"../elliptic":94,"assert":42}],106:[function(require,module,exports){
 var assert = require('assert');
 var bn = require('bn.js');
 
@@ -17801,7 +21428,7 @@ function getJSF(k1, k2) {
 }
 utils.getJSF = getJSF;
 
-},{"assert":40,"bn.js":82}],82:[function(require,module,exports){
+},{"assert":42,"bn.js":107}],107:[function(require,module,exports){
 // Utils
 
 function assert(val, msg) {
@@ -19519,7 +23146,7 @@ Mont.prototype.invm = function invm(a) {
   return res._forceRed(this);
 };
 
-},{}],83:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 var hash = exports;
 
 hash.utils = require('./hash/utils');
@@ -19533,7 +23160,7 @@ hash.sha256 = hash.sha.sha256;
 hash.sha224 = hash.sha.sha224;
 hash.ripemd160 = hash.ripemd.ripemd160;
 
-},{"./hash/common":84,"./hash/hmac":85,"./hash/ripemd":86,"./hash/sha":87,"./hash/utils":88}],84:[function(require,module,exports){
+},{"./hash/common":109,"./hash/hmac":110,"./hash/ripemd":111,"./hash/sha":112,"./hash/utils":113}],109:[function(require,module,exports){
 var hash = require('../hash');
 var utils = hash.utils;
 var assert = utils.assert;
@@ -19616,7 +23243,7 @@ BlockHash.prototype._pad = function pad() {
   return res;
 }
 
-},{"../hash":83}],85:[function(require,module,exports){
+},{"../hash":108}],110:[function(require,module,exports){
 var hmac = exports;
 
 var hash = require('../hash');
@@ -19665,7 +23292,7 @@ Hmac.prototype.digest = function digest(enc) {
   return this.hash.outer.digest(enc);
 };
 
-},{"../hash":83}],86:[function(require,module,exports){
+},{"../hash":108}],111:[function(require,module,exports){
 var hash = require('../hash');
 var utils = hash.utils;
 
@@ -19810,7 +23437,7 @@ var sh = [
   8, 5, 12, 9, 12, 5, 14, 6, 8, 13, 6, 5, 15, 13, 11, 11
 ];
 
-},{"../hash":83}],87:[function(require,module,exports){
+},{"../hash":108}],112:[function(require,module,exports){
 var hash = require('../hash');
 var utils = hash.utils;
 var assert = utils.assert;
@@ -19951,7 +23578,7 @@ function g1_256(x) {
   return rotr32(x, 17) ^ rotr32(x, 19) ^ (x >>> 10);
 }
 
-},{"../hash":83}],88:[function(require,module,exports){
+},{"../hash":108}],113:[function(require,module,exports){
 var utils = exports;
 
 function toArray(msg, enc) {
@@ -20150,9 +23777,9 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],89:[function(require,module,exports){
-module.exports=require(52)
-},{}],90:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
+module.exports=require(77)
+},{}],115:[function(require,module,exports){
 module.exports={
   "name": "elliptic",
   "version": "0.15.7",
@@ -20213,7 +23840,7 @@ module.exports={
   "readme": "ERROR: No README data found!"
 }
 
-},{}],91:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 var hash = exports;
 
 hash.utils = require('./hash/utils');
@@ -20228,13 +23855,13 @@ hash.sha256 = hash.sha.sha256;
 hash.sha224 = hash.sha.sha224;
 hash.ripemd160 = hash.ripemd.ripemd160;
 
-},{"./hash/common":92,"./hash/hmac":93,"./hash/ripemd":94,"./hash/sha":95,"./hash/utils":96}],92:[function(require,module,exports){
-arguments[4][84][0].apply(exports,arguments)
-},{"../hash":91}],93:[function(require,module,exports){
-arguments[4][85][0].apply(exports,arguments)
-},{"../hash":91}],94:[function(require,module,exports){
-arguments[4][86][0].apply(exports,arguments)
-},{"../hash":91}],95:[function(require,module,exports){
+},{"./hash/common":117,"./hash/hmac":118,"./hash/ripemd":119,"./hash/sha":120,"./hash/utils":121}],117:[function(require,module,exports){
+arguments[4][109][0].apply(exports,arguments)
+},{"../hash":116}],118:[function(require,module,exports){
+arguments[4][110][0].apply(exports,arguments)
+},{"../hash":116}],119:[function(require,module,exports){
+arguments[4][111][0].apply(exports,arguments)
+},{"../hash":116}],120:[function(require,module,exports){
 var hash = require('../hash');
 var utils = hash.utils;
 var assert = utils.assert;
@@ -20448,7 +24075,7 @@ function ft_1(s, x, y, z) {
     return maj32(x, y, z)
 }
 
-},{"../hash":91}],96:[function(require,module,exports){
+},{"../hash":116}],121:[function(require,module,exports){
 var utils = exports;
 var inherits = require('inherits');
 
@@ -20625,11 +24252,11 @@ utils.assert = assert;
 
 utils.inherits = inherits;
 
-},{"inherits":97}],97:[function(require,module,exports){
-module.exports=require(52)
-},{}],98:[function(require,module,exports){
+},{"inherits":122}],122:[function(require,module,exports){
+module.exports=require(77)
+},{}],123:[function(require,module,exports){
 module.exports = require("./src/preconditions");
-},{"./src/preconditions":101}],99:[function(require,module,exports){
+},{"./src/preconditions":126}],124:[function(require,module,exports){
 //     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -22046,7 +25673,7 @@ module.exports = require("./src/preconditions");
   }
 }.call(this));
 
-},{}],100:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 exports.ShouldBeDefined = "Variable should be defined.";
 exports.ShouldBeUndefined = "Variable should be undefined.";
 
@@ -22090,7 +25717,7 @@ exports.ShouldHaveValidIndex = "Index should be between between 0 (inclusive) an
 exports.ShouldHaveValidPosition = "Index should be between index between 0 (inclusive) and size (inclusive).";
 exports.ShouldHaveValidPositions = "Start and End should be between valid sub range between 0 (inclusive) and size (inclusive).";
 exports.StartBeforeEnd = "Start value should be less than the end value.";
-},{}],101:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -22360,7 +25987,7 @@ module.exports = {
   }
 
 };
-},{"./validatorFunctions":102,"underscore":99,"util":64}],102:[function(require,module,exports){
+},{"./validatorFunctions":127,"underscore":124,"util":89}],127:[function(require,module,exports){
 "use strict";
 
 var constants = require("./constants");
@@ -22592,7 +26219,7 @@ var validatorFunctions = {
 };
 
 module.exports = validatorFunctions;
-},{"./constants":100,"underscore":99}],103:[function(require,module,exports){
+},{"./constants":125,"underscore":124}],128:[function(require,module,exports){
 (function (Buffer){
 var pbkdf2 = require('pbkdf2-sha256');
 
@@ -22748,7 +26375,7 @@ function arraycopy(src, srcPos, dest, destPos, length) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41,"pbkdf2-sha256":104}],104:[function(require,module,exports){
+},{"buffer":44,"pbkdf2-sha256":129}],129:[function(require,module,exports){
 (function (Buffer){
 
 var crypto = require("crypto");
@@ -22803,7 +26430,7 @@ function pbkdf2(key, salt, iterations, dkLen) {
   return DK;
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":41,"crypto":45}],105:[function(require,module,exports){
+},{"buffer":44,"crypto":50}],130:[function(require,module,exports){
 (function (process){
 /*
 Copyright (c) 2011 Tim Caswell <tim@creationix.com>
@@ -22961,7 +26588,7 @@ if (typeof module !== 'undefined' && "exports" in module) {
 }
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53}],106:[function(require,module,exports){
+},{"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78}],131:[function(require,module,exports){
 (function (Buffer){
 /**
  * Simple synchronous parser based on node-binary.
@@ -23102,7 +26729,7 @@ Parser.prototype.varStr = function() {
 module.exports = Parser;
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":41}],107:[function(require,module,exports){
+},{"buffer":44}],132:[function(require,module,exports){
 (function (Buffer){
 var base58 = require('../lib/Base58').base58Check;
 
@@ -23258,7 +26885,7 @@ EncodedData.applyEncodingsTo(EncodedData);
 module.exports = EncodedData;
 
 }).call(this,require("buffer").Buffer)
-},{"../lib/Base58":9,"buffer":41}],108:[function(require,module,exports){
+},{"../lib/Base58":10,"buffer":44}],133:[function(require,module,exports){
 (function (Buffer){
 var base58 = require('../lib/Base58').base58Check;
 var util = require('util');
@@ -23304,7 +26931,7 @@ VersionedData.prototype.payload = function(data) {
 module.exports = VersionedData;
 
 }).call(this,require("buffer").Buffer)
-},{"../lib/Base58":9,"./EncodedData":107,"buffer":41,"util":64}],109:[function(require,module,exports){
+},{"../lib/Base58":10,"./EncodedData":132,"buffer":44,"util":89}],134:[function(require,module,exports){
 /**
  * Used during transcation verification when a source txout is missing.
  *
@@ -23349,10 +26976,10 @@ VerificationError.prototype = Object.create(Error.prototype);
 
 exports.VerificationError = VerificationError;
 
-},{}],110:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports = require('./util');
 
-},{"./util":"fTiz/i"}],111:[function(require,module,exports){
+},{"./util":"fTiz/i"}],136:[function(require,module,exports){
 'use strict';
 
 var noop = function() {};
@@ -23386,7 +27013,7 @@ if (config.log) {
   module.exports = loggers[config.logger || 'normal'];
 }
 
-},{"../config":3}],112:[function(require,module,exports){
+},{"../config":3}],137:[function(require,module,exports){
 // current time, in seconds
 exports.curtime = function curtime() {
   return Math.round(Date.now() / 1000);
@@ -23890,4 +27517,4 @@ exports.BIT = 100;
 var MAX_TARGET = exports.MAX_TARGET = new Buffer('00000FFFF0000000000000000000000000000000000000000000000000000000', 'hex');
 
 }).call(this,require("/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),require("buffer").Buffer)
-},{"../lib/sjcl":29,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":53,"bignum":22,"binary":31,"buffer":41,"bufferput":"kz9Lsx","buffertools":"Bd6gk8","crypto":45,"hash.js":91,"scryptsy":103}]},{},[])
+},{"../lib/sjcl":30,"/home/andy/Programming/extensions/ReddTipPlatform/TipPlatform/src/lib/electrum/node_modules/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":78,"bignum":23,"binary":33,"buffer":44,"bufferput":"kz9Lsx","buffertools":"Bd6gk8","crypto":50,"hash.js":116,"scryptsy":128}]},{},[])

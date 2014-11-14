@@ -4,6 +4,7 @@ global.dbg = function(item){
 };
 
 module.exports = {
+    _              : require('lodash'),
     WalletFactory  : require('./lib/wallet/WalletFactory'),
     NetworkMonitor : require('./lib/network/Monitor')
 }

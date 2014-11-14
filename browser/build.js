@@ -5,7 +5,7 @@ var config = require('../configuration');
 
 function build() {
     var doBitcore = true,
-//        doBitcore = false,
+        doBitcore = false,
         bitcoreOpts = {
             submodules : config.bitcoreModules,
             dontminify : true

@@ -6,8 +6,20 @@ module.exports = {
         coin_type : "0"
     },
 
+    password : {
+        salt : '7b54696484dcc638fb84afc502d473bd77636794b695c7a42a12e6ec77499c9bfffc766bf1eab882',
+        iterations : 2000,
+        keylen : 256
+    },
+
+    stopGap : 5,
+
+    accounts : {
+        max : 10
+    },
+
     bitcoreModules : [
-//        'lib/Address',
+        'lib/Address',
 //        'lib/AuthMessage',
 //        'lib/Base58',
         'lib/HierarchicalKey',
@@ -44,7 +56,7 @@ module.exports = {
 //        'patches/Number.monkey',
 //        'config',
 //        'const',
-//        'networks',
+        'networks',
 //        'util/log',
         'util/util'
 //        'util/EncodedData',

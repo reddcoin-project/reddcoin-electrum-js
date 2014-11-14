@@ -1,31 +1,13 @@
 var WalletFactory = require("../../lib/wallet/WalletFactory");
+var Address= require("../../lib/address/Address");
+var NetworkMonitor = require("../../lib/network/Monitor");
 var bitcore = bitcore || require('bitcore');
 var BIP39 = bitcore.BIP39;
 var BIP39WordlistEn = bitcore.BIP39WordlistEn;
 var WalletKey = bitcore.WalletKey;
 var HierarchicalKey = bitcore.HierarchicalKey;
-
+var dtest = require("../dtest");
 var nodeunit = require("nodeunit");
-
-// Allows for debug versions of tests. For instance, if
-//    test.strictEqual();
-// is failing, you can add a "d" to the beginning to get better formatted debug output:
-//    dtest.strictEqual();
-// This is useful because with long addresses, hex strings, etc. its much easier to compare them when they're aligned.
-var dtest = {
-
-    strictEqual : function (a, b, m) {
-        var m = m || "";
-        console.log(m);
-        console.log(a);
-        console.log(b);
-        console.log("");
-    },
-
-    deepEqual : function (a, b, m) {
-        this.strictEqual(a, b, m);
-    }
-};
 
 // All this data comes from Reddcoin Electrum in python
 var testData = {
@@ -80,7 +62,7 @@ module.exports = nodeunit.testCase({
         test.deepEqual([], currentAddresses, 'should start empty');
 
         //override the public property if it exists
-        this.wallet.addresses = [ addresses[0] ];
+        this.wallet.addresses = [addresses[0]];
 
         currentAddresses = this.wallet.getSimpleAddresses();
         test.deepEqual([], currentAddresses, 'addresses should not be public');
@@ -98,6 +80,23 @@ module.exports = nodeunit.testCase({
 
         test.deepEqual([], secondWallet.getSimpleAddresses(), "make sure its instance safe and second wallet is still empty");
 
+        test.done();
+    },
+
+    'Test Address From Keys' : function (test) {
+        var expected = {
+            "priv": "V1W3FSCEfcUvdYGynSshRqk2M9MgLwXEZzPATmWjm1CDjjABEdns",
+            "pub": "02c6a08f2ee18b0b25687bf391fd7155bded08f6bc1aa17517c905954915a7debf",
+            "addr": "Rcv2GrdBV5F7Js4qwggrDjwzes69qpCJCB"
+        };
+
+
+        var addr = Address.create(expected.priv, '');
+        var addr2 = Address.createPublic(expected.pub, '');
+
+        test.strictEqual(expected.addr,addr.toString());
+        test.strictEqual(expected.pub,addr.toString('pub'));
+        test.strictEqual(expected.addr,addr2.toString());
         test.done();
     },
 
@@ -177,13 +176,71 @@ module.exports = nodeunit.testCase({
                 return wKey.storeObj();
             };
 
-        console.log("priv:");
-        console.log(getAddress(account, 0).priv);
-        console.log("addr:");
-        console.log(getAddress(account, 0).addr);
+//        console.log("priv:");
+//        console.log(getAddress(account, 0).priv);
+//        console.log("addr:");
+//        console.log(getAddress(account, 0).addr);
         test.strictEqual(getAddress(account, 0).addr, addresses[0]);
         test.strictEqual(getAddress(account, 1).addr, addresses[1]);
         test.strictEqual(getAddress(account, 2).addr, addresses[2]);
+        test.done();
+    },
+
+    'Test Object Serialization' : function(test){
+        var seedText  = testData.mnemonicSeed,
+            wallet = this.wallet,
+            seconds = 160,
+            pw = 'secret',
+            obj;
+
+        seconds = 0;
+        this.wallet.buildFromMnemonic(seedText, pw);
+        this.wallet.activateAccount(0, 'Social Funds', 'encrypted', pw);
+        this.wallet.activateAccount(1, 'Savings', 'watch', pw);
+        this.wallet.activateAccount(2, 'Cash', 'encrypted', pw);
+        var monitor = NetworkMonitor.start(this.wallet);
+
+        setTimeout(function(){
+            monitor.stop();
+            finish();
+        }, seconds * 1000);
+
+        function finish(){
+            var obj = wallet.toObject(),
+                str = JSON.stringify(obj, null, 4);
+
+            console.log('');
+            console.log('*****************************************************');
+            console.log('* Wallet:');
+            console.log('*****************************************************');
+//            console.log(str);
+
+            var fs = require('fs'),
+                path = require('path'),
+                outputPath = path.resolve(__dirname, "data/wallet.json");
+            fs.writeFile( outputPath, str, function(err) {
+                if(err) {
+                    console.log(err);
+                }
+                else {
+                    console.log("Wallet obj written to: ");
+                    console.log(outputPath);
+                }
+            });
+
+            test.strictEqual('a', 'a');
+            test.done();
+        }
+    },
+
+    'Test Password' : function (test) {
+        this.wallet.buildFromMnemonic(testData.mnemonicSeed, 'secret');
+
+
+        test.strictEqual(this.wallet.passwordIsCorrect('secret'), true);
+        test.strictEqual(this.wallet.passwordIsCorrect('secret.'), false);
+        test.strictEqual(this.wallet.passwordIsCorrect('secret '), false);
+        test.strictEqual(this.wallet.passwordIsCorrect('not secret'), false);
         test.done();
     },
 
@@ -196,13 +253,27 @@ module.exports = nodeunit.testCase({
             seedText  = testData.mnemonicSeed,
             generatedAddresses;
 
-        this.wallet.buildFromMnemonic(seedText);
+        this.wallet.buildFromMnemonic(seedText, 'secret');
+        this.wallet.activateAccount(0, 'Social Funds', 'watch', 'secret');
+//        this.wallet.activateAccount(0, 'Social Funds', 'encrypted', 'secret');
         generatedAddresses = this.wallet.getAddresses();
+        //console.log(JSON.stringify(generatedAddresses, null, 2));
 
 //        console.log(generatedAddresses[5].wkey);
         test.strictEqual(generatedAddresses[0].toString(), addresses[0]);
         test.strictEqual(generatedAddresses[1].toString(), addresses[1]);
         test.strictEqual(generatedAddresses[2].toString(), addresses[2]);
+        test.done();
+    },
+
+    'Test Load Wallet' : function(test){
+        var path = require('path'),
+            walletPath = path.resolve(__dirname, "data/sample_wallet.json"),
+            wallet = require(walletPath);
+
+        this.wallet.fromObject(wallet);
+
+        test.deepEqual(wallet, this.wallet.toObject());
         test.done();
     }
 
