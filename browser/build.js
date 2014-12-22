@@ -5,11 +5,11 @@ var config = require('../configuration');
 
 function build() {
     var doBitcore = true,
-        doBitcore = false,
+//        doBitcore = false,
         bitcoreOpts = {
             submodules : config.bitcoreModules,
-            dontminify : true
-//            dontminify : false
+//            dontminify : true
+            dontminify : false
         };
 
     if(doBitcore){
@@ -26,9 +26,9 @@ function build() {
     b.require('./electrum.js', {expose:'electrum'});
     b.exclude('bitcore');
 
-//    b.transform({
-//        global: true
-//    }, 'uglifyify');
+    b.transform({
+        global: true
+    }, 'uglifyify');
 
     b.bundle().pipe(fs.createWriteStream('browser/electrum.js'));
 }
