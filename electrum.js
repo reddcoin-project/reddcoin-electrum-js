@@ -1,6 +1,5 @@
-
 global.dbg = function(item){
-  console.log(item);
+  //console.log(item);
 };
 
 module.exports = {
