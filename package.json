@@ -28,9 +28,9 @@
     "test": "grunt nodeunit"
   },
   "dependencies": {
-    "lodash": "^2.4.1",
     "reddcore": "git://github.com/reddcoin-project/reddcore",
-    "stampit": "1.1.0"
+    "stampit": "1.1.0",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "browserify": "^6.1.0",
