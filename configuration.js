@@ -15,7 +15,7 @@ module.exports = {
     stopGap : 5,
 
     accounts : {
-        max : 10
+        max : 1
     },
 
     bitcoreModules : [
