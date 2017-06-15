@@ -1,4 +1,4 @@
-var bitcoreBuild = require('../node_modules/reddcore/browser/build');
+var bitcoreBuild = require('../node_modules/bitcore/browser/build');
 var fs = require('fs');
 var browserify = require('browserify');
 var config = require('../configuration');
@@ -16,7 +16,7 @@ function build() {
 
     if(doBitcore){
 
-        process.chdir('../node_modules/reddcore');
+        process.chdir('../node_modules/bitcore');
         var bitcoreBundle = bitcoreBuild.createBitcore(bitcoreOpts);
 
         //output bitcore
