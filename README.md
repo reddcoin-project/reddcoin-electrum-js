@@ -2,6 +2,10 @@
 
 Implementation of electrum in javascript
 
+## Notes
+
+After npm install, to build, rename reddcore folder in node_modules to bitcore and everything will work
+
 ## Getting Started
 Install the module with: `npm install reddcoin-electrum-js`
 
@@ -23,5 +27,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2014 Andrew Groff  
+Copyright (c) 2014 Andrew Groff
 Licensed under the Proprietary license.
