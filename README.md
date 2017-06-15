@@ -11,7 +11,8 @@ reddcoin_electrum_js.awesome(); // "awesome"
 ```
 
 ## Documentation
-_(Coming soon)_
+
+This package (and Reddcore) requires Node v0.10
 
 ## Examples
 _(Coming soon)_
@@ -23,5 +24,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2014 Andrew Groff  
+Copyright (c) 2014 Andrew Groff
 Licensed under the Proprietary license.
