@@ -7,11 +7,9 @@ Implementation of electrum in javascript
 After npm install, to build, rename reddcore folder in node_modules to bitcore and everything will work
 
 ## Getting Started
-Install the module with: `npm install reddcoin-electrum-js`
 
 ```javascript
-var reddcoin_electrum_js = require('reddcoin-electrum-js');
-reddcoin_electrum_js.awesome(); // "awesome"
+Using a module and trying to build in browser is current bugged however a browser package can still be generated and included in your application. see documentation below for instructions
 ```
 
 ## Documentation
