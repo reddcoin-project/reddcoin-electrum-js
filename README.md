@@ -15,7 +15,9 @@ reddcoin_electrum_js.awesome(); // "awesome"
 ```
 
 ## Documentation
-_(Coming soon)_
+To use the web browser electrum wrapper you will need to update the server location in `./lib/network/monitor.js`. Once you have done this, install `grunt-cli` using npm and the global flag, from the root you can then run grunt build in console to generate a new electrum.js file in `./build/`
+
+You only need to include this single electrum.js file
 
 ## Examples
 _(Coming soon)_
