@@ -8,7 +8,7 @@ After npm install, to build, rename reddcore folder in node_modules to bitcore a
 
 ## Getting Started
 
-```javascript
+```
 Using a module and trying to build in browser is current bugged however a browser package can still be generated and included in your application. see documentation below for instructions
 ```
 
