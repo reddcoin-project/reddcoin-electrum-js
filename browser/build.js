@@ -31,6 +31,8 @@ function build() {
         b.require('./electrum.js', { expose:'electrum' });
         b.exclude('reddcore');
 
+        console.log(b);
+    
         b.transform({
             global: true
         }, 'uglifyify');
