@@ -2,35 +2,45 @@ var bitcoreBuild = require('../node_modules/bitcore/browser/build');
 var fs = require('fs');
 var browserify = require('browserify');
 var config = require('../configuration');
+var path = require('path');
 
 function build() {
-    var doBitcore = true,
-//        doBitcore = false,
+
+    var doBitcore = false,
         bitcoreOpts = {
             submodules : config.bitcoreModules,
-//            dontminify : true
             dontminify : false
         };
 
+    process.chdir('../');
+
     if(doBitcore){
-        process.chdir('node_modules/bitcore');
+
+        process.chdir('../node_modules/bitcore');
         var bitcoreBundle = bitcoreBuild.createBitcore(bitcoreOpts);
 
-        process.chdir('../../');
         //output bitcore
-        bitcoreBundle.pipe(fs.createWriteStream('browser/bitcore.js'));
+        bitcoreBundle.pipe( fs.createWriteStream(path.join(__dirname, 'bitcore.js')) );
+
     }
 
     console.log("Building Electrum");
+
     var b = browserify();
-    b.require('./electrum.js', {expose:'electrum'});
-    b.exclude('bitcore');
 
-    b.transform({
-        global: true
-    }, 'uglifyify');
+        b.require('./electrum.js', { expose:'electrum' });
+        b.exclude('reddcore');
 
-    b.bundle().pipe(fs.createWriteStream('browser/electrum.js'));
+        console.log(b);
+    
+        b.transform({
+            global: true
+        }, 'uglifyify');
+
+        b.bundle().pipe(
+            fs.createWriteStream( path.join(__dirname, 'electrum.js') )
+        );
+
 }
 
 if(process.mainModule.filename.indexOf('build.js') > 0){

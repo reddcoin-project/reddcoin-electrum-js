@@ -1,6 +1,9 @@
 'use strict';
 
 var build = require("./browser/build");
+var path = require('path');
+var fs = require('fs');
+var browserify = require('browserify');
 
 module.exports = function (grunt) {
 
@@ -45,7 +48,18 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask("build", "Build ", function () {
-        build();
+
+        var done = this.async();
+
+        browserify({ debug: true })
+            .require('./electrum.js', { expose:'electrum' })
+            .bundle()
+            .on('error', function (err) {
+                console.log(err);
+            })
+            .pipe(fs.createWriteStream('./browser/electrum.js'))
+            .on('end', done);
+
     });
 
     //allows things like `grunt test:transaction`

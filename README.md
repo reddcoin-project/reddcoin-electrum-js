@@ -2,16 +2,20 @@
 
 Implementation of electrum in javascript
 
-## Getting Started
-Install the module with: `npm install reddcoin-electrum-js`
+## Notes
 
-```javascript
-var reddcoin_electrum_js = require('reddcoin-electrum-js');
-reddcoin_electrum_js.awesome(); // "awesome"
+After npm install, to build, rename reddcore folder in node_modules to bitcore and everything will work
+
+## Getting Started
+
+```
+Using a module and trying to build in browser is current bugged however a browser package can still be generated and included in your application. see documentation below for instructions
 ```
 
 ## Documentation
-_(Coming soon)_
+To use the web browser electrum wrapper you will need to update the server location in `./lib/network/monitor.js`. Once you have done this, install `grunt-cli` using npm and the global flag, from the root you can then run grunt build in console to generate a new electrum.js file in `./build/`
+
+You only need to include this single electrum.js file
 
 ## Examples
 _(Coming soon)_
@@ -23,5 +27,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2014 Andrew Groff  
+Copyright (c) 2014 Andrew Groff
 Licensed under the Proprietary license.
